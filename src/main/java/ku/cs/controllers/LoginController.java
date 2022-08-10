@@ -14,10 +14,11 @@ public class LoginController {
 
 
     //login button
+    //กดไปหน้าหลักได้ก่อนยังไม่ได้ทำเงื่อนไข
     @FXML
     public void handleLoginButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("home");
+            com.github.saacsos.FXRouter.goTo("welcome_page");
         }catch (IOException e) {
             //System.err.println("ยังไม่สร้างhomepage");
         }

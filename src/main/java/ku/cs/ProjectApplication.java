@@ -24,7 +24,6 @@ public class ProjectApplication extends Application {
         FXRouter.when("guidebook", packageStr + "guidebook.fxml");
         FXRouter.when("welcome_page", packageStr+"welcome_page.fxml");
         FXRouter.when("report_list", packageStr+"report_list.fxml");
-
     }
     public static void main(String[] args) {
         launch();
