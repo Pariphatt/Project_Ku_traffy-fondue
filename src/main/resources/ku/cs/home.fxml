@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+   <children>
+      <Label layoutX="335.0" layoutY="65.0" prefHeight="56.0" prefWidth="129.0" style="-fx-position-shape: absolute; -fx-max-width: 278;" text="Report ">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="335.0" layoutY="143.0" text="System">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="134.0" fitWidth="130.0" layoutX="628.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/kulogo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="342.0" layoutY="245.0" mnemonicParsing="false" text="Sign in" onAction="#handleSignInButton">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="341.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="Sign up">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="360.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleCreditButton" text="Credit" />
+      <Button layoutX="653.0" layoutY="551.0" mnemonicParsing="false" onAction="#handleguidebookButton" text="คู่มือการใช้งาน" />
+   </children>
+</AnchorPane>
