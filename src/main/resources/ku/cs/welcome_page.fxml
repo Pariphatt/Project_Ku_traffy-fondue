@@ -15,7 +15,7 @@
    <children>
       <Pane prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #138D75;">
          <children>
-            <Button defaultButton="true" layoutX="762.0" layoutY="13.0" mnemonicParsing="false" text="⏻" />
+            <Button defaultButton="true" layoutX="762.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleLogOutButton" text="⏻" />
             <Label fx:id="idLabel1" layoutX="690.0" layoutY="17.0" text="Log Out  -&gt;   " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -84,5 +84,10 @@
             </Button>
          </children>
       </Pane>
+      <Label layoutX="383.0" layoutY="265.0" text="WELCOME">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

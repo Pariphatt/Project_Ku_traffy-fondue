@@ -20,8 +20,6 @@ public class WelcomePageController {
         try {
             com.github.saacsos.FXRouter.goTo("welcome_page");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า home ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด route");
             System.err.println(e);
         }
     }
@@ -30,8 +28,14 @@ public class WelcomePageController {
         try {
             com.github.saacsos.FXRouter.goTo("report_list");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า home ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด route");
+            System.err.println(e);
+        }
+    }
+    @FXML
+    public void handleLogOutButton(ActionEvent actionEvent){
+        try {
+            com.github.saacsos.FXRouter.goTo("login");
+        } catch (IOException e) {
             System.err.println(e);
         }
     }
