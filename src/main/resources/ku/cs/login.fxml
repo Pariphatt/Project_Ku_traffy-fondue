@@ -4,7 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.LoginController">
@@ -24,13 +27,39 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="usernametextfield" layoutX="284.0" layoutY="215.0" prefHeight="35.0" prefWidth="241.0" />
-      <Button layoutX="359.0" layoutY="383.0" mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
+      <TextField fx:id="username" layoutX="284.0" layoutY="215.0" prefHeight="40.0" prefWidth="229.0" promptText="Username" style="-fx-background-color: transparent;">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
+         </font></TextField>
+      <Button layoutX="323.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleLoginButton" styleClass="login_button" stylesheets="@styles/style.css" text="Sign In">
+         <font>
+            <Font name="Arial" size="24.0" />
          </font>
       </Button>
-      <PasswordField fx:id="passwordfield" layoutX="284.0" layoutY="311.0" prefHeight="35.0" prefWidth="241.0" />
-      <Button layoutX="24.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
+      <PasswordField fx:id="password" layoutX="288.0" layoutY="309.0" prefHeight="40.0" prefWidth="228.0" promptText="Password" style="-fx-background-color: transparent;">
+         <font>
+            <Font size="18.0" />
+         </font></PasswordField>
+      <Button layoutX="24.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleBackButton" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/backicon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label fx:id="loginMessageLabel" layoutX="284.0" layoutY="358.0" prefHeight="62.0" prefWidth="338.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="iconFileImage" fitHeight="150.0" fitWidth="200.0" layoutX="603.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/iconlogin.png" />
+         </image>
+      </ImageView>
+      <Line endX="128.5999755859375" endY="-1.52587890625E-5" layoutX="385.0" layoutY="255.0" startX="-100.0" />
+      <Line endX="128.0" layoutX="388.0" layoutY="349.0" startX="-100.0" />
+      <Button layoutX="514.0" layoutY="317.0" mnemonicParsing="false" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>

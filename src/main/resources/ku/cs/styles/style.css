@@ -1,0 +1,48 @@
+.bg{
+    -fx-background-color : #f5fffa;
+}
+.hide_button{
+    -fx-background-color : transparent;
+}
+.upload_button{
+    -fx-background-color: #33CC66;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
+.upload_button:hover{
+    -fx-background-color: #33FF66;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
+.login_button{
+    -fx-background-color: #70B17F;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
+.login_button:hover{
+    -fx-background-color: #3cb371;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+
+}
+.register_button{
+    -fx-background-color: #40e0d0	;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
+.register_button:hover{
+    -fx-background-color: #00fa9a;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+
+}
+.credit_button{
+    -fx-background-color: #eee8aa	;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
+.about_button{
+    -fx-background-color: #ffdab9	;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}

@@ -3,6 +3,7 @@ package ku.cs;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import com.github.saacsos.FXRouter;
 import java.io.IOException;
@@ -11,6 +12,10 @@ import com.github.saacsos.FXRouter;
 public class ProjectApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        stage.setFullScreen(false);
+        stage.setResizable(false);
+        Image image = new Image("E:\\Cs211Project\\project211-pedpap\\src\\main\\resources\\ku\\cs\\images\\kulogo3.png");
+        stage.getIcons().add(image);
         com.github.saacsos.FXRouter.bind(this, stage, "ระบบร้องเรียนมหาวิทยาลัยเกษตรศาสตร์", 800, 600);
         configRoute();
         com.github.saacsos.FXRouter.goTo("home");

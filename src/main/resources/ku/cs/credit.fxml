@@ -58,6 +58,13 @@
       <Label layoutX="257.0" layoutY="334.0" text="6410450133" />
       <Label layoutX="444.0" layoutY="334.0" text="6410451181" />
       <Label layoutX="658.0" layoutY="334.0" text="6410450184" />
-      <Button layoutX="29.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
+      <Button layoutX="26.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" styleClass="hide_button" stylesheets="@styles/style.css">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/backicon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>
