@@ -18,7 +18,7 @@ public class ProjectApplication extends Application {
 //        stage.getIcons().add(image);
         com.github.saacsos.FXRouter.bind(this, stage, "ระบบร้องเรียนมหาวิทยาลัยเกษตรศาสตร์", 800, 600);
         configRoute();
-        com.github.saacsos.FXRouter.goTo("home");
+        com.github.saacsos.FXRouter.goTo("admin");
     }
     private static void configRoute() {
         String packageStr = "ku/cs/";
@@ -33,6 +33,9 @@ public class ProjectApplication extends Application {
         FXRouter.when("empty2_page", packageStr+"empty2_page.fxml");
         FXRouter.when("welcome_staff", packageStr+"welcome_staff.fxml");
         FXRouter.when("my_account", packageStr+"my_account.fxml");
+        FXRouter.when("admin", packageStr+"admin.fxml");
+        FXRouter.when("change_password", packageStr+"change_password.fxml");
+
     }
     public static void main(String[] args) {
         launch();

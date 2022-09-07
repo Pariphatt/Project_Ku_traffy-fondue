@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AdminHomepageController">
+   <children>
+      <Label layoutX="178.0" layoutY="46.0" text="System User List">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Separator layoutX="512.0" layoutY="97.0" orientation="VERTICAL" prefHeight="465.0" prefWidth="1.0" />
+      <Label layoutX="561.0" layoutY="55.0" text="Admin" />
+      <Label fx:id="adminNameLabel" layoutX="629.0" layoutY="55.0" text="adminNameLabel" />
+      <Button layoutX="556.0" layoutY="209.0" mnemonicParsing="false" text="ReportUsers" />
+      <Button layoutX="695.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleLogoutButton" text="Logout" />
+      <Button layoutX="560.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleGoToChangePasswordButton" text="Change Password" />
+      <Label layoutX="560.0" layoutY="174.0" text="รายชื่อผู้ใช้ที่ถูกรายงาน :" />
+      <Label layoutX="561.0" layoutY="282.0" text="เปลี่ยนรหัสผ่านใหม่ :" />
+      <ListView layoutX="37.0" layoutY="93.0" prefHeight="465.0" prefWidth="462.0" />
+      <StackPane fx:id="reportListView" layoutX="51.0" layoutY="106.0" prefHeight="444.0" prefWidth="435.0" />
+   </children>
+</AnchorPane>
