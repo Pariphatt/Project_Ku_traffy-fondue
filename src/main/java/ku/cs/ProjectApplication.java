@@ -28,7 +28,9 @@ public class ProjectApplication extends Application {
         FXRouter.when("credit", packageStr + "credit.fxml");
         FXRouter.when("guidebook", packageStr + "guidebook.fxml");
         FXRouter.when("welcome_page", packageStr+"welcome_page.fxml");
-        FXRouter.when("report_list", packageStr+"report_list.fxml");
+        FXRouter.when("vote_page", packageStr+"vote_page.fxml");
+        FXRouter.when("empty1_page", packageStr+"empty1_page.fxml");
+        FXRouter.when("empty2_page", packageStr+"empty2_page.fxml");
         FXRouter.when("welcome_staff", packageStr+"welcome_staff.fxml");
         FXRouter.when("my_account", packageStr+"my_account.fxml");
     }

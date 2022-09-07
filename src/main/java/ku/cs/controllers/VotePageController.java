@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class WelcomePageController {
-
-    @FXML public void handleHomeButton(ActionEvent actionEvent){
+public class VotePageController {
+    @FXML
+    public void handleHomeButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("welcome_page");
         } catch (IOException e) {
@@ -23,7 +23,7 @@ public class WelcomePageController {
         }
     }
     @FXML
-    public void handleEmpty1Button(ActionEvent actionEvent){
+    public void handleDetailButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("empty1_page");
         } catch (IOException e) {
@@ -31,7 +31,7 @@ public class WelcomePageController {
         }
     }
     @FXML
-    public void handleEmpty2Button(ActionEvent actionEvent){
+    public void handleCategoryButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("empty2_page");
         } catch (IOException e) {
@@ -46,5 +46,4 @@ public class WelcomePageController {
             System.err.println(e);
         }
     }
-
 }

@@ -2,12 +2,22 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import ku.cs.models.reports.Report;
 
 import java.io.IOException;
 
-public class WelcomePageController {
+public class Empty1PageController {
+    private ListView<Report> reportListView;
+    private Label agencyLabel;
+    private Label detailLabel;
+    private Label statusLabel;
+    private Label timeLabel;
+    private Label voteLabel;
 
-    @FXML public void handleHomeButton(ActionEvent actionEvent){
+    @FXML
+    public void handleHomeButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("welcome_page");
         } catch (IOException e) {
@@ -23,7 +33,7 @@ public class WelcomePageController {
         }
     }
     @FXML
-    public void handleEmpty1Button(ActionEvent actionEvent){
+    public void handleDetailButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("empty1_page");
         } catch (IOException e) {
@@ -31,7 +41,7 @@ public class WelcomePageController {
         }
     }
     @FXML
-    public void handleEmpty2Button(ActionEvent actionEvent){
+    public void handleCategoryButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("empty2_page");
         } catch (IOException e) {
@@ -46,5 +56,6 @@ public class WelcomePageController {
             System.err.println(e);
         }
     }
+
 
 }

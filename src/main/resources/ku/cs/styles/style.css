@@ -1,4 +1,4 @@
-.bg{
+.background{
     -fx-background-color : #f5fffa;
 }
 .hide_button{
@@ -23,7 +23,10 @@
     -fx-background-color: #3cb371;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
-
+}
+.logout_button{
+    -fx-background-color: #FFA884;
+    -fx-background-radius: 50;
 }
 .register_button{
     -fx-background-color: #40e0d0	;
@@ -46,3 +49,27 @@
     -fx-background-radius: 50;
     -fx-border-radius: 50;
 }
+
+.search_box{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.search_button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 30;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.combo_box{
+    -fx-background-color: rgba(255,255,255,1);
+    -fx-background-radius: 30;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+

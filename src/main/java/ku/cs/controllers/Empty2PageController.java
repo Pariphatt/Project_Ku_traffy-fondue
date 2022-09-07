@@ -2,22 +2,10 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
-import com.github.saacsos.FXRouter;
 
-public class ReportListController {
-    @FXML private ImageView image;
-    @FXML private Label nameLabel;
-    @FXML private Label typeGroup;
-
-    @FXML public void initialize(){
-        String url = getClass().getResource("/ku/cs/images/test.jpg").toExternalForm();
-        image.setImage(new Image(url));
-    }
+public class Empty2PageController {
     @FXML
     public void handleHomeButton(ActionEvent actionEvent){
         try {
@@ -27,9 +15,25 @@ public class ReportListController {
         }
     }
     @FXML
-    public void handleReportListButton(ActionEvent actionEvent){
+    public void handleVoteButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("report_list");
+            com.github.saacsos.FXRouter.goTo("vote_page");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+    @FXML
+    public void handleDetailButton(ActionEvent actionEvent){
+        try {
+            com.github.saacsos.FXRouter.goTo("empty1_page");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+    @FXML
+    public void handleCategoryButton(ActionEvent actionEvent){
+        try {
+            com.github.saacsos.FXRouter.goTo("empty2_page");
         } catch (IOException e) {
             System.err.println(e);
         }
