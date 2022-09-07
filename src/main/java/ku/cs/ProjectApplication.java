@@ -18,7 +18,7 @@ public class ProjectApplication extends Application {
 //        stage.getIcons().add(image);
         com.github.saacsos.FXRouter.bind(this, stage, "ระบบร้องเรียนมหาวิทยาลัยเกษตรศาสตร์", 800, 600);
         configRoute();
-        com.github.saacsos.FXRouter.goTo("welcome_staff");
+        com.github.saacsos.FXRouter.goTo("home");
     }
     private static void configRoute() {
         String packageStr = "ku/cs/";
