@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="36.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="110.0" layoutY="21.0" text="userLebel" />
-      <Button layoutX="97.0" layoutY="52.0" mnemonicParsing="false" text="My account" />
+      <Button layoutX="97.0" layoutY="52.0" mnemonicParsing="false" text="My account" onAction="#handleMyAccountButton"/>
       <Label layoutX="563.0" layoutY="30.0" text="Agency:" />
       <MenuButton layoutX="619.0" layoutY="478.0" mnemonicParsing="false" text="----status----">
         <items>

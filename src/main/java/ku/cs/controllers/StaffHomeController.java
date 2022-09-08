@@ -75,4 +75,15 @@ public class StaffHomeController {
             e.printStackTrace(); //ดูว่าerorตรงไหนบ้าง
         }
     }
+
+    @FXML
+    public void handleMyAccountButton(ActionEvent actionEvent) {
+        try {
+            FXRouter.goTo("my_account");
+        } catch (IOException e) {
+            System.err.println("ไปที7หน้า profile ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกําหนด route");
+            e.printStackTrace(); //ดูว่าerorตรงไหนบ้าง
+        }
+    }
 }

@@ -13,6 +13,7 @@ public class ReportListHardCodeDataSource implements DataSource<ReportList>{
         return null;
     }
 
+
     @Override //Plymorphism
     public void writeData(ReportList report) {reportList= report;}
 
