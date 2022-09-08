@@ -14,11 +14,11 @@ public class ProjectApplication extends Application {
     public void start(Stage stage) throws IOException {
         stage.setFullScreen(false);
         stage.setResizable(false);
-//        Image image = new Image("E:\\Cs211Project\\project211-pedpap\\src\\main\\resources\\ku\\cs\\images\\kulogo3.png");
+//        Image image = new Image(".\\src\\main\\resources\\ku\\cs\\images\\kulogo3.png");
 //        stage.getIcons().add(image);
         com.github.saacsos.FXRouter.bind(this, stage, "ระบบร้องเรียนมหาวิทยาลัยเกษตรศาสตร์", 800, 600);
         configRoute();
-        com.github.saacsos.FXRouter.goTo("welcome_staff");
+        com.github.saacsos.FXRouter.goTo("welcome_page");
     }
     private static void configRoute() {
         String packageStr = "ku/cs/";

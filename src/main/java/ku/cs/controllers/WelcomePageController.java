@@ -26,7 +26,13 @@ public class WelcomePageController {
             alert.show();
         } else {
             report.reportButton(topicTextField.getText(),detailTextField.getText());
+            try {
+                com.github.saacsos.FXRouter.goTo("welcome_page");
+            } catch (IOException e) {
+                System.err.println(e);
+            }
         }
+
     }
 
     @FXML public void handleHomeButton(ActionEvent actionEvent){
@@ -68,5 +74,6 @@ public class WelcomePageController {
             System.err.println(e);
         }
     }
+
 
 }
