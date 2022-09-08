@@ -73,3 +73,17 @@
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
 }
 
+.button-change_password
+{
+    -fx-border-color: #D35400;
+    -fx-background-color: transparent;
+    -fx-text-fill: #D35400;
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}
+
+.text-System_User_List {
+    -fx-font-family: "Prompt-Regular";
+    -fx-font-size: 30;
+}

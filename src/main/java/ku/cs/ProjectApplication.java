@@ -35,6 +35,7 @@ public class ProjectApplication extends Application {
         FXRouter.when("my_account", packageStr+"my_account.fxml");
         FXRouter.when("admin", packageStr+"admin.fxml");
         FXRouter.when("change_password", packageStr+"change_password.fxml");
+        FXRouter.when("report_user", packageStr+"report_user.fxml");
 
     }
     public static void main(String[] args) {

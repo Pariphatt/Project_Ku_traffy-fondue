@@ -14,7 +14,7 @@ import java.net.URL;
 public class LoginController  {
     @FXML private TextField username;
    @FXML private PasswordField password;
-@ FXML private ImageView iconFileImage;
+    @FXML private ImageView iconFileImage;
     @FXML private Label loginMessageLabel;
     private Login login;
     private Alert alert;
