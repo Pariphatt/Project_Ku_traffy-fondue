@@ -7,7 +7,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -196,11 +195,7 @@
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="313.0">
                                                    <children>
-                                                      <TextArea prefHeight="100.0" prefWidth="200.0" promptText="Ex : Help! with flood pls ;-;">
-                                                         <HBox.margin>
-                                                            <Insets />
-                                                         </HBox.margin>
-                                                      </TextArea>
+                                                      <TextField fx:id="topicTextField" prefWidth="200.0" promptText="Ex. Help! me flood my house" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -211,16 +206,16 @@
                               </HBox>
                               <HBox prefHeight="300.0" prefWidth="200.0">
                                  <children>
-                                    <TextArea prefHeight="300.0" prefWidth="550.0" promptText="Write what you want to report...">
+                                    <TextField fx:id="detailTextField" alignment="TOP_LEFT" prefHeight="300.0" prefWidth="450.0" promptText="Write details here">
                                        <HBox.margin>
                                           <Insets bottom="10.0" left="30.0" right="30.0" />
                                        </HBox.margin>
-                                    </TextArea>
+                                    </TextField>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <Button mnemonicParsing="false" styleClass="search_button" stylesheets="@styles/style.css" text="report" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#reportButton" styleClass="search_button" stylesheets="@styles/style.css" text="report" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets bottom="20.0" />
                                        </HBox.margin>

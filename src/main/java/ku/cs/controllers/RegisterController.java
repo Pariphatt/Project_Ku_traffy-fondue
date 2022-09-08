@@ -46,7 +46,6 @@ public class RegisterController{
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
-
     }
 
 

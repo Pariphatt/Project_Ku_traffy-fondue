@@ -2,10 +2,32 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import ku.cs.models.reports.DetailReport;
 
+import java.io.File;
 import java.io.IOException;
 
 public class WelcomePageController {
+    private DetailReport report;
+    @FXML private TextField topicTextField;
+    @FXML private TextField detailTextField;
+    private Alert alert;
+
+    @FXML
+    public void initialize() {alert = new Alert(Alert.AlertType.NONE);}
+
+    public void reportButton(ActionEvent actionEvent){
+        report = new DetailReport();
+        if (topicTextField.getText().equals("") || detailTextField.getText().equals("")) {
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดกรอกข้อมูลให้ครบทุกช่อง");
+            alert.show();
+        } else {
+            report.reportButton(topicTextField.getText(),detailTextField.getText());
+        }
+    }
 
     @FXML public void handleHomeButton(ActionEvent actionEvent){
         try {
