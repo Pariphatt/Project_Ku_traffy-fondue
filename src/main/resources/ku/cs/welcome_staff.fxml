@@ -13,7 +13,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.StaffHomeController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="36.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="userLebel" layoutX="110.0" layoutY="21.0" text="userLebel" />
+      <Label layoutX="110.0" layoutY="21.0" text="userLebel" />
       <Button layoutX="97.0" layoutY="52.0" mnemonicParsing="false" text="My account" />
       <Label layoutX="563.0" layoutY="30.0" text="Agency:" />
       <MenuButton layoutX="619.0" layoutY="478.0" mnemonicParsing="false" text="----status----">
@@ -31,7 +31,7 @@
         </items>
       </MenuButton>
       <ListView fx:id="reportListView" layoutX="40.0" layoutY="104.0" prefHeight="456.0" prefWidth="355.0" />
-      <Button layoutX="731.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleLogOutButton" stylesheets="@styles/style.css" text="Logout">
+      <Button layoutX="731.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleLogoutButton" stylesheets="@styles/style.css" text="Logout">
          <styleClass>
             <String fx:value="hide_button" />
             <String fx:value="login_button" />
@@ -41,7 +41,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="agencyLebel" layoutX="664.0" layoutY="92.0" text="agencyLebel" />
+      <Label fx:id="agencyLabel" layoutX="664.0" layoutY="92.0" text="agencyLabel" />
       <Label layoutX="451.0" layoutY="477.0" text="สถานะการจัดการ">
          <font>
             <Font size="18.0" />
@@ -52,10 +52,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="detailLebel" layoutX="443.0" layoutY="201.0" prefHeight="261.0" prefWidth="323.0" text="detailLebel" textFill="#ea0505">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <Label fx:id="detailLabel" layoutX="451.0" layoutY="187.0" prefWidth="321.0" text="detailLabel" textFill="#e10f0f" />
    </children>
 </AnchorPane>

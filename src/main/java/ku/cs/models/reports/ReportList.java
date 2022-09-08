@@ -3,16 +3,12 @@ package ku.cs.models.reports;
 import java.util.ArrayList;
 
 public class ReportList {
-    private ArrayList<Report> reports;
-    public ReportList() {
-        // ใช้ new เพื'อสร้าง instance ของ ArrayList
+    private  ArrayList<Report> reports;
+    public ReportList(){
         reports = new ArrayList<>();
     }
-    public void addReport(Report report) {
-        // เรียก method add จาก ArrayList เพื'อเพิ'มข้อมูล
+    public void addReport(Report report){
         reports.add(report);
     }
-    public ArrayList<Report> getAllReports() {
-        return reports;
-    }
+    public ArrayList<Report> getAllReports(){return reports;}
 }
