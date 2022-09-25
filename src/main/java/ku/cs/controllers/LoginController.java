@@ -36,6 +36,15 @@ public class LoginController  {
            alert.setContentText("Please enter username and password");
            alert.show();
        }
+       else if ( login.staffLogin(username.getText(),password.getText())){
+           {
+               try {
+                   com.github.saacsos.FXRouter.goTo("welcome_staff");
+               } catch (IOException e) {
+                   throw new RuntimeException(e);
+               }
+           }
+       }
        else if ( login.validateLogin(username.getText(),password.getText())){
                {
                    try {
@@ -45,6 +54,16 @@ public class LoginController  {
                    }
                }
        }
+       else if ( login.adminLogin(username.getText(),password.getText())){
+           {
+               try {
+                   com.github.saacsos.FXRouter.goTo("admin");
+               } catch (IOException e) {
+                   throw new RuntimeException(e);
+               }
+           }
+       }
+
        else {
            alert.setAlertType(Alert.AlertType.WARNING);
            alert.setContentText("Inviled login");
