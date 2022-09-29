@@ -82,8 +82,8 @@ public class StaffHomepageController {
         }
         reportListView.getItems().clear();
         showListView();
-
     }
+
     @FXML
     void handleLogoutButton(javafx.event.ActionEvent actionEvent) {
         try {
@@ -97,6 +97,16 @@ public class StaffHomepageController {
     void handleChangeAccountButton(javafx.event.ActionEvent actionEvent) {
         try {
             com.github.saacsos.FXRouter.goTo("my_account");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า admin ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด route");
+        }
+    }
+
+    @FXML
+    void handleManageButton(javafx.event.ActionEvent actionEvent) {
+        try {
+            com.github.saacsos.FXRouter.goTo("manage_reports");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า admin ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
