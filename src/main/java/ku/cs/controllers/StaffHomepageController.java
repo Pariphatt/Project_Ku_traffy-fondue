@@ -12,12 +12,8 @@ import ku.cs.services.Filterer;
 import ku.cs.services.ReportFIleDataSource;
 
 import javafx.scene.control.*;
-import javafx.scene.control.ButtonBase;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashSet;
 
 public class StaffHomepageController {
     @FXML private TextField searchReportTextField;

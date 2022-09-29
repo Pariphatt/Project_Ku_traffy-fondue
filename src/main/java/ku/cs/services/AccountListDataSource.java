@@ -6,8 +6,6 @@ import ku.cs.models.account.StaffAccount;
 import ku.cs.models.account.UserAccount;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class AccountListDataSource implements DataSource<AccountList> {
@@ -18,7 +16,7 @@ public class AccountListDataSource implements DataSource<AccountList> {
     public AccountListDataSource(String directoryName, String fileName) {
         this.directoryName = directoryName;
         this.fileName = fileName;
-        accountList=new AccountList();
+        accountList = new AccountList();
         checkFileIsExisted();
     }
 

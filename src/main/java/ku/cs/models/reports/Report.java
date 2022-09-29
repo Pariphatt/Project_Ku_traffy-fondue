@@ -8,7 +8,7 @@ public class Report {
     private int vote;
     private String agency;
 
-    public Report(String topic, String detail, String userReport, String agency,int vote,String status) {
+    public Report(String topic, String detail, String userReport, String agency, int vote, String status) {
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
@@ -17,7 +17,7 @@ public class Report {
         this.agency = agency;
     }
 
-    public Report(String topic,String detail,String userReport,String agency){
+    public Report(String topic, String detail, String userReport, String agency){
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
@@ -25,7 +25,7 @@ public class Report {
         this.vote = 0;
         this.status = "ยังไม่ดำเนินการ";
     }
-    public Report(String topic, String detail,String userReport, String agency,int vote){
+    public Report(String topic, String detail, String userReport, String agency, int vote){
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;

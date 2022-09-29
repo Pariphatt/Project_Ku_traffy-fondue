@@ -4,11 +4,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.*;
-import ku.cs.models.User;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.services.AccountListDataSource;
@@ -34,29 +32,35 @@ public class AdminHomepageController {
 
     @FXML
     public void initialize() {
-        dataSource = new AccountListDataSource("asset","accounts.csv");
+        dataSource = new AccountListDataSource( "asset","accounts.csv");
         accountsList = dataSource.readData();
-        listViewUser.getItems().addAll(accountsList.getAllUsers());
+        showListView();
+        clearSelectedAccount();
         handleSelectedListView();
     }
-    private void handleSelectedListView() {
-        listViewUser.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Account>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Account> observable,
-                                        Account oldValue,Account newValue) {
-                        System.out.println(newValue + " is selected");
-                        showSelectedAccount(newValue);
-                    }
-                });
+    private void showListView(){
+        listViewUser.getItems().addAll(accountsList.getAllUsers());
+       listViewUser.refresh();
     }
 
-    private void showSelectedAccount(Account account){
-       NameLabel.setText(account.getName());
+    private void clearSelectedAccount(){
+        NameLabel.setText("");
+        UsernameLabel.setText("");
+    }
+
+    private void handleSelectedListView(){
+        listViewUser.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
+            @Override
+            public void changed(ObservableValue<? extends Account> observable, Account oldValue, Account newValue) {
+                System.out.println("Selected item: " + newValue);
+                showSelectedAccount(newValue);
+            }
+        });
+    }
+
+    public void showSelectedAccount(Account account){
+        NameLabel.setText(account.getName());
         UsernameLabel.setText(account.getUsername());
-        listViewUser.refresh();
-
-
 
     }
 

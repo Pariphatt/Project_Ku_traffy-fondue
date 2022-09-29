@@ -11,7 +11,6 @@ import javafx.stage.FileChooser;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
-import ku.cs.models.account.UserAccount;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 
