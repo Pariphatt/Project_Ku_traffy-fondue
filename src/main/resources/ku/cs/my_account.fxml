@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.MyAccountController">
    <children>
       <Text fill="#1558e0" layoutX="291.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't know your password?" underline="true" />
@@ -27,7 +26,7 @@
       </Text>
       <PasswordField fx:id="currentPassword" layoutX="288.0" layoutY="212.0" prefHeight="25.0" prefWidth="225.0" />
       <Button layoutX="287.0" layoutY="435.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="171.0" text="Change Password" />
-      <Button layoutX="474.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" text="Cancel" />
+      <Button layoutX="474.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="33.0" prefWidth="76.0" text="Cancel" />
       <Text layoutX="287.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change your password">
          <font>
             <Font size="25.0" />
