@@ -19,7 +19,7 @@ public class ProjectApplication extends Application {
         com.github.saacsos.FXRouter.bind(this, stage, "ระบบร้องเรียนมหาวิทยาลัยเกษตรศาสตร์", 800, 600);
         configRoute();
 
-        com.github.saacsos.FXRouter.goTo("home");
+        com.github.saacsos.FXRouter.goTo("staff_homepage");
 
 
     }
@@ -34,7 +34,7 @@ public class ProjectApplication extends Application {
         FXRouter.when("vote_page", packageStr+"vote_page.fxml");
         FXRouter.when("empty1_page", packageStr+"empty1_page.fxml");
         FXRouter.when("empty2_page", packageStr+"empty2_page.fxml");
-        FXRouter.when("welcome_staff", packageStr+"welcome_staff.fxml");
+        FXRouter.when("staff_homepage", packageStr+"staff_homepage.fxml");
         FXRouter.when("my_account", packageStr+"my_account.fxml");
         FXRouter.when("admin", packageStr+"admin.fxml");
         FXRouter.when("change_password", packageStr+"change_password.fxml");
