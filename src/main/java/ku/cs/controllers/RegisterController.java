@@ -3,96 +3,139 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import com.github.saacsos.FXRouter;
 import ku.cs.models.Register;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import ku.cs.models.Login;
-import ku.cs.models.Register;
-import ku.cs.models.UserList;
-import ku.cs.services.UserListDataSource;
-import com.github.saacsos.FXRouter;
+import ku.cs.models.User;
+import ku.cs.models.account.Account;
+import ku.cs.models.account.AccountList;
+import ku.cs.models.account.UserAccount;
+import ku.cs.services.AccountListDataSource;
+import ku.cs.services.DataSource;
+import ku.cs.services.Info;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.regex.Pattern;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 
-public class RegisterController{
+public class RegisterController {
     private String Path;
     @FXML
-    private TextField NameTextField;
+    private TextField nameTextField;
     @FXML
-    private TextField UsernameTextField;
+    private TextField usernameTextField;
     @FXML
-    private ImageView  imageView;
+    private ImageView imageView;
     private Register register;
+    private String pathImage;
+    private Register imagePath;
     private BufferedImage pic = null;
     @FXML
     private PasswordField passwordField;
     @FXML
     private PasswordField confirmPasswordField;
-
+    private Account accounts;
     @FXML
     private Button Register;
     private Alert alert;
+    private DataSource<AccountList> accountListDataSource;
+    private AccountList accountList;
+
     @FXML
     public void initialize() {
+        accounts = new Account();
+        accountList = new AccountList();
         alert = new Alert(Alert.AlertType.NONE);
     }
 
 
-
     // add รูปภาพ
-    public void handleAddPhoto(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg"));
-        File picFile = fileChooser.showOpenDialog(null);
-        imageView.setEffect(new DropShadow(20, Color.BLACK));
-        if (picFile != null) {
-            Path = picFile.getAbsolutePath();
-            imageView.setImage(new Image(new File(Path).toURI().toString()));
+    public String handleAddPhoto(ActionEvent event) {
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
+        Node source = (Node) event.getSource();
+        File file = chooser.showOpenDialog(source.getScene().getWindow());
+        if (file != null) {
+            try {
+                File destDir = new File("imagesAvatar");
+                if (!destDir.exists()) destDir.mkdirs();
+                String[] fileSplit = file.getName().split("\\.");
+                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+                        + fileSplit[fileSplit.length - 1];
+                Path target = FileSystems.getDefault().getPath(
+                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
+                );
+                System.out.println(file.toPath());
+                System.out.println(target);
+                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                imageView.setImage(new Image(target.toUri().toString()));
+                pathImage = filename;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            pic = ImageIO.read(picFile);
-        } catch (IOException e) {
-            System.err.println("Cannot load picture");
-        }
+        return pathImage;
     }
 
-    public void RegisterButton(ActionEvent actionEvent){
-        register = new Register();
-        if (NameTextField.getText().isEmpty() == true || UsernameTextField.getText().isEmpty() == true ||
-                passwordField.getText().isEmpty() == true ||
-                confirmPasswordField.getText().isEmpty() == true  ){
+
+    public void RegisterButton(ActionEvent actionEvent) {
+        String name = nameTextField.getText();
+        String usernameText = usernameTextField.getText();
+        String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+        if (nameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty() ||
+                passwordField.getText().isEmpty() ||
+                confirmPasswordField.getText().isEmpty()) {
             alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("โปรดกรอกข้อมูลให้ครบทุกช่อง");
             alert.show();
         }
-        else if(passwordField.getText().equals(confirmPasswordField.getText()) == true){
-            register.validateRegister(NameTextField.getText(),UsernameTextField.getText(),
-                passwordField.getText(),confirmPasswordField.getText(),Path);
-            {
-                try {
-                    FXRouter.goTo("login");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+    else{
+        if (!accountList.isExistUsername(usernameText)) {
+            accountListDataSource = new AccountListDataSource("assets","accounts.csv");
+
+            if (pathImage == null) {
+                UserAccount user = new UserAccount("User",name,usernameText,password,"profile-user.png");
+                System.out.println(user.getUsername());
+                accountList.addUser(user);
+            } else {
+                File dest = new File("assets/imagesAvatar/" + pathImage);
+                accountList.addUser(new UserAccount("User",name,usernameText,password,pathImage));
             }
-        }
-        else if(!(passwordField.getText().equals(confirmPasswordField.getText())) == true){
+            System.out.println(accountList.getAllUsers().get(0));
+            accountListDataSource.writeData(accountList);
+            System.out.println(accountList.getAllUsers());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("ลงทะเบียนสำเร็จ");
+            alert.show();
+
+            try {
+                com.github.saacsos.FXRouter.goTo("login");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else if (accountList.isExistUsername(usernameText)) {
+            accountListDataSource.writeData(accountList);
             alert.setAlertType(Alert.AlertType.WARNING);
-            alert.setContentText("โปรดกรอกข้อมูลให้เหมือนกัน");
+            alert.setContentText("Already registered.");
             alert.show();
         }
-       }
+    }
+
+}
+
+
+
 
 
 

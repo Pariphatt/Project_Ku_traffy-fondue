@@ -1,42 +1,18 @@
 package ku.cs.models.account;
 
 public class UserAccount extends Account{
-    private String lastLogin;
-    private String userStatus;
-    private int loginAttempts;
-    private String userImage;
 
-    public UserAccount(String name, String username, String password, String userStatus, int loginAttempts, String lastLogin) {
-        super(name, username, password);
-        this.lastLogin = lastLogin;
-        this.userStatus= userStatus;
-        this.loginAttempts = loginAttempts;
-        this.userImage = "-";
+    private boolean isBan;
+
+    public UserAccount(String role,String name, String username, String password, String picPath) {
+        super(role, name, username, password, picPath);
     }
 
-    public UserAccount(String role, String name, String username, String password, String userStatus, int loginAttempts, String lastLogin, String userImage) {
-        super(name, username, password);
-        this.lastLogin = lastLogin;
-        this.userStatus= userStatus;
-        this.loginAttempts = loginAttempts;
-        this.userImage = userImage;
+    public void setBan(boolean ban) {
+        isBan = ban;
     }
 
-    public String getLastLogin() {
-        return lastLogin;
+    public boolean isBan() {
+        return isBan;
     }
-
-    public String getUserStatus() {
-        return userStatus;
-    }
-
-    public int getLoginAttempts() {
-        return loginAttempts;
-    }
-
-    public String getUserImage() {
-        return userImage;
-    }
-
-
 }

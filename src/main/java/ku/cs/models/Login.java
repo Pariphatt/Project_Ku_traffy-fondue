@@ -80,7 +80,7 @@ public class Login {
 
     }
     public  boolean staffLogin(String userName,String passWord){
-        String filePath2 = directoryName2 + File.separator + "users.csv";
+        String filePath2 = directoryName2 + File.separator + "staff.csv";
         File file = new File(filePath2);
 
         FileReader reader = null;
