@@ -2,33 +2,80 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import ku.cs.models.User;
 import ku.cs.models.account.AccountList;
 import ku.cs.services.AccountListDataSource;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 
 public class ChangePasswordController {
-    @FXML private TextField userName;
-    @FXML private PasswordField currentPassword;
-    @FXML private PasswordField newPassword;
-    @FXML private PasswordField confirmNewPassword;
+    @FXML
+    private TextField userName;
+    @FXML
+    private PasswordField currentPassword;
+    @FXML
+    private PasswordField newPassword;
+    @FXML
+    private PasswordField confirmNewPassword;
+    @FXML
+    private ImageView imageView;
 
-    @FXML private AnchorPane pane;
+    @FXML
+    private AnchorPane pane;
     private Alert alert;
     private AccountList userList;
-    private AccountListDataSource userListDataSource ;
+    private String pathImage;
+    private AccountListDataSource userListDataSource;
     User user;
+
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
-        userListDataSource = new AccountListDataSource("assets","accounts.csv");
+        userListDataSource = new AccountListDataSource("assets", "accounts.csv");
 
     }
+    public String handleAddPhoto(ActionEvent event) {
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
+        Node source = (Node) event.getSource();
+        File file = chooser.showOpenDialog(source.getScene().getWindow());
+        if (file != null) {
+            try {
+                File destDir = new File("imagesAvatar");
+                if (!destDir.exists()) destDir.mkdirs();
+                String[] fileSplit = file.getName().split("\\.");
+                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+                        + fileSplit[fileSplit.length - 1];
+                Path target = FileSystems.getDefault().getPath(
+                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
+                );
+                System.out.println(file.toPath());
+                System.out.println(target);
+                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                imageView.setImage(new Image(target.toUri().toString()));
+                pathImage = filename;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return pathImage;
+    }
+
     @FXML
     public void handleCancelButton(ActionEvent actionEvent) {
         try {
@@ -38,6 +85,7 @@ public class ChangePasswordController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
+
     @FXML
     public void handleChangePasswordButton(ActionEvent actionEvent) {
         String userName1 = userName.getText();
@@ -45,41 +93,21 @@ public class ChangePasswordController {
         String newPassword1 = newPassword.getText();
         String confirmNewPassword1 = confirmNewPassword.getText();
 
-//        userList.findUserPassword(userName1,currentPassword1);
 
         if (!(newPassword.getText().equals(confirmNewPassword.getText()))) {
             alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("โปรดกรอกรหัสผ่านให้เหมือนกัน");
             alert.show();
-        } else if (newPassword.getText().isEmpty() || confirmNewPassword.getText().isEmpty()) {
+        }
+        else if (newPassword.getText().isEmpty() || confirmNewPassword.getText().isEmpty()) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("โปรดกรอกรหัสผ่าน");
             alert.show();
-        } else if (userListDataSource.ChangePassword(userName1,currentPassword1,newPassword1)  ) {
+        } else if (userListDataSource.ChangePassword(userName1, currentPassword1, newPassword1)) {
             alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("เปลี่ยนรหัสผ่านสำเร็จ_____");
+            alert.setContentText("เปลี่ยนรหัสผ่านสำเร็จ");
             alert.show();
 
-//        } else {
-//            user.setPassword(newPassword1);
-//            try {
-//                alert.setAlertType(Alert.AlertType.INFORMATION);
-//                alert.setContentText("เปลี่ยนรหัสผ่านสำเร็จ");
-//                alert.show();
-//                com.github.saacsos.FXRouter.goTo("admin");
-//
-//            } catch (IOException e) {
-//                System.err.println("ไปที่หน้า admin ไม่ได้");
-//                System.err.println("ให้ตรวจสอบการกำหนด route");
-//            }
         }
-
     }
-//    public void refreshUser(User user, String password) {
-//        userList.removeUser(user.getUsername());
-//        user.setPassword(password);
-//        userList.addUser(user);
-//        userListDataSource.setUserList(userList);
-//        userListDataSource.saveData();
-//    }
 }

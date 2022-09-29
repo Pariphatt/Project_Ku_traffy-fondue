@@ -1,8 +1,7 @@
 #role,username,name,password,picPath,(user:isBan|staff:agency|admin:null),date,Attempts
 admin,admin,PARIPHAT,1234,profile-user.png,null
-staff,kong,kong,1234,profile-staff.png,null
-User,nat,nat,1234,profile-user.png,false,null,0
-User,1,1,1,profile-user.png,false,null,0
 User,22,12222,22,profile-user.png,false,null,0
 User,neuw,Nopnapat,12,2022-09-29_1664465319526.jpg,false,null,0
 User,arty,Phonlaphat,3,2022-09-29_1664465371914.png,false,null,0
+User,natcs,NATCS,111,profile-user.png,false,null,0
+staff,saccos,saccos,1234,profile-user.png,null,null,0

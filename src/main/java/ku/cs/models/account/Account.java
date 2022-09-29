@@ -28,6 +28,9 @@ public class Account {
         this.picPath=picPath;
     }
 
+    public Account(String name, String username, String password, String picPath) {
+    }
+
     public String getRole() {
         return role;
     }
@@ -70,13 +73,7 @@ public class Account {
     public void setPicPath(String picPath) {
         this.picPath = picPath;
     }
-    public boolean TrueUserImage() {
-        if (getPicPath().equals(getUsername() + ".png")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
     public String getPicPath() {
         return picPath;
     }
@@ -98,6 +95,7 @@ public class Account {
     }
 
     public String getLastLogin() {
+
         return lastLogin;
     }
 

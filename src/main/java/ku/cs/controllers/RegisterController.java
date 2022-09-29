@@ -6,17 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import com.github.saacsos.FXRouter;
-import ku.cs.models.Register;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import ku.cs.models.User;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.UserAccount;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
-import ku.cs.services.Info;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -35,9 +32,9 @@ public class RegisterController {
     private TextField usernameTextField;
     @FXML
     private ImageView imageView;
-    private Register register;
+
     private String pathImage;
-    private Register imagePath;
+
     private BufferedImage pic = null;
     @FXML
     private PasswordField passwordField;
@@ -124,11 +121,6 @@ public class RegisterController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        } else if (accountList.isExistUsername(usernameText)) {
-            accountListDataSource.writeData(accountList);
-            alert.setAlertType(Alert.AlertType.WARNING);
-            alert.setContentText("Already registered.");
-            alert.show();
         }
     }
 

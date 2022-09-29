@@ -1,5 +1,0 @@
-name,username,password,IsAdmin,IsStaff,pic_path
-Admin,admin,1234,true,false,profile-user.jpg
-Admin,admin1,1234,true,false,profile-user.jpg
-Jhon,jhon,1234,false,true,profile-user.jpg
-nat,pariphat,1234,false,false,2022-09-28_1664339150589.jpg

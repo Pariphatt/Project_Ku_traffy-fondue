@@ -22,24 +22,7 @@ public class AccountListDataSource implements DataSource<AccountList> {
         checkFileIsExisted();
     }
 
-    public AccountListDataSource() {
-//        initialFileIfNotExist();
-    }
 
-    //    private void initialFileIfNotExist() {
-//        File file = new File("assets");
-//        if (!file.exists()) {
-//            file.mkdir();
-//        }
-//        file = new File(fileName);
-//        if (!file.exists()) {
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
     private void checkFileIsExisted() {
         File file = new File(directoryName);
         if (!file.exists()) {
@@ -77,7 +60,7 @@ public class AccountListDataSource implements DataSource<AccountList> {
                 if (role.equals("admin")) {
                     account = new Account(data[2], data[1], data[3]);
                 } else if (role.equals("staff")) {
-                    account = new StaffAccount(data[2], data[1], data[3]);
+                    account = new StaffAccount("staff",data[2], data[1], data[3],data[4]);
                     ((StaffAccount) account).setAgency(data[5]);
                 } else if (role.equals("User")) {
                     account = new UserAccount("User",data[2], data[1], data[3],data[4]);
@@ -117,8 +100,8 @@ public class AccountListDataSource implements DataSource<AccountList> {
             writer = new FileWriter(file, true);
             buffer = new BufferedWriter(writer);
             for (Account account : accountList.getAllUsers()) {
-                if ("Staff".equals(account.getRole())) {
-                    String line = "Staff" + "," + account.getUsername() + "," + account.getName() + ","
+                if ("staff".equals(account.getRole())) {
+                    String line = "staff" + "," + account.getUsername() + "," + account.getName() + ","
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
                             + (((StaffAccount) account).getAgency()) + ","
@@ -192,7 +175,6 @@ public class AccountListDataSource implements DataSource<AccountList> {
                         value = value+ "," + temp[i];
                     }
                 }
-                System.out.println("Change Success");
                 bufferedWriter.write("\n"+value);
             }
 

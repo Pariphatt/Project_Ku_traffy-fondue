@@ -28,6 +28,10 @@
     -fx-background-color: #FFA884;
     -fx-background-radius: 50;
 }
+.setting_button{
+    -fx-background-color: #1ed048;
+    -fx-background-radius: 50;
+}
 .register_button{
     -fx-background-color: #40e0d0	;
     -fx-background-radius: 50;

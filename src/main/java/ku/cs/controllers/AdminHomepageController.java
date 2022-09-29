@@ -4,68 +4,64 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.*;
-import ku.cs.models.Register;
 import ku.cs.models.User;
+import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
-import ku.cs.services.Info;
-import ku.cs.services.ListDataSource;
+import ku.cs.services.AccountListDataSource;
+import ku.cs.services.DataSource;
 
 import java.io.IOException;
 
 
 public class AdminHomepageController {
 
-    private Info info;
-
+    private DataSource<AccountList> dataSource;
+    private Account account;
     private AccountList accountsList;
 
     @FXML StackPane pane;
-    @FXML private ListDataSource<Register> dataSource;
+
     @FXML private Label adminNameLabel;
     @FXML private Label NameLabel;
     @FXML private Label UsernameLabel;
     @FXML private Label AgencyLabel;
     @FXML private Label TimeLabel;
     @FXML private ListView listViewUser;
-    private Register register;
+
     @FXML
     public void initialize() {
-        register = new Register();
-//        register = dataSource.readData();
-//        listViewUser.getItems().addAll(register.getAccount());
+        dataSource = new AccountListDataSource("asset","accounts.csv");
+        accountsList = dataSource.readData();
+        listViewUser.getItems().addAll(accountsList.getAllUsers());
         handleSelectedListView();
     }
-
-    private void showListView() {
-        listViewUser.getItems().addAll(register.getAccount());
-        listViewUser.refresh();
-}
-
     private void handleSelectedListView() {
         listViewUser.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<User>() {
+                new ChangeListener<Account>() {
                     @Override
-                    public void changed(ObservableValue<? extends User> observable,
-                                        User oldValue, User newValue) {
-                        showSelectedUser(newValue);
+                    public void changed(ObservableValue<? extends Account> observable,
+                                        Account oldValue,Account newValue) {
+                        System.out.println(newValue + " is selected");
+                        showSelectedAccount(newValue);
                     }
                 });
     }
 
-    private void showSelectedUser(User user) {
-        NameLabel.setText(user.getName());
-        UsernameLabel.setText(user.getUsername());
-        AgencyLabel.setText(user.getAgency());
+    private void showSelectedAccount(Account account){
+       NameLabel.setText(account.getName());
+        UsernameLabel.setText(account.getUsername());
+        listViewUser.refresh();
+
+
+
     }
 
-    private void clearSelectedCard() {
-        NameLabel.setText("");
-        UsernameLabel.setText("");
-        AgencyLabel.setText("");
-    }
+
+
     @FXML void handleGoToChangePasswordButton(ActionEvent actionEvent) {
         try {
             com.github.saacsos.FXRouter.goTo("change_password");

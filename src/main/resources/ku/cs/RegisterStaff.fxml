@@ -35,11 +35,11 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <TextField fx:id="NameTextField" layoutX="155.0" layoutY="91.0" prefHeight="40.0" prefWidth="202.0" promptText="Enter Your Name" style="-fx-background-color: transparent;">
+      <TextField fx:id="nameTextField" layoutX="155.0" layoutY="91.0" prefHeight="40.0" prefWidth="202.0" promptText="Enter Your Name" style="-fx-background-color: transparent;">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="UsernameTextField" layoutX="161.0" layoutY="177.0" prefHeight="40.0" prefWidth="201.0" promptText="Enter Your Username" style="-fx-background-color: transparent;">
+      <TextField fx:id="usernameTextField" layoutX="161.0" layoutY="177.0" prefHeight="40.0" prefWidth="201.0" promptText="Enter Your Username" style="-fx-background-color: transparent;">
          <font>
             <Font size="18.0" />
          </font></TextField>

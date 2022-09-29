@@ -1,12 +1,8 @@
 package ku.cs.controllers;
-import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ku.cs.models.Login;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
@@ -14,10 +10,8 @@ import ku.cs.models.account.UserAccount;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ResourceBundle;
-import java.net.URL;
+
 public class LoginController  {
     @FXML private TextField username;
    @FXML private PasswordField password;
@@ -59,7 +53,7 @@ public class LoginController  {
                     account.loginPass();
                     if (account instanceof StaffAccount) {
                         try {
-                            com.github.saacsos.FXRouter.goTo("welcome_staff", account.getUsername());
+                            com.github.saacsos.FXRouter.goTo("staff_homepage", account.getUsername());
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

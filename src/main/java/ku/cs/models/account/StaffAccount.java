@@ -3,8 +3,8 @@ package ku.cs.models.account;
 public class StaffAccount extends Account{
     private String agency;
 
-    public StaffAccount(String name, String username, String password) {
-        super(name, username, password);
+    public StaffAccount(String role,String name, String username, String password,String picPath) {
+        super(role,name, username, password, picPath);
     }
 
     public void setAgency(String agency) {
