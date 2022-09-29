@@ -39,7 +39,7 @@ public class LoginController  {
        else if ( login.staffLogin(username.getText(),password.getText())){
            {
                try {
-                   com.github.saacsos.FXRouter.goTo("welcome_staff");
+                   com.github.saacsos.FXRouter.goTo("staff_homepage");
                } catch (IOException e) {
                    throw new RuntimeException(e);
                }
