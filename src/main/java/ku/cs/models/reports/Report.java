@@ -5,7 +5,8 @@ public class Report {
     private String detail;
     private String userReport;
     private String status;
-    private int vote;
+    private int vote = 0;
+    private String v;
     private String agency;
 
     public Report(String topic, String detail, String userReport, String agency, int vote, String status) {
@@ -34,6 +35,10 @@ public class Report {
         this.status = "ยังไม่ดำเนินการ";
     }
 
+    public Report(int vote) {
+        this.vote = vote;
+    }
+
     public String getTopic() {
         return topic;
     }
@@ -50,8 +55,8 @@ public class Report {
         return status;
     }
 
-    public int getVote() {
-        return vote;
+    public String getVote() {
+        return v = Integer.toString(vote);
     }
 
     public String getAgency() {
@@ -64,11 +69,13 @@ public class Report {
     }
 
     public void addVote() {
-        this.vote +=1;
+
     }
 
     public void setStatus(String status){
         this.status = status;
 
     }
+
+
 }

@@ -24,19 +24,19 @@ public class AllComplaintController {
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
+    private int v;
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
+        agencyChoiceBox.getItems().addAll(agency);
         showListView();
-        //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
     }
 
-//    private void showChoiceBox(){
-//        Collection<String>
-//        agencyChoiceBox.getItems().addAll()
-//    }
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
+            "" +
+            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     private void showListView(){
         reportListView.getItems().addAll(reportList.getaAllReport());
@@ -47,6 +47,7 @@ public class AllComplaintController {
         statusLabel.setText("");
         detailTextArea.setText("");
         topicLabel.setText("");
+        voteLabel.setText("");
     }
 
     private void handleSelectedListView(){
@@ -63,6 +64,7 @@ public class AllComplaintController {
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
+        voteLabel.setText(report.getVote());
     }
 
     @FXML
@@ -79,6 +81,12 @@ public class AllComplaintController {
         }
         reportListView.getItems().clear();
         showListView();
+    }
+
+    @FXML
+    public void handleVoteButton(ActionEvent actionEvent){
+        Report report = new Report(v);
+        report.addVote();
     }
 
     @FXML

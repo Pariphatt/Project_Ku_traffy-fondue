@@ -51,7 +51,6 @@ public class AddReportController {
         }
     }
 
-    // add รูปภาพ
     public String handleAddPhoto(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));

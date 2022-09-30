@@ -239,7 +239,7 @@
                                         <TextArea fx:id="detailTextArea" layoutX="293.0" layoutY="110.0" prefHeight="200.0" prefWidth="180.0" />
                                         <Label layoutX="245.0" layoutY="327.0" text="Status : " />
                                         <Label fx:id="statusLabel" layoutX="293.0" layoutY="327.0" text="statusLabel" />
-                                        <Button layoutX="424.0" layoutY="391.0" mnemonicParsing="false" styleClass="search_button" stylesheets="@styles/style.css" text="Vote" textFill="WHITE" />
+                                        <Button layoutX="424.0" layoutY="391.0" mnemonicParsing="false" onAction="#handleVoteButton" styleClass="search_button" stylesheets="@styles/style.css" text="Vote" textFill="WHITE" />
                                         <Label layoutX="245.0" layoutY="353.0" text="Vote : " />
                                         <Label fx:id="voteLabel" layoutX="293.0" layoutY="353.0" text="voteLabel" />
                                     </children>
