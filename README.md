@@ -5,9 +5,13 @@
 * นายพลภัทร์ สร้อยเสริมทรัพย์ (ทำหน้า login)
 
 ## ครั้งที่ 2 (8 กันยายน 2565)
-* นายณพณภัทร นรศรี (welcom page+vote page + detail report) 
+* นายณพณภัทร นรศรี (welcome page+vote page + detail report) 
 * นายปริภัทร์ มะลีแก้ว (แก้ไข Register+login ให้ใช้งานได้)
 * นายพลบุริศน์ แน่งน้อย (ทำหน้า Admin+ เปลี่ยนรหัสผ่าน + Report ban user)
 * นายพลภัทร์ สร้อยเสริมทรัพย์ (ทำหน้าwelcome_staffแสดงlistviewและmy_account)
 
-
+## ครั้งที่ 3 (30 กันยายน 2565)
+* นายณพณภัทร นรศรี (welcome page + report + complaint)
+* นายปริภัทร์ มะลีแก้ว (Change password + login + register)
+* นายพลบุริศน์ แน่งน้อย (manage report + thememode + css darkmode)
+* นายพลภัทร์ สร้อยเสริมทรัพย์ (staff home page + show list view)

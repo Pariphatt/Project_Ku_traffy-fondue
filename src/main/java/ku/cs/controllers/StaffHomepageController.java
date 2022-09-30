@@ -33,12 +33,18 @@ public class StaffHomepageController {
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
+        agencyChoiceBox.getItems().addAll(agency);
     }
 
 //    private void showChoiceBox(){
 //        Collection<String>
 //        agencyChoiceBox.getItems().addAll()
 //    }
+
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
+            "" +
+            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+
     private void showListView(){
         reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();

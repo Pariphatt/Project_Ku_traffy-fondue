@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,7 +25,7 @@ public class AddReportController {
     @FXML private TextField topicTextField;
     @FXML private TextArea detailTextArea;
     private Alert alert;
-
+    private ChoiceBox agencyChoiceBox;
     private String Path;
     private ImageView imageView;
     private String pathImage;
@@ -33,7 +34,7 @@ public class AddReportController {
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
-
+        agencyChoiceBox.getItems().addAll(agency);
     }
 
     public void handleSubmitButton(ActionEvent actionEvent){
@@ -50,6 +51,10 @@ public class AddReportController {
             }
         }
     }
+
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
+            "" +
+            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     public String handleAddPhoto(ActionEvent event) {
         FileChooser chooser = new FileChooser();

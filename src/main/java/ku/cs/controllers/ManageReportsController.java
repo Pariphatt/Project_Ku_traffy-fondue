@@ -32,12 +32,15 @@ public class ManageReportsController {
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
+        agencyChoiceBox.getItems().addAll(agency);
     }
 
     //    private void showChoiceBox(){
 //        Collection<String>
 //        agencyChoiceBox.getItems().addAll()
 //    }
+
+
     private void showListView(){
         reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();
@@ -61,6 +64,11 @@ public class ManageReportsController {
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
     }
+
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
+            "" +
+            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+
 
     @FXML
     public void handleSearchReportButton(javafx.event.ActionEvent actionEvent){
