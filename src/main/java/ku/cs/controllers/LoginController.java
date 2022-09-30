@@ -6,7 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import ku.cs.models.Login;
+import ku.cs.services.ThemeMode;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -20,12 +23,15 @@ public class LoginController  {
     private Alert alert;
     //login button
     //กดไปหน้าหลักได้ก่อนยังไม่ได้ทำเงื่อนไข
-
+    @FXML private AnchorPane pane;
+    @FXML private Button mode;
+    public static boolean isLightMode = true;
 
 
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
+        ThemeMode.setThemeMode(pane);
 
     }
     public void handleLoginButton(ActionEvent actionEvent){
@@ -39,7 +45,7 @@ public class LoginController  {
        else if ( login.staffLogin(username.getText(),password.getText())){
            {
                try {
-                   com.github.saacsos.FXRouter.goTo("welcome_staff");
+                   com.github.saacsos.FXRouter.goTo("staff_homepage");
                } catch (IOException e) {
                    throw new RuntimeException(e);
                }
@@ -72,7 +78,16 @@ public class LoginController  {
 
 
        }
+       @FXML
 
+    public void handleDarkModeButton(ActionEvent event) {
+        isLightMode = !isLightMode;
+        if (isLightMode) {
+            ThemeMode.setLightMode(pane, mode);
+        } else {
+            ThemeMode.setDarkMode(pane, mode);
+        }
+    }
 
 
     public void handleBackButton(ActionEvent actionEvent){

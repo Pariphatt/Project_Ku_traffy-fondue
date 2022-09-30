@@ -11,14 +11,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import ku.cs.models.reports.Report;
+import ku.cs.models.reports.ReportList;
+import ku.cs.services.ReportFIleDataSource;
+import ku.cs.services.ThemeMode;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class AddReportController {
-    private Report report;
+
     @FXML private TextField topicTextField;
     @FXML private TextArea detailTextArea;
     private Alert alert;
@@ -27,13 +32,31 @@ public class AddReportController {
     private ImageView imageView;
     private BufferedImage pic = null;
 
+    private  ReportFIleDataSource dataSource;
+
+    private  Report report;
+
+
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
+        dataSource = new ReportFIleDataSource("assets", "reports.csv");
+        ReportList report = dataSource.readData();
 
     }
 
-    public void handleSubmitButton(ActionEvent actionEvent){
+    public void handleSubmitButton(ActionEvent actionEvent) {
+        String topic = topicTextField.getText();
+        String detail = detailTextArea.getText();
+        Report newReport = new Report(topic,detail);
+
+
+        topicTextField.clear();
+        detailTextArea.clear();
+
+
+
+
         if (topicTextField.getText().equals("") || detailTextArea.getText().equals("")) {
             alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("โปรดกรอกข้อมูลให้ครบทุกช่อง");
@@ -47,6 +70,7 @@ public class AddReportController {
             }
         }
     }
+
 
     public void handleAddPhoto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -80,6 +104,7 @@ public class AddReportController {
         } catch (IOException e) {
             System.err.println(e);
         }
+
     }
     @FXML
     public void handleAllComplaintButton(ActionEvent actionEvent){

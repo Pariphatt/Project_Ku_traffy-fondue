@@ -9,13 +9,11 @@ import java.util.TreeMap;
 import java.util.stream.Collector;
 
 public class ReportList {
-    private ArrayList<Report> reports;
+    private static ArrayList<Report> reports;
     public ReportList(){reports = new ArrayList<Report>();}
 
     public ArrayList<Report> getaAllReport(){return reports;}
-    public void addReport(Report report){
-        reports.add(report);
-    }
+    public static void addReport(Report report){reports.add(report);}
     public ReportList filter(Filterer<Report> filterer){
         ReportList filtered = new ReportList();
         for(Report report:reports){

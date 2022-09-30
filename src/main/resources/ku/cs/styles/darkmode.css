@@ -1,0 +1,83 @@
+.fill-color {
+    -fx-fill: #ffffff;
+}
+
+.fill-text-color {
+    -fx-text-fill: #ffffff;
+}
+
+.fill-prompt-text-color {
+    -fx-prompt-text-fill: #ffffff;
+}
+
+.bg
+{
+    -fx-background-color: #2d2d2d;
+}
+
+.text-prompt {
+    -fx-font-family: "Prompt-Regular";
+    -fx-font-size: 12;
+}
+.text-header {
+    -fx-font-family: "Prompt-Regular";
+    -fx-font-size: 20;
+}
+.button-submit
+{
+    -fx-border-color: #ffffff;
+    -fx-background-color: #122f60;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}
+
+.button-submit:hover
+{
+    -fx-border-color: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #122f60;
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}
+
+.button-green
+{
+    -fx-border-color: #5cb85c;
+    -fx-background-color: transparent;
+    -fx-text-fill: #5cb85c;
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}
+
+.button-green:hover
+{
+    -fx-border-color: #5cb85c;
+    -fx-background-color: #5cb85c;
+    -fx-text-fill: linear-gradient(to right,white,white);
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}
+
+.text-field {
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-text-fill: #052c4f;
+    -fx-background-radius: 35px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 35px;
+    -fx-border-color: #C5C5C5;
+}
+
+.button-purple {
+    -fx-border-color: white;
+    -fx-background-color: #6fa2d0;
+    -fx-text-fill: white;
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}

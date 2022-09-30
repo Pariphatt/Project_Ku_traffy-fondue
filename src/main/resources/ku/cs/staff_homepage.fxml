@@ -15,7 +15,7 @@
         <ListView fx:id="reportListView" layoutX="31.0" layoutY="108.0" prefHeight="471.0" prefWidth="278.0" />
         <Button layoutX="675.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleChangeAccountButton" text="Change Password" />
         <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutButton" text="Logout" />
-        <Button layoutX="563.0" layoutY="14.0" mnemonicParsing="false" text="Manage Reports" />
+        <Button layoutX="563.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleManageReportsButton" text="Manage Reports" />
         <Separator layoutX="343.0" layoutY="27.0" orientation="VERTICAL" prefHeight="552.0" prefWidth="0.0" />
         <Label layoutX="31.0" layoutY="49.0" text="ReportLists">
             <font>
@@ -51,6 +51,6 @@
             </font>
         </Label>
       <TextField fx:id="searchReportTextField" layoutX="31.0" layoutY="72.0" promptText="Search" />
-      <Button layoutX="202.0" layoutY="72.0" mnemonicParsing="false" text="Search" onAction="#handleSearchReportButton"/>
+      <Button layoutX="202.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleSearchReportButton" text="Search" />
     </children>
 </AnchorPane>

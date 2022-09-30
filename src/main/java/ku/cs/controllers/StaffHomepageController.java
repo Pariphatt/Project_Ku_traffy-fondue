@@ -103,4 +103,14 @@ public class StaffHomepageController {
         }
     }
 
+    @FXML
+    void handleManageReportsButton(javafx.event.ActionEvent actionEvent) {
+        try {
+            com.github.saacsos.FXRouter.goTo("manage_reports");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า manage_reports ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด route");
+        }
+    }
+
 }
