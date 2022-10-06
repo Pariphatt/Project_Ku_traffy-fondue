@@ -26,6 +26,7 @@ public class Account {
         this.username=username;
         this.password=password;
         this.picPath=picPath;
+
     }
 
     public Account(String name, String username, String password, String picPath) {

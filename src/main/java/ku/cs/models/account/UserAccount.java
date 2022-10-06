@@ -4,6 +4,7 @@ public class UserAccount extends Account{
 
     private boolean isBan;
 
+
     public UserAccount(String role,String name, String username, String password, String picPath) {
         super(role, name, username, password, picPath);
     }

@@ -1,10 +1,6 @@
-#role,username,name,password,picPath,(user:isBan|staff:agency|admin:null),date,Attempts
+#role,username,name,password,picPath,(user:isBan|staff:agency|admin:null)
 admin,admin,PARIPHAT,1234,profile-user.png,null
-User,22,12222,22,profile-user.png,false,null,0
-User,neuw,Nopnapat,12,2022-09-29_1664465319526.jpg,false,null,0
-User,arty,Phonlaphat,3,2022-09-29_1664465371914.png,false,null,0
-User,natcs,NATCS,555,profile-user.png,false,null,0
-staff,saccos,saccos,1234,profile-user.png,null,null,0
-staff,staffneuw,neuwstaff,1234,profile-user.png,null,null,0
-User,chut,Chutter,7890,profile-user.png,false,null,0
-staff,nat,pariphat,k,2022-09-30_1664523183686.jpg,null,null,0
+User,s,s,s,profile-user.png,false
+staff,saaccos,saaccos,12,2022-10-04_1664855559095.png,กองกิจการนิสิต
+staff,kong,kong,1234,profile-user.png,กองยานพาหนะ
+User,pedpap,neuw,b,2022-10-04_1664855847477.png,false

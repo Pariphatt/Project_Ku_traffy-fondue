@@ -57,9 +57,7 @@ public class RegisterStaffController {
         alert = new Alert(Alert.AlertType.NONE);
     }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
-            "" +
-            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     // add รูปภาพ
     public String handleAddPhoto(ActionEvent event) {
@@ -108,12 +106,12 @@ public class RegisterStaffController {
             accountListDataSource = new AccountListDataSource("assets", "accounts.csv");
 
             if (pathImage == null) {
-                StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png");
+                StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png",agencyChoiceBox.getValue());
                 System.out.println(user.getUsername());
                 accountList.addUser(user);
             } else {
                 File dest = new File("assets/imagesAvatarStaff/" + pathImage);
-                accountList.addUser(new StaffAccount("staff", name, usernameText, password, pathImage));
+                accountList.addUser(new StaffAccount("staff", name, usernameText, password, pathImage,agencyChoiceBox.getValue()));
             }
             System.out.println(accountList.getAllUsers().get(0));
             accountListDataSource.writeData(accountList);

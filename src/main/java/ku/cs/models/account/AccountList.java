@@ -29,14 +29,7 @@ public class AccountList {
         return user;
     }
 
-    public Account findUserPassword(String username,String password) {
-        for (Account temp : accountList) {
-            if (username.equals(temp.getUsername()) && password.equals((temp.getPassword()))) {
-               return temp;
-            }
-        }
-        return null;
-    }
+
     public boolean isExistUsername(String username) {
         for(Account account: accountList) {
             if(account.getUsername().equals(username)){

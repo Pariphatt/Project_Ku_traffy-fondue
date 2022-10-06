@@ -55,13 +55,17 @@ public class LoginController  {
                 if (!account.isPassword(password.getText())) {
                     account.loginFailed();
                     alert.setAlertType(Alert.AlertType.ERROR);
-                    alert.setContentText("Username or password is incorrect.");
+                    alert.setContentText("password is incorrect.");
                     alert.show();
-                } else {
+                }
+                else {
                     account.loginPass();
                     if (account instanceof StaffAccount) {
                         try {
                             com.github.saacsos.FXRouter.goTo("staff_homepage", account.getUsername());
+                            AccountListDataSource <StaffAccount> staffAccountAccountListDataSource = new
+                                    AccountListDataSource<>("assets","log.csv");
+                            staffAccountAccountListDataSource.log((StaffAccount) account);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -69,6 +73,9 @@ public class LoginController  {
                     } else if (account instanceof UserAccount) {
                         try {
                             com.github.saacsos.FXRouter.goTo("welcome_page", account.getUsername());
+                            AccountListDataSource <UserAccount> userAccountAccountListDataSource = new
+                                    AccountListDataSource<>("assets","log.csv");
+                           userAccountAccountListDataSource.log((UserAccount) account);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

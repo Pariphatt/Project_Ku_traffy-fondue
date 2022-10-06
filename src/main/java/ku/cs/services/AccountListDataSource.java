@@ -6,9 +6,13 @@ import ku.cs.models.account.StaffAccount;
 import ku.cs.models.account.UserAccount;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class AccountListDataSource implements DataSource<AccountList> {
+public class AccountListDataSource<T> implements DataSource<AccountList> {
     private String directoryName;
     private String fileName;
     private AccountList accountList;
@@ -58,7 +62,7 @@ public class AccountListDataSource implements DataSource<AccountList> {
                 if (role.equals("admin")) {
                     account = new Account(data[2], data[1], data[3]);
                 } else if (role.equals("staff")) {
-                    account = new StaffAccount("staff",data[2], data[1], data[3],data[4]);
+                    account = new StaffAccount("staff",data[2], data[1], data[3],data[4],data[5] );
                     ((StaffAccount) account).setAgency(data[5]);
                 } else if (role.equals("User")) {
                     account = new UserAccount("User",data[2], data[1], data[3],data[4]);
@@ -94,6 +98,7 @@ public class AccountListDataSource implements DataSource<AccountList> {
         FileWriter writer = null;
         BufferedWriter buffer = null;
 
+
         try {
             writer = new FileWriter(file, true);
             buffer = new BufferedWriter(writer);
@@ -102,18 +107,19 @@ public class AccountListDataSource implements DataSource<AccountList> {
                     String line = "staff" + "," + account.getUsername() + "," + account.getName() + ","
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
-                            + (((StaffAccount) account).getAgency()) + ","
-                            + account.getLastLogin() + ","
-                            + account.getLoginAttempts();
+                            + (((StaffAccount) account).getAgency());
                     buffer.write(line);
+                    buffer.newLine();
+                    buffer.flush();
+
                 } else if ("User".equals(account.getRole())) {
                     String line = "User" + "," + account.getUsername() + "," + account.getName() + ","
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
-                            + (((UserAccount) account).isBan() + ","
-                            + account.getLastLogin() + ","
-                            + account.getLoginAttempts());
+                            + (((UserAccount) account).isBan());
                     buffer.write(line);
+                    buffer.newLine();
+                    buffer.flush();
                 }
             }
 
@@ -128,6 +134,64 @@ public class AccountListDataSource implements DataSource<AccountList> {
             }
         }
     }
+    public void writeDataLog(String log){
+        String filePath = directoryName + File.separator + "log.csv";
+        File file = new File(filePath);
+        FileWriter writer = null;
+        BufferedWriter buffer = null;
+
+
+        try {
+            writer = new FileWriter(file, true);
+            buffer = new BufferedWriter(writer);
+            buffer.write(log);
+            buffer.newLine();
+            buffer.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                buffer.close();
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void log(T t) {
+        if (t instanceof StaffAccount) {
+            String temp = "";
+            StaffAccount staffAccount = (StaffAccount) t;
+            //#role,name,username,agency,date,picPath
+            Date currentDate = new Date();
+            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            temp += staffAccount.getRole()+ "," + staffAccount.getName()+ "," +
+                    staffAccount.getUsername()+","+
+                    staffAccount.getAgency()+","+
+                    dateFormat.format(currentDate)+" "+timeFormat.format(currentDate)+","+
+                    staffAccount.getPicPath();
+                    writeDataLog(temp);
+        }
+        else if (t instanceof UserAccount){
+            String temp = "";
+            UserAccount userAccount = (UserAccount) t;
+            //#role,name,username,agency,date,picPath
+            Date currentDate = new Date();
+            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            temp += userAccount.getRole()+ "," + userAccount.getName()+ "," +
+                    userAccount.getUsername()+","+
+                    "-"+","+
+                    dateFormat.format(currentDate)+" "+timeFormat.format(currentDate)+","+
+                    userAccount.getPicPath();
+            writeDataLog(temp);
+        }
+    }
+
+
     public boolean ChangePassword(String userName,String currentPassword,String newPassword){
         ArrayList<String[]> accounts = new ArrayList<>();
         String headFileAccount = "#role,username,name,password,picPath,(user:isBan|staff:agency|admin:null),date,Attempts";

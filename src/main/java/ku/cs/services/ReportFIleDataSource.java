@@ -30,6 +30,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             }
         }
     }
+    @Override
     public ReportList readData() {
         ReportList reportList = new ReportList();
         String filePath = directoryName + File.separator + fileName;
@@ -71,6 +72,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         }
         return reportList;
     }
+    @Override
     public void writeData(ReportList reportList){
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);

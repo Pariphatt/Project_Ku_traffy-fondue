@@ -25,7 +25,7 @@ public class AddReportController {
     @FXML private TextField topicTextField;
     @FXML private TextArea detailTextArea;
     private Alert alert;
-    private ChoiceBox agencyChoiceBox;
+    @FXML ChoiceBox agencyChoiceBox;
     private String Path;
     private ImageView imageView;
     private String pathImage;
@@ -52,9 +52,7 @@ public class AddReportController {
         }
     }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
-            "" +
-            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     public String handleAddPhoto(ActionEvent event) {
         FileChooser chooser = new FileChooser();

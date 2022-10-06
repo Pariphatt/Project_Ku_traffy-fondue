@@ -24,10 +24,10 @@ public class AdminHomepageController {
     @FXML StackPane pane;
 
     @FXML private Label adminNameLabel;
-    @FXML private Label NameLabel;
+    @FXML private Label nameLabel;
     @FXML private Label UsernameLabel;
-    @FXML private Label AgencyLabel;
-    @FXML private Label TimeLabel;
+    @FXML private Label agencyLabel;
+    @FXML private Label timeLabel;
     @FXML private ListView listViewUser;
 
     @FXML
@@ -44,7 +44,7 @@ public class AdminHomepageController {
     }
 
     private void clearSelectedAccount(){
-        NameLabel.setText("");
+        nameLabel.setText("");
         UsernameLabel.setText("");
     }
 
@@ -59,8 +59,9 @@ public class AdminHomepageController {
     }
 
     public void showSelectedAccount(Account account){
-        NameLabel.setText(account.getName());
+        nameLabel.setText(account.getName());
         UsernameLabel.setText(account.getUsername());
+        timeLabel.setText(account.getLastLogin());
 
     }
 
