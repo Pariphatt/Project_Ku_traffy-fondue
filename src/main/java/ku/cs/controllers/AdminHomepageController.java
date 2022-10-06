@@ -1,5 +1,6 @@
 package ku.cs.controllers;
 
+import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -14,12 +15,16 @@ import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Comparator;
 
 
 public class AdminHomepageController {
 
     private DataSource<AccountList> dataSource;
+    private DataSource<AccountList> userListDataSource;
     private Account account;
+    private AccountList userList;
     private AccountList accountsList;
 
     @FXML StackPane pane;
@@ -31,22 +36,34 @@ public class AdminHomepageController {
     @FXML private Label timeLabel;
     @FXML private ListView listViewUser;
 
+
     @FXML
     public void initialize() {
         dataSource = new AccountListDataSource( "assets","log.csv");
         accountsList = dataSource.readData();
+
+        userListDataSource = new AccountListDataSource("assets", "accounts.csv");
+        userList = userListDataSource.readData();
+        account = userList.findUser((String) FXRouter.getData());
         showListView();
         clearSelectedAccount();
         handleSelectedListView();
     }
     private void showListView(){
+        //เรียง จากเวลา
+//        Collection.sort(sortaccountsList.getAllUsers() , new Comparator<Account>()){
+//            @Override
+//            public int compare(account){
+//                return -(account.getLastLogin().compareTo(account.getLastLogin()));
+//            }
+//        };
         listViewUser.getItems().addAll(accountsList.getAllUsers());
        listViewUser.refresh();
     }
 
     private void clearSelectedAccount(){
         nameLabel.setText("");
-        UsernameLabel.setText("");
+//        UsernameLabel.setText("");
     }
 
     private void handleSelectedListView(){
@@ -61,8 +78,8 @@ public class AdminHomepageController {
 
     public void showSelectedAccount(Account account){
         nameLabel.setText(account.getName());
-        UsernameLabel.setText(account.getUsername());
-        timeLabel.setText(account.getLastLogin());
+//        UsernameLabel.setText(account.getUsername());
+//        timeLabel.setText(account.getLastLogin());
 
     }
 
@@ -70,7 +87,7 @@ public class AdminHomepageController {
 
     @FXML void handleGoToChangePasswordButton(ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("change_password");
+            com.github.saacsos.FXRouter.goTo("change_password",account.getUsername());
         } catch (IOException e) {
             System.err.println("ไปที่หน้า change_password ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");

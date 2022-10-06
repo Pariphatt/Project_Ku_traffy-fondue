@@ -1,5 +1,6 @@
 package ku.cs.controllers;
 
+import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,8 +11,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import ku.cs.models.User;
+import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
+import ku.cs.models.account.StaffAccount;
+import ku.cs.models.account.UserAccount;
 import ku.cs.services.AccountListDataSource;
 
 import java.io.File;
@@ -40,13 +43,17 @@ public class ChangePasswordController {
     private AccountList userList;
     private String pathImage;
     private AccountListDataSource userListDataSource;
-    User user;
+    private Account account;
 
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
-
+        userList = userListDataSource.readData();
+        account = userList.findUser((String) FXRouter.getData());
+        userName.setText(account.getUsername());
+        userName.setDisable(true);
+        imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
     }
     public String handleAddPhoto(ActionEvent event) {
         FileChooser chooser = new FileChooser();
@@ -79,7 +86,15 @@ public class ChangePasswordController {
     @FXML
     public void handleCancelButton(ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("admin");
+            if (account instanceof StaffAccount){
+                com.github.saacsos.FXRouter.goTo("staff_homepage");
+            }
+            else if (account instanceof UserAccount) {
+                com.github.saacsos.FXRouter.goTo("welcome_page");
+            }
+            else if (account instanceof Account) {
+                com.github.saacsos.FXRouter.goTo("admin");
+            }
         } catch (IOException e) {
             System.err.println("ไปที่หน้า admin ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
@@ -103,7 +118,7 @@ public class ChangePasswordController {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("โปรดกรอกรหัสผ่าน");
             alert.show();
-        } else if (userListDataSource.ChangePassword(userName1, currentPassword1, newPassword1)) {
+        } else if (userListDataSource.changePassword(userName1, currentPassword1, newPassword1)) {
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("เปลี่ยนรหัสผ่านสำเร็จ");
             alert.show();

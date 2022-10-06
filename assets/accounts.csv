@@ -1,6 +1,10 @@
 #role,username,name,password,picPath,(user:isBan|staff:agency|admin:null)
-admin,admin,PARIPHAT,1234,profile-user.png,null
-User,s,s,s,profile-user.png,false
+admin,admin,Pariphat,1234,profile-user.png,null
+admin,admin1,Phonburis,1234,profile-user.png,null
+admin,admin2,Phollaphat,1234,profile-user.png,null
+admin,admin3,Nopnaphat,1234,profile-user.png,null
+User,nat,pariphat46,1234,profile-user.png,false
 staff,saaccos,saaccos,12,2022-10-04_1664855559095.png,กองกิจการนิสิต
 staff,kong,kong,1234,profile-user.png,กองยานพาหนะ
 User,pedpap,neuw,b,2022-10-04_1664855847477.png,false
+User,arty,arty,22,2022-10-06_1665039658363.jpg,false

@@ -7,8 +7,6 @@ import ku.cs.models.account.UserAccount;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -184,7 +182,7 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             temp += userAccount.getRole()+ "," + userAccount.getName()+ "," +
                     userAccount.getUsername()+","+
-                    "-"+","+
+                    "ไม่มี"+","+
                     dateFormat.format(currentDate)+" "+timeFormat.format(currentDate)+","+
                     userAccount.getPicPath();
             writeDataLog(temp);
@@ -192,7 +190,7 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
     }
 
 
-    public boolean ChangePassword(String userName,String currentPassword,String newPassword){
+    public boolean changePassword(String userName, String currentPassword, String newPassword){
         ArrayList<String[]> accounts = new ArrayList<>();
         String headFileAccount = "#role,username,name,password,picPath,(user:isBan|staff:agency|admin:null),date,Attempts";
         String filePath = directoryName + File.separator + fileName;
