@@ -29,8 +29,7 @@ public class Account {
 
     }
 
-    public Account(String name, String username, String password, String picPath) {
-    }
+
 
     public String getRole() {
         return role;

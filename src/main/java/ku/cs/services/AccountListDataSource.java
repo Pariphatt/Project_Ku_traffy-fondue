@@ -56,21 +56,21 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                 if (line.startsWith("#")) continue;
                 String[] data = line.split(",");
                 String role = data[0];
-                Account account;
+                Account account = null;
                 if (role.equals("admin")) {
-                    account = new Account(data[2], data[1], data[3]);
+                    account = new Account("admin",data[2], data[1], data[3],data[4]);
                 } else if (role.equals("staff")) {
                     account = new StaffAccount("staff",data[2], data[1], data[3],data[4],data[5] );
                     ((StaffAccount) account).setAgency(data[5]);
                 } else if (role.equals("User")) {
                     account = new UserAccount("User",data[2], data[1], data[3],data[4]);
                     ((UserAccount) account).setBan(Boolean.parseBoolean(data[5]));
-                } else {
-                    account = new Account(data[2], data[1], data[3]);
                 }
-                String picPath = data[4];
-                account.setPicPath(picPath);
-                userList.addUser(account);
+                if (account != null){
+                    String picPath = data[4];
+                    account.setPicPath(picPath);
+                    userList.addUser(account);
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -98,7 +98,7 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
 
 
         try {
-            writer = new FileWriter(file, true);
+            writer = new FileWriter(file);
             buffer = new BufferedWriter(writer);
             for (Account account : accountList.getAllUsers()) {
                 if ("staff".equals(account.getRole())) {
@@ -115,6 +115,15 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
                             + (((UserAccount) account).isBan());
+                    buffer.write(line);
+                    buffer.newLine();
+                    buffer.flush();
+                }
+                else if ("admin".equals(account.getRole())){
+                    String line = "admin" + "," + account.getUsername() + "," + account.getName() + ","
+                            + account.getPassword() + ","
+                            + account.getPicPath() + ","
+                            + "null";
                     buffer.write(line);
                     buffer.newLine();
                     buffer.flush();
@@ -189,69 +198,4 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
         }
     }
 
-
-    public boolean changePassword(String userName, String currentPassword, String newPassword){
-        ArrayList<String[]> accounts = new ArrayList<>();
-        String headFileAccount = "#role,username,name,password,picPath,(user:isBan|staff:agency|admin:null),date,Attempts";
-        String filePath = directoryName + File.separator + fileName;
-        String value = "";
-        File file = new File(filePath);
-        FileReader reader = null;
-        BufferedReader buffer = null;
-        FileWriter writer = null;
-        BufferedWriter bufferedWriter = null;
-        boolean checkProcess = false;
-
-        try {
-            reader = new FileReader(file);
-            buffer = new BufferedReader(reader);
-
-
-            String line = "";
-            while ((line = buffer.readLine()) != null) {
-                System.out.println(line);
-                if (line.startsWith("#")) {
-                    continue;
-                }
-
-                String[] data = line.split(",");
-                if ( data[3].equals(currentPassword) && data[1].equals(userName)){
-                    checkProcess=true;
-                    data[3]= newPassword;
-                }
-                accounts.add(data);
-
-            }
-             writer = new FileWriter(file);
-             bufferedWriter = new BufferedWriter(writer);
-             bufferedWriter.write(headFileAccount);
-            for (String[] temp : accounts){
-
-                for (int i = 0 ; i< temp.length; i++){
-                    if (i==0){
-                        value=temp[i];
-                    }
-                    else {
-                        value = value+ "," + temp[i];
-                    }
-                }
-                bufferedWriter.write("\n"+value);
-            }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                buffer.close();
-                reader.close();
-                bufferedWriter.close();
-                writer.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return checkProcess;
-    }
 }

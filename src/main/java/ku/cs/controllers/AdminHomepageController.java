@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
@@ -14,6 +16,7 @@ import ku.cs.models.account.StaffAccount;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
@@ -35,6 +38,7 @@ public class AdminHomepageController {
     @FXML private Label agencyLabel;
     @FXML private Label timeLabel;
     @FXML private ListView listViewUser;
+    @FXML private ImageView imageView;
 
 
     @FXML
@@ -45,6 +49,7 @@ public class AdminHomepageController {
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
+        adminNameLabel.setText(account.getUsername());
         showListView();
         clearSelectedAccount();
         handleSelectedListView();
@@ -71,6 +76,7 @@ public class AdminHomepageController {
             @Override
             public void changed(ObservableValue<? extends Account> observable, Account oldValue, Account newValue) {
                 System.out.println("Selected item: " + newValue);
+                imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
                 showSelectedAccount(newValue);
             }
         });
@@ -78,6 +84,7 @@ public class AdminHomepageController {
 
     public void showSelectedAccount(Account account){
         nameLabel.setText(account.getName());
+        imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
 //        UsernameLabel.setText(account.getUsername());
 //        timeLabel.setText(account.getLastLogin());
 

@@ -118,7 +118,10 @@ public class ChangePasswordController {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("โปรดกรอกรหัสผ่าน");
             alert.show();
-        } else if (userListDataSource.changePassword(userName1, currentPassword1, newPassword1)) {
+        } else if (userList.changePassword(userName1) != null) {
+            account = userList.changePassword(userName1);
+            account.setPassword(newPassword1);
+            userListDataSource.writeData(userList);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("เปลี่ยนรหัสผ่านสำเร็จ");
             alert.show();

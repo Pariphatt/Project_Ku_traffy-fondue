@@ -50,7 +50,11 @@ public class RegisterController {
     @FXML
     public void initialize() {
         accounts = new Account();
-        accountList = new AccountList();
+        AccountListDataSource accountListDataSource1 = new AccountListDataSource("assets", "accounts.csv");
+        accountList = accountListDataSource1.readData();
+        for (Account account : accountList.getAllUsers()){
+            System.out.println(account.getRole());
+        }
         alert = new Alert(Alert.AlertType.NONE);
     }
 
@@ -98,7 +102,15 @@ public class RegisterController {
             alert.show();
         }
     else{
-        if (!accountList.isExistUsername(usernameText)) {
+        if (accountList.isExistUsername(usernameText)){
+            System.out.println(accountList.isExistUsername(usernameText));
+            System.out.println(usernameText);
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setContentText("มีผู้ใช้งานนี้ในระบบแล้ว");
+                alert.show();
+
+        }
+       else  {
             accountListDataSource = new AccountListDataSource("assets","accounts.csv");
 
             if (pathImage == null) {
@@ -122,6 +134,7 @@ public class RegisterController {
                 throw new RuntimeException(e);
             }
         }
+
     }
 
 }

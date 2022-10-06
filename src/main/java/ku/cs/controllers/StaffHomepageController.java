@@ -1,12 +1,16 @@
 package ku.cs.controllers;
 
+import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import ku.cs.models.account.Account;
+import ku.cs.models.account.AccountList;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
+import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 import ku.cs.services.Filterer;
 import ku.cs.services.ReportFIleDataSource;
@@ -25,6 +29,9 @@ public class StaffHomepageController {
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
+    private DataSource<AccountList> userListDataSource;
+    private AccountList accountList;
+    private Account account;
 
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
@@ -34,16 +41,17 @@ public class StaffHomepageController {
         clearSelectedReport();
         handleSelectedListView();
         agencyChoiceBox.getItems().addAll(agency);
+
+        userListDataSource = new AccountListDataSource("assets", "accounts.csv");
+        accountList = userListDataSource.readData();
+        account = accountList.findUser((String) FXRouter.getData());
     }
 
 //    private void showChoiceBox(){
 //        Collection<String>
 //        agencyChoiceBox.getItems().addAll()
 //    }
-
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
-            "" +
-            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     private void showListView(){
         reportListView.getItems().addAll(reportList.getaAllReport());
@@ -98,9 +106,9 @@ public class StaffHomepageController {
     @FXML
     void handleChangeAccountButton(javafx.event.ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("my_account");
+            com.github.saacsos.FXRouter.goTo("change_password",account.getUsername());
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า admin ไม่ได้");
+            System.err.println("ไปที่หน้า change_password ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }

@@ -55,6 +55,11 @@ public class RegisterStaffController {
         accounts = new Account();
         accountList = new AccountList();
         alert = new Alert(Alert.AlertType.NONE);
+        AccountListDataSource accountListDataSource1 = new AccountListDataSource("assets", "accounts.csv");
+        accountList = accountListDataSource1.readData();
+        for (Account account : accountList.getAllUsers()){
+            System.out.println(account.getRole());
+        }
     }
 
     private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
@@ -68,9 +73,8 @@ public class RegisterStaffController {
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                File destDir = new File("imagesAvatarStaff");
+                File destDir = new File("imagesAvatar");
                 if (!destDir.exists()) destDir.mkdirs();
-                // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
                 String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
                         + fileSplit[fileSplit.length - 1];
@@ -102,7 +106,16 @@ public class RegisterStaffController {
             alert.setAlertType(Alert.AlertType.WARNING);
             alert.setContentText("โปรดกรอกข้อมูลให้ครบทุกช่อง");
             alert.show();
-        } else if (!accountList.isExistUsername(usernameText)) {
+        }
+        else if (accountList.isExistUsername(usernameText)){
+            System.out.println(accountList.isExistUsername(usernameText));
+            System.out.println(usernameText);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("มีผู้ใช้งานนี้ในระบบแล้ว");
+            alert.show();
+
+        }
+        else if (!accountList.isExistUsername(usernameText)) {
             accountListDataSource = new AccountListDataSource("assets", "accounts.csv");
 
             if (pathImage == null) {
@@ -110,7 +123,7 @@ public class RegisterStaffController {
                 System.out.println(user.getUsername());
                 accountList.addUser(user);
             } else {
-                File dest = new File("assets/imagesAvatarStaff/" + pathImage);
+                File dest = new File("assets/imagesAvatar/" + pathImage);
                 accountList.addUser(new StaffAccount("staff", name, usernameText, password, pathImage,agencyChoiceBox.getValue()));
             }
             System.out.println(accountList.getAllUsers().get(0));

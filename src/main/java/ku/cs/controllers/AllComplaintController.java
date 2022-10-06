@@ -34,9 +34,7 @@ public class AllComplaintController {
         handleSelectedListView();
     }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
-            "" +
-            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     private void showListView(){
         reportListView.getItems().addAll(reportList.getaAllReport());

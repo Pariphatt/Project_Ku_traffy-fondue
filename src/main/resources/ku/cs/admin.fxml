@@ -34,6 +34,6 @@
       <Button layoutX="437.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleAddStaffButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Create Staff" />
       <Label layoutX="437.0" layoutY="512.0" text="เพิ่มบัญชีเจ้าหน้าที่ :" />
       <Label fx:id="nameLabel" layoutX="557.0" layoutY="32.0" text="NameLabel" />
-      <ImageView fx:id="picPath" fitHeight="101.0" fitWidth="150.0" layoutX="620.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="101.0" fitWidth="150.0" layoutX="620.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
