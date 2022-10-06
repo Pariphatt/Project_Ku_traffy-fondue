@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.*;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
+import ku.cs.models.account.StaffAccount;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 
@@ -32,7 +33,7 @@ public class AdminHomepageController {
 
     @FXML
     public void initialize() {
-        dataSource = new AccountListDataSource( "asset","accounts.csv");
+        dataSource = new AccountListDataSource( "assets","log.csv");
         accountsList = dataSource.readData();
         showListView();
         clearSelectedAccount();

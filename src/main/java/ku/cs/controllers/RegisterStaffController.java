@@ -68,7 +68,7 @@ public class RegisterStaffController {
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
-                File destDir = new File("imagesAvatarSaff");
+                File destDir = new File("imagesAvatarStaff");
                 if (!destDir.exists()) destDir.mkdirs();
                 // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");

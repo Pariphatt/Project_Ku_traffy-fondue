@@ -17,7 +17,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Separator layoutX="314.0" layoutY="78.0" orientation="VERTICAL" prefHeight="465.0" prefWidth="1.0" />
+      <Separator layoutX="538.0" layoutY="46.0" orientation="VERTICAL" prefHeight="465.0" prefWidth="1.0" />
       <Label layoutX="20.0" layoutY="14.0" text="Admin" />
       <Label fx:id="adminNameLabel" layoutX="63.0" layoutY="14.0" text="adminNameLabel" />
       <Button layoutX="332.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleGoToReportUserButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportUsers" />
@@ -29,20 +29,20 @@
       <Button layoutX="531.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleGoToChangePasswordButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Change Password" />
       <Label layoutX="320.0" layoutY="512.0" text="รายชื่อผู้ใช้ที่ถูกรายงาน :" />
       <Label layoutX="541.0" layoutY="512.0" text="เปลี่ยนรหัสผ่านใหม่ :" />
-      <StackPane fx:id="reportListView" layoutX="38.0" layoutY="95.0" prefHeight="444.0" prefWidth="265.0">
+      <StackPane fx:id="reportListView" layoutX="38.0" layoutY="78.0" prefHeight="418.0" prefWidth="494.0">
          <children>
-            <ListView fx:id="listViewUser" prefHeight="466.0" prefWidth="283.0" />
+            <ListView fx:id="listViewUser" prefHeight="381.0" prefWidth="266.0" />
          </children></StackPane>
       <Button layoutX="437.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleAddStaffButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Create Staff" />
       <Label layoutX="437.0" layoutY="512.0" text="เพิ่มบัญชีเจ้าหน้าที่ :" />
-      <Label layoutX="357.0" layoutY="86.0" text="Name" />
-      <Label layoutX="349.0" layoutY="128.0" text="Username" />
-      <Label layoutX="355.0" layoutY="166.0" text="Agency" />
-      <Label fx:id="nameLabel" layoutX="447.0" layoutY="86.0" text="NameLabel" />
-      <Label fx:id="agencyLabel" layoutX="447.0" layoutY="166.0" text="AgencyLabel" />
-      <Label layoutX="352.0" layoutY="202.0" text="Last Login Time" />
-      <Label fx:id="timeLabel" layoutX="455.0" layoutY="202.0" text="TimeLabel" />
-      <Label fx:id="UsernameLabel" layoutX="447.0" layoutY="128.0" text="UsernameLabel" />
+      <Label layoutX="605.0" layoutY="91.0" text="Name" />
+      <Label layoutX="597.0" layoutY="133.0" text="Username" />
+      <Label layoutX="603.0" layoutY="171.0" text="Agency" />
+      <Label fx:id="nameLabel" layoutX="695.0" layoutY="91.0" text="NameLabel" />
+      <Label fx:id="agencyLabel" layoutX="695.0" layoutY="171.0" text="AgencyLabel" />
+      <Label layoutX="600.0" layoutY="207.0" text="Last Login Time" />
+      <Label fx:id="timeLabel" layoutX="703.0" layoutY="207.0" text="TimeLabel" />
+      <Label fx:id="UsernameLabel" layoutX="695.0" layoutY="133.0" text="UsernameLabel" />
       <ImageView fitHeight="125.0" fitWidth="145.0" layoutX="597.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

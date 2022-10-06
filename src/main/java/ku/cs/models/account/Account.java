@@ -112,5 +112,14 @@ public class Account {
         return this.username.equals(username);
     }
 
-
+    @Override
+    public String toString() {
+        return
+                "name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", หน่วยงาน='" + password + '\'' +
+                ", วันที่เข้าใช้งานล่าสุด='" + picPath + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }
