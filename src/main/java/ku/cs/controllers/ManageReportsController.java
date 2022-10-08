@@ -1,12 +1,16 @@
 package ku.cs.controllers;
 
+import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import ku.cs.models.account.AccountList;
+import ku.cs.models.account.StaffAccount;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
+import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 import ku.cs.services.Filterer;
 import ku.cs.services.ReportFIleDataSource;
@@ -27,12 +31,19 @@ public class ManageReportsController {
     private ReportList reportList;
 
     private Report selectedReport;
+    private StaffAccount staff;
+    private AccountListDataSource userListDataSource;
+    private AccountList userList;
 
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
         showListView();
+        userListDataSource = new AccountListDataSource("assets", "accounts.csv");
+        userList = userListDataSource.readData();
+        staff = (StaffAccount) userList.findUser((String) FXRouter.getData());
         detailTextArea.setDisable(true);
+
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
@@ -45,9 +56,17 @@ public class ManageReportsController {
 
 
     private void showListView(){
-        reportListView.getItems().addAll(reportList.getaAllReport());
+        ReportList reportListFiltered = reportList.filter(new Filterer<Report>() {
+            @Override
+            public boolean filter(Report report) {
+
+                return report.getCategory().equals(staff.getCategory());
+            }
+        });
+        reportListView.getItems().addAll(reportListFiltered.getaAllReport());
         reportListView.refresh();
     }
+
     private void clearSelectedReport(){
         statusLabel.setText("");
         detailTextArea.setText("");

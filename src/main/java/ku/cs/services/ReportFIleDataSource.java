@@ -83,7 +83,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                 String line = report.getTopic().trim() + ","
                         + report.getDetail().trim() + ","
                         + report.getUserReport().trim()+","
-                        +report.getAgency()+","
+                        +report.getCategory()+","
                         +report.getVote()+","
                         +report.getSolution()+ ","
                         +report.getStatus();

@@ -119,12 +119,12 @@ public class RegisterStaffController {
             accountListDataSource = new AccountListDataSource("assets", "accounts.csv");
 
             if (pathImage == null) {
-                StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png",agencyChoiceBox.getValue());
+                StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png",agencyChoiceBox.getValue(),"as");
                 System.out.println(user.getUsername());
                 accountList.addUser(user);
             } else {
                 File dest = new File("assets/imagesAvatar/" + pathImage);
-                accountList.addUser(new StaffAccount("staff", name, usernameText, password, pathImage,agencyChoiceBox.getValue()));
+                accountList.addUser(new StaffAccount("staff", name, usernameText, password, pathImage,agencyChoiceBox.getValue(),"as"));
             }
             System.out.println(accountList.getAllUsers().get(0));
             accountListDataSource.writeData(accountList);

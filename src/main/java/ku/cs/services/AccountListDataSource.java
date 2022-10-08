@@ -60,8 +60,9 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                 if (role.equals("admin")) {
                     account = new Account("admin",data[2], data[1], data[3],data[4]);
                 } else if (role.equals("staff")) {
-                    account = new StaffAccount("staff",data[2], data[1], data[3],data[4],data[5] );
+                    account = new StaffAccount("staff",data[2], data[1], data[3],data[4],data[5],data[6]);
                     ((StaffAccount) account).setAgency(data[5]);
+                    ((StaffAccount) account).setCategory(data[6]);
                 } else if (role.equals("User")) {
                     account = new UserAccount("User",data[2], data[1], data[3],data[4]);
                     ((UserAccount) account).setBan(Boolean.parseBoolean(data[5]));
@@ -105,7 +106,8 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                     String line = "staff" + "," + account.getUsername() + "," + account.getName() + ","
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
-                            + (((StaffAccount) account).getAgency());
+                            + (((StaffAccount) account).getAgency())+","+
+                            (((StaffAccount) account).getCategory());
                     buffer.write(line);
                     buffer.newLine();
                     buffer.flush();

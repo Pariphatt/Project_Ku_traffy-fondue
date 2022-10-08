@@ -7,24 +7,24 @@ public class Report {
     private String status;
     private int vote = 0;
     private String v;
-    private String agency;
+    private String category;
     private String solution;
 
-    public Report(String topic, String detail, String userReport, String agency, int vote, String status,String solution) {
+    public Report(String topic, String detail, String userReport, String category, int vote, String status, String solution) {
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
-        this.agency = agency;
+        this.category = category;
         this.vote = vote;
         this.status = status;
         this.solution = solution;
     }
 
-    public Report(String topic, String detail, int vote, String agency) {
+    public Report(String topic, String detail, int vote, String category) {
         this.topic = topic;
         this.detail = detail;
         this.vote = vote;
-        this.agency = agency;
+        this.category = category;
         this.status = "ยังไม่ดำเนินการ";
         this.solution = " ";
     }
@@ -58,8 +58,8 @@ public class Report {
         return v = Integer.toString(vote);
     }
 
-    public String getAgency() {
-        return agency;
+    public String getCategory() {
+        return category;
     }
 
     @Override
