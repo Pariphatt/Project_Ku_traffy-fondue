@@ -11,6 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import ku.cs.models.reports.Report;
+import ku.cs.models.reports.ReportList;
+import ku.cs.services.DataSource;
+import ku.cs.services.ReportFIleDataSource;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -30,12 +33,20 @@ public class AddReportController {
     private ImageView imageView;
     private String pathImage;
     private BufferedImage pic = null;
+    private ReportList reportList;
+    private DataSource<ReportList> dataSource;
 
     @FXML
     public void initialize() {
+        dataSource = new ReportFIleDataSource("assets","reports.csv");
+        reportList = dataSource.readData();
         alert = new Alert(Alert.AlertType.NONE);
         agencyChoiceBox.getItems().addAll(agency);
     }
+
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
+            "" +
+            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     public void handleSubmitButton(ActionEvent actionEvent){
         if (topicTextField.getText().equals("") || detailTextArea.getText().equals("")) {
@@ -43,6 +54,11 @@ public class AddReportController {
             alert.setContentText("โปรดกรอกข้อมูลให้ครบทุกช่อง");
             alert.show();
         } else {
+            String topic = topicTextField.getText();
+            String detail = detailTextArea.getText();
+            Report report = new Report(topic,detail);
+            reportList.addReport(report);
+            dataSource.writeData(reportList);
 
             try {
                 com.github.saacsos.FXRouter.goTo("addReport_page");
@@ -51,8 +67,6 @@ public class AddReportController {
             }
         }
     }
-
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     public String handleAddPhoto(ActionEvent event) {
         FileChooser chooser = new FileChooser();

@@ -10,6 +10,16 @@ public class Report {
     private String agency;
     private String solution;
 
+    public Report(String topic, String detail){
+        this.topic = topic;
+        this.detail = detail;
+        this.userReport = "b";
+        this.agency = "A";
+        this.status = "a";
+        this.vote = 0;
+        this.solution = "G";
+    }
+
     public Report(String topic, String detail, String userReport, String agency, int vote, String status,String solution) {
         this.topic = topic;
         this.detail = detail;

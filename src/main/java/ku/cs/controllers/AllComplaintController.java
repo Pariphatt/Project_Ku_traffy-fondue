@@ -17,6 +17,7 @@ public class AllComplaintController {
     @FXML private Label topicLabel;
     @FXML private Label statusLabel;
     @FXML private Label voteLabel;
+    @FXML private Label dateLabel;
     @FXML private TextField searchReportTextField;
     @FXML private TextArea detailTextArea;
     @FXML private ListView reportListView;
@@ -46,6 +47,7 @@ public class AllComplaintController {
         detailTextArea.setText("");
         topicLabel.setText("");
         voteLabel.setText("");
+        dateLabel.setText("");
     }
 
     private void handleSelectedListView(){
@@ -63,6 +65,7 @@ public class AllComplaintController {
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
         voteLabel.setText(report.getVote());
+//        dateLabel.setText(report.getPicPath());
     }
 
     @FXML

@@ -230,7 +230,7 @@
                                                 <Font name="System Bold" size="18.0" />
                                             </font>
                                         </Label>
-                                        <ListView fx:id="reportListView" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="200.0" />
+                                        <ListView fx:id="reportListView" layoutX="14.0" layoutY="37.0" prefHeight="400.0" prefWidth="200.0" />
                                         <ChoiceBox fx:id="agencyChoiceBox" layoutX="293.0" layoutY="37.0" prefWidth="150.0" />
                                         <Label layoutX="245.0" layoutY="41.0" text="Agency : " />
                                         <Label layoutX="245.0" layoutY="76.0" text="Topic : " />
@@ -242,6 +242,8 @@
                                         <Button layoutX="424.0" layoutY="391.0" mnemonicParsing="false" onAction="#handleVoteButton" styleClass="search_button" stylesheets="@styles/style.css" text="Vote" textFill="WHITE" />
                                         <Label layoutX="245.0" layoutY="353.0" text="Vote : " />
                                         <Label fx:id="voteLabel" layoutX="293.0" layoutY="353.0" text="voteLabel" />
+                              <Label layoutX="247.0" layoutY="383.0" text="Date :" />
+                              <Label fx:id="dateLabel" layoutX="293.0" layoutY="383.0" text="dateLabel" />
                                     </children>
                                 </Pane>
                             </children>
