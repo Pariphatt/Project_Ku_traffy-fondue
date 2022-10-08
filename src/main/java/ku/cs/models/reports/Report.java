@@ -8,35 +8,34 @@ public class Report {
     private int vote = 0;
     private String v;
     private String agency;
+    private String solution;
 
-    public Report(String topic, String detail, String userReport, String agency, int vote, String status) {
+    public Report(String topic, String detail, String userReport, String agency, int vote, String status,String solution) {
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
+        this.agency = agency;
+        this.vote = vote;
         this.status = status;
-        this.vote = vote;
-        this.agency = agency;
+        this.solution = solution;
     }
 
-    public Report(String topic, String detail, String userReport, String agency){
+    public Report(String topic, String detail, int vote, String agency) {
         this.topic = topic;
         this.detail = detail;
-        this.userReport = userReport;
-        this.agency = agency;
-        this.vote = 0;
-        this.status = "ยังไม่ดำเนินการ";
-    }
-    public Report(String topic, String detail, String userReport, String agency, int vote){
-        this.topic = topic;
-        this.detail = detail;
-        this.userReport = userReport;
-        this.agency = agency;
         this.vote = vote;
+        this.agency = agency;
         this.status = "ยังไม่ดำเนินการ";
+        this.solution = " ";
     }
+
 
     public Report(int vote) {
         this.vote = vote;
+    }
+
+    public String getSolution() {
+        return solution;
     }
 
     public String getTopic() {
@@ -77,5 +76,7 @@ public class Report {
 
     }
 
-
+    public void setSolution(String solution) {
+        this.solution = solution;
+    }
 }

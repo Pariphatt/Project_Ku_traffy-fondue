@@ -17,22 +17,25 @@ public class ManageReportsController {
 
     @FXML private TextField searchReportTextField;
     @FXML private ListView reportListView;
-    @FXML private ChoiceBox agencyChoiceBox;
     @FXML private Label topicLabel;
     @FXML private Label statusLabel;
     @FXML private TextArea detailTextArea;
+    @FXML private TextField solutionTextField;
+    @FXML private TextArea solutionTextArea;
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
+
+    private Report selectedReport;
 
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
         showListView();
+        detailTextArea.setDisable(true);
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
-        agencyChoiceBox.getItems().addAll(agency);
     }
 
     //    private void showChoiceBox(){
@@ -56,6 +59,7 @@ public class ManageReportsController {
             public void changed(ObservableValue<? extends Report> observable, Report oldValue, Report newValue) {
                 System.out.println("Selected item: " + newValue);
                 showSelectedReport(newValue);
+                selectedReport = newValue;
             }
         });
     }
@@ -63,6 +67,7 @@ public class ManageReportsController {
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
+        solutionTextArea.setText(report.getSolution());
     }
 
     private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
@@ -115,5 +120,29 @@ public class ManageReportsController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
+    @FXML
+    void handleProcessButton(ActionEvent actionEvent) {
+        String process = "กำลังดำเนินก่าร";
+        selectedReport.setStatus(process);
+        reportListView.refresh();
+        showSelectedReport(selectedReport);
+        dataSource.writeData(reportList);
+    }
 
+    @FXML
+    void handleCompleteButton(ActionEvent actionEvent) {
+        String complete = "เสร็จสิ้น";
+        selectedReport.setStatus(complete);
+        reportListView.refresh();
+        showSelectedReport(selectedReport);
+        dataSource.writeData(reportList);
+    }
+
+    @FXML
+    void handleSubmitButton(ActionEvent actionEvent) {
+        selectedReport.setSolution(solutionTextField.getText());
+        dataSource.writeData(reportList);
+        solutionTextField.clear();
+        showSelectedReport(selectedReport);
+    }
 }

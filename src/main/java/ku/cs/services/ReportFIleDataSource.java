@@ -46,14 +46,10 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(",");
                 Report report = null;
-                if (data.length == 4){
-                    report = new Report(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim());
-                }
-                if (data.length == 5){
-                    report = new Report(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),Integer.parseInt(data[4].trim()));
-                }
-                if (data.length == 6){
-                    report = new Report(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),Integer.parseInt(data[4].trim()),data[5].trim());
+                if (data.length == 7){
+                    report = new Report(data[0].trim(),data[1].trim(),data[2].trim()
+                            ,data[3].trim(),Integer.parseInt(data[4].trim()),
+                            data[6].trim(),data[5]);
                 }
                 reportList.addReport(report);
             }
@@ -84,7 +80,13 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             buffer = new BufferedWriter(writer);
 
             for (Report report : reportList.getaAllReport()){
-                String line = report.getTopic().trim() + "," + report.getDetail().trim() + "," + report.getUserReport().trim()+","+report.getStatus()+","+report.getVote()+","+report.getAgency();
+                String line = report.getTopic().trim() + ","
+                        + report.getDetail().trim() + ","
+                        + report.getUserReport().trim()+","
+                        +report.getAgency()+","
+                        +report.getVote()+","
+                        +report.getSolution()+ ","
+                        +report.getStatus();
                 buffer.append(line);
                 buffer.newLine();
             }
