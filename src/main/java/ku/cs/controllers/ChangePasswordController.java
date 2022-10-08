@@ -41,9 +41,10 @@ public class ChangePasswordController {
     private AnchorPane pane;
     private Alert alert;
     private AccountList userList;
-    private String pathImage;
+    private String pathImage ;
     private AccountListDataSource userListDataSource;
     private Account account;
+    private File file;
 
     @FXML
     public void initialize() {
@@ -56,17 +57,18 @@ public class ChangePasswordController {
         imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
     }
     public String handleAddPhoto(ActionEvent event) {
+        String userName1 = userName.getText();
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
         Node source = (Node) event.getSource();
-        File file = chooser.showOpenDialog(source.getScene().getWindow());
+        file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             try {
                 File destDir = new File("imagesAvatar");
                 if (!destDir.exists()) destDir.mkdirs();
                 String[] fileSplit = file.getName().split("\\.");
-                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+                String filename = account.getName() + "."
                         + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
@@ -76,12 +78,24 @@ public class ChangePasswordController {
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
                 imageView.setImage(new Image(target.toUri().toString()));
                 pathImage = filename;
+                System.out.println(pathImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        if (userList.changePicture(userName1) != null) {
+                account = userList.changePicture(userName1);
+                account.setPicPath(pathImage);
+                userListDataSource.writeData(userList);
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setContentText("เปลี่ยรูปภาพสำเร็จ");
+                alert.show();
+            }
+
+
         return pathImage;
     }
+
 
     @FXML
     public void handleCancelButton(ActionEvent actionEvent) {
@@ -100,7 +114,16 @@ public class ChangePasswordController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
-
+//    @FXML
+//    public void handleConfirmButton(ActionEvent actionEvent){
+//            account = userList.changePicture(pathImage);
+//            account.setPicPath(pathImage);
+//            userListDataSource.writeData(userList);
+//            alert.setAlertType(Alert.AlertType.INFORMATION);
+//            alert.setContentText("เปลี่ยรูปภาพสำเร็จ");
+//            alert.show();
+//
+//    }
     @FXML
     public void handleChangePasswordButton(ActionEvent actionEvent) {
         String userName1 = userName.getText();

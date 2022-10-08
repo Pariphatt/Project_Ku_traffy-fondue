@@ -2,11 +2,9 @@ admin,admin,Pariphat,1234,profile-user.png,null
 admin,admin1,Phonburis,1234,profile-user.png,null
 admin,admin2,Phollaphat,1234,profile-user.png,null
 admin,admin3,Nopnaphat,1234,profile-user.png,null
-User,nat,pariphat46,1234,profile-user.png,false
-User,pedpap,neuw,b,2022-10-04_1664855847477.png,false
-User,arty,arty,a,2022-10-06_1665039658363.jpg,false
-User,neuw,qqq,qq,profile-user.png,false
-User,neuw,qqq,qq,profile-user.png,false
-User,neuw,qqq,q,profile-user.png,false
-User,qqqqq,www,q,profile-user.png,false
-staff,saacos,saac,1234,2022-10-06_1665072275909.jpg,สำนักบริการคอมพิวเตอร์
+User,arty,arty,1234,arty.jpg,false
+User,nat,nat,1234,nat.jpg,false
+User,neuw,neuw,1234,neuw.jpg,false
+User,chutter,chutter,1234,chutter.jpg,false
+User,nat1,nat1,111,nat1.JPG,false
+User,ping,ping,111,ping.png,false

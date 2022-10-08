@@ -45,9 +45,7 @@ public class Account {
 
     public void loginPass() {
         clearLoginAttempts();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        setLastLogin(dtf.format(now));
+
     }
 
     private void increaseLoginAttempts() {

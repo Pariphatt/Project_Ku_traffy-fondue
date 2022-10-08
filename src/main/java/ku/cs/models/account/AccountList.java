@@ -36,6 +36,14 @@ public class AccountList {
         }
         return null;
     }
+    public Account changePicture(String username) {
+        for (Account temp : accountList) {
+            if (username.equals(temp.getUsername())) {
+                return temp;
+            }
+        }
+        return null;
+    }
 
     public boolean isExistUsername(String username) {
         for(Account account: accountList) {

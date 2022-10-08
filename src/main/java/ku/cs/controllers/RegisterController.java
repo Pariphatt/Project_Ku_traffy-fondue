@@ -46,6 +46,8 @@ public class RegisterController {
     private Alert alert;
     private DataSource<AccountList> accountListDataSource;
     private AccountList accountList;
+    private File file;
+
 
     @FXML
     public void initialize() {
@@ -65,26 +67,11 @@ public class RegisterController {
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
         Node source = (Node) event.getSource();
-        File file = chooser.showOpenDialog(source.getScene().getWindow());
-        if (file != null) {
-            try {
-                File destDir = new File("imagesAvatar");
-                if (!destDir.exists()) destDir.mkdirs();
-                String[] fileSplit = file.getName().split("\\.");
-                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
-                Path target = FileSystems.getDefault().getPath(
-                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
-                );
-                System.out.println(file.toPath());
-                System.out.println(target);
-                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-                imageView.setImage(new Image(target.toUri().toString()));
-                pathImage = filename;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        file = chooser.showOpenDialog(source.getScene().getWindow());
+        if (file != null){
+            imageView.setImage(new Image(file.getAbsolutePath()));
         }
+
         return pathImage;
     }
 
@@ -112,6 +99,26 @@ public class RegisterController {
         }
        else  {
             accountListDataSource = new AccountListDataSource("assets","accounts.csv");
+
+            if (file != null) {
+                try {
+                    File destDir = new File("imagesAvatar");
+                    if (!destDir.exists()) destDir.mkdirs();
+                    String[] fileSplit = file.getName().split("\\.");
+                    String filename = usernameText + "."
+                            + fileSplit[fileSplit.length - 1];
+                    Path target = FileSystems.getDefault().getPath(
+                            destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
+                    );
+                    System.out.println(file.toPath());
+                    System.out.println(target);
+                    Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                    imageView.setImage(new Image(target.toUri().toString()));
+                    pathImage = filename;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
             if (pathImage == null) {
                 UserAccount user = new UserAccount("User",name,usernameText,password,"profile-user.png");
