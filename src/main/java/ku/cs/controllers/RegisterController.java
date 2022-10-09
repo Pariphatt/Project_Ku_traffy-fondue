@@ -114,12 +114,12 @@ public class RegisterController {
             accountListDataSource = new AccountListDataSource("assets","accounts.csv");
 
             if (pathImage == null) {
-                UserAccount user = new UserAccount("User",name,usernameText,password,"profile-user.png");
+                UserAccount user = new UserAccount("User",name,usernameText,password,"profile-user.png","never");
                 System.out.println(user.getUsername());
                 accountList.addUser(user);
             } else {
                 File dest = new File("assets/imagesAvatar/" + pathImage);
-                accountList.addUser(new UserAccount("User",name,usernameText,password,pathImage));
+                accountList.addUser(new UserAccount("User",name,usernameText,password,pathImage,"never"));
             }
             System.out.println(accountList.getAllUsers().get(0));
             accountListDataSource.writeData(accountList);

@@ -6,13 +6,11 @@ public class StaffAccount extends Account{
 
 
 
-    public StaffAccount(String role, String name, String username, String password, String picPath,String agency,String category) {
-        super(role,name, username, password, picPath);
+    public StaffAccount(String role, String name, String username, String password, String picPath,String agency,String lastLogin) {
+        super(role,name, username, password, picPath,lastLogin);
         this.agency=agency;
-        this.category = category;
     }
     public boolean isAgengy(String agen){
-        System.out.println("---");
         if(agen.equals(agency)) return true;
         return false;
     }

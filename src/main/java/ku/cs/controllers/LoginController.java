@@ -60,6 +60,7 @@ public class LoginController  {
                 }
                 else {
                     account.loginPass();
+                    dataSource.writeData(accountList);
                     if (account instanceof StaffAccount) {
                         try {
                             com.github.saacsos.FXRouter.goTo("staff_homepage", account.getUsername());

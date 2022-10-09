@@ -32,6 +32,7 @@ public class StaffHomepageController {
     private ReportList reportList;
     private ReportList reportListFiltered;
     private StaffAccount staff;
+    private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
 

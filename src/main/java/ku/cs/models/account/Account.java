@@ -12,21 +12,21 @@ public class Account {
     private int loginAttempts;
     private String role;
 
+
     public Account(String name, String username, String password) {
         this.name = name;
         this.username = username;
         this.password = password;
     }
-    public Account() {
-    }
+    public Account(){}
 
-    public Account(String role, String name, String username, String password,String picPath) {
+    public Account(String role, String name, String username, String password,String picPath,String lastLogin) {
         this.role =role;
         this.name=name;
         this.username=username;
         this.password=password;
         this.picPath=picPath;
-
+        this.lastLogin = lastLogin;
     }
 
 
@@ -117,7 +117,8 @@ public class Account {
                 "name:' " + name + '\'' +
                 ", username:' " + username + '\'' +
                 ", หน่วยงาน:' " + password + '\'' +
-                ", วันที่เข้าใช้งานล่าสุด:' " + picPath + '\'' +
+                ", วันที่เข้าใช้งานล่าสุด:' "+lastLogin+'\'' + picPath + '\'' +
                 ", role:' " + role + '\'';
     }
+
 }

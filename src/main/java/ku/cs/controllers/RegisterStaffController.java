@@ -57,9 +57,7 @@ public class RegisterStaffController {
         alert = new Alert(Alert.AlertType.NONE);
         AccountListDataSource accountListDataSource1 = new AccountListDataSource("assets", "accounts.csv");
         accountList = accountListDataSource1.readData();
-        for (Account account : accountList.getAllUsers()){
-            System.out.println(account.getRole());
-        }
+
     }
 
     private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
@@ -119,12 +117,12 @@ public class RegisterStaffController {
             accountListDataSource = new AccountListDataSource("assets", "accounts.csv");
 
             if (pathImage == null) {
-                StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png",agencyChoiceBox.getValue(),"as");
+                StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png",agencyChoiceBox.getValue(),"never");
                 System.out.println(user.getUsername());
                 accountList.addUser(user);
             } else {
                 File dest = new File("assets/imagesAvatar/" + pathImage);
-                accountList.addUser(new StaffAccount("staff", name, usernameText, password, pathImage,agencyChoiceBox.getValue(),"as"));
+                accountList.addUser(new StaffAccount("staff", name, usernameText, password, pathImage,agencyChoiceBox.getValue(),"never"));
             }
             System.out.println(accountList.getAllUsers().get(0));
             accountListDataSource.writeData(accountList);
@@ -146,7 +144,7 @@ public class RegisterStaffController {
     }
     public void handleBackButton(ActionEvent actionEvent){
         try {
-            FXRouter.goTo("home");
+            FXRouter.goTo("admin");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า home ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนด route");
