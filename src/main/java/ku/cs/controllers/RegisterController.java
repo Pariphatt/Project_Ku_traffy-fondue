@@ -108,7 +108,6 @@ public class RegisterController {
                 alert.setAlertType(Alert.AlertType.ERROR);
                 alert.setContentText("มีผู้ใช้งานนี้ในระบบแล้ว");
                 alert.show();
-
         }
        else  {
             accountListDataSource = new AccountListDataSource("assets","accounts.csv");

@@ -181,6 +181,9 @@
                                     <String fx:value="setting_button" />
                                     <String fx:value="shadow" />
                                  </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </Button>
                            </children>
                            <HBox.margin>

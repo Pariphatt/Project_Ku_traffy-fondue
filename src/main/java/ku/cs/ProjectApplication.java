@@ -18,7 +18,7 @@ public class ProjectApplication extends Application {
         stage.getIcons().add(new Image("https://play-lh.googleusercontent.com/Xv4Ze-dmrbnMgyP_2HxCrGaV5VJfe5vAk3Sekza42K1EON2J5sEVwXI8-0cB6Rmtgw"));
         com.github.saacsos.FXRouter.bind(this, stage, "ระบบร้องเรียนมหาวิทยาลัยเกษตรศาสตร์", 800, 600);
         configRoute();
-        com.github.saacsos.FXRouter.goTo("staff_homepage");
+        com.github.saacsos.FXRouter.goTo("home");
     }
     private static void configRoute() {
         String packageStr = "ku/cs/";
@@ -30,7 +30,6 @@ public class ProjectApplication extends Application {
         FXRouter.when("welcome_page", packageStr+"welcome_page.fxml");
         FXRouter.when("addReport_page", packageStr+"addReport_page.fxml");
         FXRouter.when("allComplaint_page", packageStr+"allComplaint_page.fxml");
-        FXRouter.when("empty2_page", packageStr+"empty2_page.fxml");
         FXRouter.when("welcome_staff", packageStr+"welcome_staff.fxml");
         FXRouter.when("my_account", packageStr+"my_account.fxml");
         FXRouter.when("admin", packageStr+"admin.fxml");

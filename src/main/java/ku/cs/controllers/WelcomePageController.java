@@ -20,6 +20,7 @@ public class WelcomePageController {
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
+
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
         userShow.setImage(new Image(imagePic.toURI().toString()));
@@ -32,7 +33,7 @@ public class WelcomePageController {
     @FXML
     public void handleHomeButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("welcome_page",account.getUsername());
+            com.github.saacsos.FXRouter.goTo("welcome_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -41,7 +42,7 @@ public class WelcomePageController {
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("addReport_page");
+            com.github.saacsos.FXRouter.goTo("addReport_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -49,7 +50,7 @@ public class WelcomePageController {
     @FXML
     public void handleAllComplaintButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("allComplaint_page");
+            com.github.saacsos.FXRouter.goTo("allComplaint_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }

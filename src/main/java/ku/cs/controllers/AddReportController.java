@@ -1,5 +1,6 @@
 package ku.cs.controllers;
 
+import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,7 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import ku.cs.models.account.Account;
+import ku.cs.models.account.AccountList;
 import ku.cs.models.reports.Report;
+import ku.cs.services.AccountListDataSource;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,16 +29,27 @@ public class AddReportController {
     @FXML private TextField topicTextField;
     @FXML private TextArea detailTextArea;
     private Alert alert;
-    @FXML ChoiceBox agencyChoiceBox;
+    @FXML ChoiceBox typeChoiceBox;
     private String Path;
     private ImageView imageView;
     private String pathImage;
     private BufferedImage pic = null;
 
+    @FXML private ImageView userShow;
+    private Account account;
+    private AccountListDataSource userListDataSource;
+    private AccountList userList;
+
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
-        agencyChoiceBox.getItems().addAll(agency);
+        typeChoiceBox.getItems().addAll(type);
+        File imagePic = new File("imagesAvatar/profile-user.png");
+        userShow.setImage(new Image(imagePic.toURI().toString()));
+        userListDataSource = new AccountListDataSource("assets", "accounts.csv");
+        userList = userListDataSource.readData();
+        account = userList.findUser((String) FXRouter.getData());
+        userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
     }
 
     public void handleSubmitButton(ActionEvent actionEvent){
@@ -45,14 +60,14 @@ public class AddReportController {
         } else {
 
             try {
-                com.github.saacsos.FXRouter.goTo("addReport_page");
+                com.github.saacsos.FXRouter.goTo("addReport_page", account.getUsername());
             } catch (IOException e) {
                 System.err.println(e);
             }
         }
     }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] type = {"พาหนะ", "อาคารและสถานที่" , "ความสะอาด", "บุคคล", "ความปลอดภัย", "ทรัพย์สิน"};
 
     public String handleAddPhoto(ActionEvent event) {
         FileChooser chooser = new FileChooser();
@@ -85,7 +100,7 @@ public class AddReportController {
     @FXML
     public void handleHomeButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("welcome_page");
+            com.github.saacsos.FXRouter.goTo("welcome_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -94,7 +109,7 @@ public class AddReportController {
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("addReport_page");
+            com.github.saacsos.FXRouter.goTo("addReport_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -102,7 +117,7 @@ public class AddReportController {
     @FXML
     public void handleAllComplaintButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("allComplaint_page");
+            com.github.saacsos.FXRouter.goTo("allComplaint_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -112,6 +127,14 @@ public class AddReportController {
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("login");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+    @FXML
+    public void handleSettingButton(ActionEvent actionEvent){
+        try {
+            com.github.saacsos.FXRouter.goTo("change_password",account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
