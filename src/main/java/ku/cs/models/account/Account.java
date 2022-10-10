@@ -114,11 +114,11 @@ public class Account {
     @Override
     public String toString() {
         return
-                "name:' " + name + '\'' +
-                ", username:' " + username + '\'' +
-                ", หน่วยงาน:' " + password + '\'' +
-                ", วันที่เข้าใช้งานล่าสุด:' "+lastLogin+'\'' + picPath + '\'' +
-                ", role:' " + role + '\'';
+                "name: " + name + '\'' +
+                ", username: " + username + '\'' +
+                ", วันที่เข้าใช้งานล่าสุด: "+lastLogin+'\'' +
+                        ", picPath: "+ picPath + '\'' +
+                ", role: " + role + '\'';
     }
 
 }

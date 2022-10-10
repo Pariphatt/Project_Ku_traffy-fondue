@@ -67,7 +67,7 @@ public class AdminHomepageController {
 //            }
 //        };
         ArrayList<Account> users = userList.getAllUsers();
-        Collections.sort(users ,new Comparator<Account>() {
+        users.sort(new Comparator<Account>() {
 
             @Override
             public int compare(Account o1, Account o2) {
@@ -77,7 +77,7 @@ public class AdminHomepageController {
                 if (o2.getLastLogin().equals("never"))return -1;
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dt1 = LocalDateTime.parse(o1.getLastLogin(),dtf);
-                LocalDateTime dt2 = LocalDateTime.parse(o1.getLastLogin(),dtf);
+                LocalDateTime dt2 = LocalDateTime.parse(o2.getLastLogin(),dtf);
                 return -dt1.compareTo(dt2);
             }
         });
