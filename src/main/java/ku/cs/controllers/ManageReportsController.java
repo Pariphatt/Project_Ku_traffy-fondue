@@ -141,7 +141,7 @@ public class ManageReportsController {
     }
     @FXML
     void handleProcessButton(ActionEvent actionEvent) {
-        String process = "กำลังดำเนินก่าร";
+        String process = "กำลังดำเนินการ";
         selectedReport.setStatus(process);
         reportListView.refresh();
         showSelectedReport(selectedReport);

@@ -3,6 +3,7 @@ package ku.cs.controllers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ku.cs.models.reports.Report;
@@ -12,6 +13,7 @@ import ku.cs.services.Filterer;
 import ku.cs.services.ReportFIleDataSource;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AllComplaintController {
     @FXML private Label topicLabel;
@@ -21,6 +23,9 @@ public class AllComplaintController {
     @FXML private TextArea detailTextArea;
     @FXML private ListView reportListView;
     @FXML private ChoiceBox agencyChoiceBox;
+    @FXML private ChoiceBox statusChoiceBox;
+    @FXML private ChoiceBox categoryChoiceBox;
+    @FXML private ChoiceBox sortByChoiceBox;
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
@@ -32,11 +37,13 @@ public class AllComplaintController {
         showListView();
         clearSelectedReport();
         handleSelectedListView();
+        showStatusChoiceBox();
     }
 
     private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     private void showListView(){
+        reportListView.getItems().clear();
         reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();
     }
@@ -57,6 +64,23 @@ public class AllComplaintController {
             }
         });
     }
+    public void showStatusChoiceBox(){
+        ArrayList<String> status = new ArrayList<>();
+        status.add("ทั้งหมด");
+        status.add("ยังไม่ดำเนินการ");
+        status.add("กำลังดำเนินการ");
+        status.add("เสร็จสิ้น");
+        statusChoiceBox.getItems().addAll(status);
+        statusChoiceBox.setOnAction(this::handleSearchStatusChoiceBox);
+    }
+
+    private void handleSearchStatusChoiceBox(Event event) {
+        String status = (String) statusChoiceBox.getValue();
+        dataSource = new ReportFIleDataSource();
+        reportList = dataSource.readData();
+        reportList = reportList.findStatus(status);
+        showListView();
+    }
 
     public void showSelectedReport(Report report){
         topicLabel.setText(report.getTopic());
@@ -64,6 +88,7 @@ public class AllComplaintController {
         statusLabel.setText(report.getStatus());
         voteLabel.setText(report.getVote());
     }
+
 
     @FXML
     public void handleSearchReportButton(javafx.event.ActionEvent actionEvent){

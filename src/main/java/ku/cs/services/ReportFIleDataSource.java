@@ -15,6 +15,11 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         checkFileIsExisted();
     }
 
+    public ReportFIleDataSource() {
+        directoryName = "assets";
+        fileName = "reports.csv";
+    }
+
     private void checkFileIsExisted(){
         File file = new File(directoryName);
         if ( ! file.exists()){
