@@ -166,7 +166,7 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="490.0">
                             <children>
-                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="userShow" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@images/test.jpg" />
                                     </image>
@@ -179,6 +179,15 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                         </Button>
+                              <Button mnemonicParsing="false" onAction="#handleSettingButton" stylesheets="@styles/style.css" text="Setting">
+                                 <styleClass>
+                                    <String fx:value="setting_button" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
                                     </children>
                                     <HBox.margin>
                                         <Insets left="10.0" />
@@ -208,8 +217,8 @@
                                                 <Font name="System Bold" size="18.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="59.0" layoutY="80.0" text="Agency : " />
-                                        <ChoiceBox fx:id="agencyChoiceBox" layoutX="107.0" layoutY="76.0" prefWidth="100.0" />
+                                        <Label layoutX="59.0" layoutY="80.0" text="Topic :" />
+                                        <ChoiceBox fx:id="typeChoiceBox" layoutX="107.0" layoutY="76.0" prefWidth="100.0" />
                                         <TextField fx:id="topicTextField" layoutX="207.0" layoutY="76.0" prefWidth="100.0" promptText="Topic" />
                                         <Label layoutX="59.0" layoutY="115.0" text="Detail :" />
                                         <TextArea fx:id="detailTextArea" layoutX="107.0" layoutY="115.0" prefHeight="200.0" prefWidth="200.0" />

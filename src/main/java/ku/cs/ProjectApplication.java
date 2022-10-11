@@ -30,7 +30,6 @@ public class ProjectApplication extends Application {
         FXRouter.when("welcome_page", packageStr+"welcome_page.fxml");
         FXRouter.when("addReport_page", packageStr+"addReport_page.fxml");
         FXRouter.when("allComplaint_page", packageStr+"allComplaint_page.fxml");
-        FXRouter.when("empty2_page", packageStr+"empty2_page.fxml");
         FXRouter.when("welcome_staff", packageStr+"welcome_staff.fxml");
         FXRouter.when("my_account", packageStr+"my_account.fxml");
         FXRouter.when("admin", packageStr+"admin.fxml");

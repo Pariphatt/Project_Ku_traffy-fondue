@@ -167,7 +167,7 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="490.0">
                             <children>
-                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="userShow" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@images/test.jpg" />
                                     </image>
@@ -180,6 +180,15 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                         </Button>
+                              <Button mnemonicParsing="false" onAction="#handleSettingButton" stylesheets="@styles/style.css" text="Setting">
+                                 <styleClass>
+                                    <String fx:value="setting_button" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
                                     </children>
                                     <HBox.margin>
                                         <Insets left="10.0" />
@@ -230,9 +239,12 @@
                                                 <Font name="System Bold" size="18.0" />
                                             </font>
                                         </Label>
+
                                         <ListView fx:id="reportListView" layoutX="14.0" layoutY="37.0" prefHeight="400.0" prefWidth="200.0" />
-                                        <ChoiceBox fx:id="agencyChoiceBox" layoutX="293.0" layoutY="37.0" prefWidth="150.0" />
                                         <Label layoutX="245.0" layoutY="41.0" text="Agency : " />
+                                        <ChoiceBox fx:id="typeChoiceBox" layoutX="295.0" layoutY="10.0" prefWidth="150.0" />
+                                        <Label layoutX="245.0" layoutY="14.0" text="Type :" />
+
                                         <Label layoutX="245.0" layoutY="76.0" text="Topic : " />
                                         <Label fx:id="topicLabel" layoutX="293.0" layoutY="76.0" text="topicLabel" />
                                         <Label layoutX="245.0" layoutY="110.0" text="Detail : " />
@@ -242,8 +254,11 @@
                                         <Button layoutX="424.0" layoutY="391.0" mnemonicParsing="false" onAction="#handleVoteButton" styleClass="search_button" stylesheets="@styles/style.css" text="Vote" textFill="WHITE" />
                                         <Label layoutX="245.0" layoutY="353.0" text="Vote : " />
                                         <Label fx:id="voteLabel" layoutX="293.0" layoutY="353.0" text="voteLabel" />
+
                               <Label layoutX="247.0" layoutY="383.0" text="Date :" />
                               <Label fx:id="dateLabel" layoutX="293.0" layoutY="383.0" text="dateLabel" />
+                                        <Label fx:id="agencyLabel" layoutX="295.0" layoutY="41.0" text="agencyLabel" />
+
                                     </children>
                                 </Pane>
                             </children>
