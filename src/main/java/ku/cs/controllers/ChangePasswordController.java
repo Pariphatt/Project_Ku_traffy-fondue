@@ -40,45 +40,32 @@ public class ChangePasswordController {
     @FXML
     private AnchorPane pane;
     private Alert alert;
-    private AccountList userList;
+    private AccountList accountList;
     private String pathImage;
     private AccountListDataSource userListDataSource;
     private Account account;
+    private Account account1;
+    private File file;
 
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
-        userList = userListDataSource.readData();
-        account = userList.findUser((String) FXRouter.getData());
+        accountList = userListDataSource.readData();
+        account = accountList.findUser((String) FXRouter.getData());
         userName.setText(account.getUsername());
         userName.setDisable(true);
         imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
     }
     public String handleAddPhoto(ActionEvent event) {
+
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
         Node source = (Node) event.getSource();
-        File file = chooser.showOpenDialog(source.getScene().getWindow());
-        if (file != null) {
-            try {
-                File destDir = new File("imagesAvatar");
-                if (!destDir.exists()) destDir.mkdirs();
-                String[] fileSplit = file.getName().split("\\.");
-                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
-                Path target = FileSystems.getDefault().getPath(
-                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
-                );
-                System.out.println(file.toPath());
-                System.out.println(target);
-                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-                imageView.setImage(new Image(target.toUri().toString()));
-                pathImage = filename;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+         file = chooser.showOpenDialog(source.getScene().getWindow());
+        if (file != null){
+            imageView.setImage(new Image(file.getAbsolutePath()));
         }
         return pathImage;
     }
@@ -100,7 +87,37 @@ public class ChangePasswordController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
-
+    @FXML
+    public void handleConfirmButton(ActionEvent actionEvent){
+        String userName1 = userName.getText();
+        if (file != null) {
+            try {
+                File destDir = new File("imagesAvatar");
+                if (!destDir.exists()) destDir.mkdirs();
+                String[] fileSplit = file.getName().split("\\.");
+                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+                        + fileSplit[fileSplit.length - 1];
+                Path target = FileSystems.getDefault().getPath(
+                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
+                );
+                System.out.println(file.toPath());
+                System.out.println(target);
+                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                imageView.setImage(new Image(target.toUri().toString()));
+                pathImage = filename;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (accountList.changePicture(userName1) != null) {
+            account = accountList.changePicture(userName1);
+            account.setPicPath(pathImage);
+            userListDataSource.writeData(accountList);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("เปลี่ยรูปภาพสำเร็จ");
+            alert.show();
+        }
+    }
     @FXML
     public void handleChangePasswordButton(ActionEvent actionEvent) {
         String userName1 = userName.getText();
@@ -118,10 +135,21 @@ public class ChangePasswordController {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("โปรดกรอกรหัสผ่าน");
             alert.show();
-        } else if (userList.changePassword(userName1) != null) {
-            account = userList.changePassword(userName1);
+        }
+        else if (currentPassword1.equals(confirmNewPassword1) ) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("กรอกรหัสผ่านซ้ำ");
+            alert.show();
+        }
+        else if (accountList.findPassword(userName1,currentPassword1)  == null ) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("รหัสผ่านเดิมไม่ถูกต้อง");
+            alert.show();
+        }
+        else if (accountList.changePassword(userName1) != null) {
+            account = accountList.changePassword(userName1);
             account.setPassword(newPassword1);
-            userListDataSource.writeData(userList);
+            userListDataSource.writeData(accountList);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("เปลี่ยนรหัสผ่านสำเร็จ");
             alert.show();

@@ -47,6 +47,7 @@ public class LoginController  {
            alert.setContentText("Please enter username and password");
            alert.show();
        }
+
        else {
             Account account = accountList.findUser(username.getText());
             if (account == null) {

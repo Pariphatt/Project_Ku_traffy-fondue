@@ -47,9 +47,10 @@ public class RegisterStaffController {
     private ChoiceBox<String> agencyChoiceBox;
     private Account accounts;
     private Alert alert;
-
+    private File file;
     @FXML
     public void initialize() {
+        accounts = new Account();
         alert = new Alert(Alert.AlertType.NONE);
         agencyChoiceBox.getItems().addAll(agency);
         accounts = new Account();
@@ -68,25 +69,9 @@ public class RegisterStaffController {
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
         Node source = (Node) event.getSource();
-        File file = chooser.showOpenDialog(source.getScene().getWindow());
-        if (file != null) {
-            try {
-                File destDir = new File("imagesAvatar");
-                if (!destDir.exists()) destDir.mkdirs();
-                String[] fileSplit = file.getName().split("\\.");
-                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
-                Path target = FileSystems.getDefault().getPath(
-                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
-                );
-                System.out.println(file.toPath());
-                System.out.println(target);
-                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-                imageView.setImage(new Image(target.toUri().toString()));
-                pathImage = filename;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+       file = chooser.showOpenDialog(source.getScene().getWindow());
+        if (file != null){
+            imageView.setImage(new Image(file.getAbsolutePath()));
         }
         return pathImage;
     }
@@ -97,7 +82,17 @@ public class RegisterStaffController {
         String usernameText = usernameTextField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
-        if (nameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty() ||
+        if ((!accounts.validUsername(usernameTextField.getText()))) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("Username ใส่ได้แค่ A-Z หรือ a-z ยาว 3-20 ตัวอักษร");
+            alert.show();
+        }
+        else if ((!accounts.validPassword(password))) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("password ใส่ได้แค่ A-Z หรือ a-z หรือ 0-9 ยาว 6-20 ตัวอักษร");
+            alert.show();
+        }
+        else if (nameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty() ||
                 passwordField.getText().isEmpty() ||
                 confirmPasswordField.getText().isEmpty() ||
                 agencyChoiceBox.getItems().isEmpty()) {
@@ -115,7 +110,25 @@ public class RegisterStaffController {
         }
         else if (!accountList.isExistUsername(usernameText)) {
             accountListDataSource = new AccountListDataSource("assets", "accounts.csv");
-
+            if (file != null) {
+                try {
+                    File destDir = new File("imagesAvatar");
+                    if (!destDir.exists()) destDir.mkdirs();
+                    String[] fileSplit = file.getName().split("\\.");
+                    String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+                            + fileSplit[fileSplit.length - 1];
+                    Path target = FileSystems.getDefault().getPath(
+                            destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
+                    );
+                    System.out.println(file.toPath());
+                    System.out.println(target);
+                    Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                    imageView.setImage(new Image(target.toUri().toString()));
+                    pathImage = filename;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             if (pathImage == null) {
                 StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png",agencyChoiceBox.getValue(),"never");
                 System.out.println(user.getUsername());

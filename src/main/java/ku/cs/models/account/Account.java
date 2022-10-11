@@ -110,6 +110,14 @@ public class Account {
     public boolean isUsername(String username) {
         return this.username.equals(username);
     }
+    public boolean validPassword(String password) {
+        return ((password.matches("^[a-zA-Z0-9]{6,20}$")));
+    }
+
+    public boolean validUsername(String username) {
+        System.out.println( (username.matches("^[a-zA-Z]+(.+){3,20}$")));
+        return  ( (username.matches("^[a-zA-Z]+(.+){3,20}$")));
+    }
 
     @Override
     public String toString() {

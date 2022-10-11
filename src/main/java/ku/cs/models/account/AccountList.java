@@ -39,6 +39,23 @@ public class AccountList {
         }
         return null;
     }
+    public Account findPassword(String username, String password) {
+        for (Account temp : accountList) {
+            if (username.equals(temp.getUsername()) && password.equals(temp.getPassword())) {
+                return temp;
+            }
+        }
+        return null;
+    }
+
+    public Account changePicture(String username) {
+        for (Account temp : accountList) {
+            if (username.equals(temp.getUsername())) {
+                return temp;
+            }
+        }
+        return null;
+    }
 
     public boolean isExistUsername(String username) {
         for(Account account: accountList) {
@@ -49,6 +66,7 @@ public class AccountList {
         }
         return false;
     }
+
     public void removeUser(String username) {
         Account user = findUser(username);
         accountList.remove(user);

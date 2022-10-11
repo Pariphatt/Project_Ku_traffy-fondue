@@ -74,7 +74,7 @@ public class AddReportController {
         } else {
             String topic = topicTextField.getText();
             String detail = detailTextArea.getText();
-            Report report = new Report(topic,detail);
+//            Report report = new Report(topic,detail);
             reportList.addReport(report);
             dataSource.writeData(reportList);
 

@@ -23,6 +23,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterController {
     private String Path;
@@ -44,14 +46,17 @@ public class RegisterController {
     @FXML
     private Button Register;
     private Alert alert;
-    private DataSource<AccountList> accountListDataSource;
+    private AccountListDataSource userListDataSource;
     private AccountList accountList;
+
+    private File file;
 
     @FXML
     public void initialize() {
         accounts = new Account();
-        AccountListDataSource accountListDataSource1 = new AccountListDataSource("assets", "accounts.csv");
-        accountList = accountListDataSource1.readData();
+        userListDataSource = new AccountListDataSource("assets", "accounts.csv");
+        accountList = userListDataSource.readData();
+//        accounts = accountList.findUser((String) FXRouter.getData());
         for (Account account : accountList.getAllUsers()){
             System.out.println(account.getRole());
         }
@@ -66,25 +71,10 @@ public class RegisterController {
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
         Node source = (Node) event.getSource();
         File file = chooser.showOpenDialog(source.getScene().getWindow());
-        if (file != null) {
-            try {
-                File destDir = new File("imagesAvatar");
-                if (!destDir.exists()) destDir.mkdirs();
-                String[] fileSplit = file.getName().split("\\.");
-                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
-                Path target = FileSystems.getDefault().getPath(
-                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
-                );
-                System.out.println(file.toPath());
-                System.out.println(target);
-                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-                imageView.setImage(new Image(target.toUri().toString()));
-                pathImage = filename;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (file != null){
+            imageView.setImage(new Image(file.getAbsolutePath()));
         }
+
         return pathImage;
     }
 
@@ -94,47 +84,80 @@ public class RegisterController {
         String usernameText = usernameTextField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
-        if (nameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty() ||
-                passwordField.getText().isEmpty() ||
-                confirmPasswordField.getText().isEmpty()) {
-            alert.setAlertType(Alert.AlertType.WARNING);
-            alert.setContentText("โปรดกรอกข้อมูลให้ครบทุกช่อง");
+        if ((!accounts.validUsername(usernameTextField.getText()))) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("Username ใส่ได้แค่ A-Z หรือ a-z ยาว 3-20 ตัวอักษร");
             alert.show();
         }
-    else{
-        if (accountList.isExistUsername(usernameText)){
-            System.out.println(accountList.isExistUsername(usernameText));
-            System.out.println(usernameText);
-                alert.setAlertType(Alert.AlertType.ERROR);
-                alert.setContentText("มีผู้ใช้งานนี้ในระบบแล้ว");
+        else if ((!accounts.validPassword(password))) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("password ใส่ได้แค่ A-Z หรือ a-z หรือ 0-9 ยาว 6-20 ตัวอักษร");
+            alert.show();
+        }
+        else if (nameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty() ||
+                    passwordField.getText().isEmpty() ||
+                    confirmPasswordField.getText().isEmpty()) {
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setContentText("โปรดกรอกข้อมูลให้ครบทุกช่อง");
                 alert.show();
         }
-       else  {
-            accountListDataSource = new AccountListDataSource("assets","accounts.csv");
-
-            if (pathImage == null) {
-                UserAccount user = new UserAccount("User",name,usernameText,password,"profile-user.png","never");
-                System.out.println(user.getUsername());
-                accountList.addUser(user);
-            } else {
-                File dest = new File("assets/imagesAvatar/" + pathImage);
-                accountList.addUser(new UserAccount("User",name,usernameText,password,pathImage,"never"));
-            }
-            System.out.println(accountList.getAllUsers().get(0));
-            accountListDataSource.writeData(accountList);
-            System.out.println(accountList.getAllUsers());
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("ลงทะเบียนสำเร็จ");
-            alert.show();
-
-            try {
-                com.github.saacsos.FXRouter.goTo("login");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        else if (!(passwordField.getText().equals(confirmPassword))) {
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setContentText("โปรดกรอกรหัสผ่านให้เหมือนกัน");
+                alert.show();
         }
+        else  {
+                if (accountList.isExistUsername(usernameText)) {
+                    System.out.println(accountList.isExistUsername(usernameText));
+                    System.out.println(usernameText);
+                    alert.setAlertType(Alert.AlertType.ERROR);
+                    alert.setContentText("มีผู้ใช้งานนี้ในระบบแล้ว");
+                    alert.show();
+                } else {
+                    userListDataSource = new AccountListDataSource("assets", "accounts.csv");
+                    if (file != null) {
+                        try {
+                            File destDir = new File("imagesAvatar");
+                            if (!destDir.exists()) destDir.mkdirs();
+                            String[] fileSplit = file.getName().split("\\.");
+                            String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+                                    + fileSplit[fileSplit.length - 1];
+                            Path target = FileSystems.getDefault().getPath(
+                                    destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
+                            );
+                            System.out.println(file.toPath());
+                            System.out.println(target);
+                            Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
+                            imageView.setImage(new Image(target.toUri().toString()));
+                            pathImage = filename;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (pathImage == null) {
+                        UserAccount user = new UserAccount("User", name, usernameText, password, "profile-user.png", "never");
+                        System.out.println(user.getUsername());
+                        accountList.addUser(user);
+                    } else {
+                        File dest = new File("assets/imagesAvatar/" + pathImage);
+                        accountList.addUser(new UserAccount("User", name, usernameText, password, pathImage, "never"));
+                    }
+                    System.out.println(accountList.getAllUsers().get(0));
+                    userListDataSource.writeData(accountList);
+                    System.out.println(accountList.getAllUsers());
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                    alert.setContentText("ลงทะเบียนสำเร็จ");
+                    alert.show();
 
-    }
+                    try {
+                        com.github.saacsos.FXRouter.goTo("login");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+            }
+
 
 }
 

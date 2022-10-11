@@ -112,9 +112,9 @@ public class StaffHomepageController {
     @FXML
     void handleChangeAccountButton(javafx.event.ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("my_account");
+            com.github.saacsos.FXRouter.goTo("change_password",staff.getUsername());
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า admin ไม่ได้");
+            System.err.println("ไปที่หน้า change_password ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
