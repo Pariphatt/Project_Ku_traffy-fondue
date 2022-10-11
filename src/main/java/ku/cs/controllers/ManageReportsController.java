@@ -85,7 +85,7 @@ public class ManageReportsController {
                 return report.getTopic().contains(input);
             }
         });
-        if (input == ""){
+        if (input.equals("")){
             reportList = dataSource.readData();
         }
         reportListView.getItems().clear();
