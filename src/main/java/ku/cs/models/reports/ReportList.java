@@ -21,4 +21,16 @@ public class ReportList {
         }
         return filtered;
     }
+    public ReportList findStatus(String status){
+        ReportList reportList = new ReportList();
+        for (Report report:reports){
+            if (status.equals("ทั้งหมด")){
+                reportList.addReport(report);
+            }
+            if ((report.getStatus()).equals(status)){
+                reportList.addReport(report);
+            }
+        }
+        return reportList;
+    }
 }

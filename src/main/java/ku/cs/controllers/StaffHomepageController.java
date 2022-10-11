@@ -1,12 +1,17 @@
 package ku.cs.controllers;
 
+import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import ku.cs.models.account.Account;
+import ku.cs.models.account.AccountList;
+import ku.cs.models.account.StaffAccount;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
+import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 import ku.cs.services.Filterer;
 import ku.cs.services.ReportFIleDataSource;
@@ -26,11 +31,19 @@ public class StaffHomepageController {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ReportList reportListFiltered;
+    private StaffAccount staff;
+    private Account account;
+    private AccountListDataSource userListDataSource;
+    private AccountList userList;
+
 
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
+        userListDataSource = new AccountListDataSource("assets", "accounts.csv");
+        userList = userListDataSource.readData();
         showListView(reportList);
+        staff = (StaffAccount) userList.findUser((String) FXRouter.getData());
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
@@ -109,8 +122,9 @@ public class StaffHomepageController {
     @FXML
     void handleManageButton(javafx.event.ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("manage_reports");
+            com.github.saacsos.FXRouter.goTo("manage_reports",staff.getUsername());
         } catch (IOException e) {
+//            throw new RuntimeException();
             System.err.println("ไปที่หน้า admin ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }

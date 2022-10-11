@@ -8,32 +8,36 @@ public class Report {
     private int vote;
     private String agency;
     private String solution;
+    private String category;
 
     public Report(String topic, String detail){
         this.topic = topic;
         this.detail = detail;
         this.userReport = "b";
-        this.agency = "A";
+        this.category = "A";
         this.status = "a";
         this.vote = 0;
         this.solution = "G";
     }
 
-    public Report(String topic, String detail, String userReport, String agency, int vote, String status,String solution) {
+
+    public Report(String topic, String detail, String userReport, String category, int vote, String solution, String status){
+
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
-        this.agency = agency;
+        this.category = category;
         this.vote = vote;
         this.status = status;
         this.solution = solution;
     }
 
-    public Report(String topic, String detail, int vote, String agency) {
+
+    public Report(String topic, String detail, int vote, String category) {
         this.topic = topic;
         this.detail = detail;
+        this.category = category;
         this.vote = vote;
-        this.agency = agency;
         this.status = "ยังไม่ดำเนินการ";
         this.solution = " ";
     }
@@ -64,8 +68,8 @@ public class Report {
         return v;
     }
 
-    public String getAgency() {
-        return agency;
+    public String getCategory() {
+        return category;
     }
 
     @Override

@@ -58,12 +58,13 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                 String role = data[0];
                 Account account = null;
                 if (role.equals("admin")) {
-                    account = new Account("admin",data[2], data[1], data[3],data[4]);
+                    account = new Account("admin",data[2], data[1], data[3],data[4],data[6]);
+
                 } else if (role.equals("staff")) {
-                    account = new StaffAccount("staff",data[2], data[1], data[3],data[4],data[5] );
+                    account = new StaffAccount("staff",data[2], data[1], data[3],data[4],data[5],data[6]);
                     ((StaffAccount) account).setAgency(data[5]);
                 } else if (role.equals("User")) {
-                    account = new UserAccount("User",data[2], data[1], data[3],data[4]);
+                    account = new UserAccount("User",data[2], data[1], data[3],data[4],data[6]);
                     ((UserAccount) account).setBan(Boolean.parseBoolean(data[5]));
                 }
                 if (account != null){
@@ -105,7 +106,8 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                     String line = "staff" + "," + account.getUsername() + "," + account.getName() + ","
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
-                            + (((StaffAccount) account).getAgency());
+                            + (((StaffAccount) account).getAgency())+","
+                            + account.getLastLogin();
                     buffer.write(line);
                     buffer.newLine();
                     buffer.flush();
@@ -114,7 +116,8 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                     String line = "User" + "," + account.getUsername() + "," + account.getName() + ","
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
-                            + (((UserAccount) account).isBan());
+                            + (((UserAccount) account).isBan()) +","
+                            + account.getLastLogin();
                     buffer.write(line);
                     buffer.newLine();
                     buffer.flush();
@@ -123,7 +126,8 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
                     String line = "admin" + "," + account.getUsername() + "," + account.getName() + ","
                             + account.getPassword() + ","
                             + account.getPicPath() + ","
-                            + "null";
+                            + "null"+","
+                            +account.getLastLogin();
                     buffer.write(line);
                     buffer.newLine();
                     buffer.flush();

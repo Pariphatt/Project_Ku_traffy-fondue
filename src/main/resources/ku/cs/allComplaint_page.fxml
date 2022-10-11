@@ -240,7 +240,10 @@
                                             </font>
                                         </Label>
 
+
                                         <ListView fx:id="reportListView" layoutX="14.0" layoutY="37.0" prefHeight="400.0" prefWidth="200.0" />
+                                        <ChoiceBox fx:id="agencyChoiceBox" layoutX="293.0" layoutY="37.0" prefWidth="150.0" />
+
                                         <Label layoutX="245.0" layoutY="41.0" text="Agency : " />
                                         <ChoiceBox fx:id="typeChoiceBox" layoutX="295.0" layoutY="10.0" prefWidth="150.0" />
                                         <Label layoutX="245.0" layoutY="14.0" text="Type :" />
@@ -258,6 +261,16 @@
                               <Label layoutX="247.0" layoutY="383.0" text="Date :" />
                               <Label fx:id="dateLabel" layoutX="293.0" layoutY="383.0" text="dateLabel" />
                                         <Label fx:id="agencyLabel" layoutX="295.0" layoutY="41.0" text="agencyLabel" />
+                                        <ChoiceBox fx:id="statusChoiceBox" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
+                                        <ChoiceBox fx:id="categoryChoiceBox" layoutX="90.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
+                                        <ChoiceBox fx:id="sortByChoiceBox" layoutX="174.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
+                                        <TextField layoutX="40.0" layoutY="50.0" prefHeight="25.0" prefWidth="39.0" />
+                                        <TextField layoutX="151.0" layoutY="50.0" prefHeight="25.0" prefWidth="39.0" />
+                                        <Label layoutX="44.0" layoutY="-9.0" text="Status" />
+                                        <Label layoutX="114.0" layoutY="-9.0" text="Category" />
+                                        <Label layoutX="190.0" layoutY="-9.0" text="Sort By:" />
+                                        <Label layoutY="54.0" text="Max" />
+                                        <Label layoutX="119.0" layoutY="54.0" text="Min" />
 
                                     </children>
                                 </Pane>

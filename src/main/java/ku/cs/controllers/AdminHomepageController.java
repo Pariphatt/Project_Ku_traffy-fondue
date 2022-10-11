@@ -18,7 +18,11 @@ import ku.cs.services.DataSource;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -43,13 +47,13 @@ public class AdminHomepageController {
 
     @FXML
     public void initialize() {
-        dataSource = new AccountListDataSource( "assets","log.csv");
-        accountsList = dataSource.readData();
-
+//        dataSource = new AccountListDataSource( "assets","log.csv");
+//        accountsList = dataSource.readData();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
         adminNameLabel.setText(account.getUsername());
+        //accountsList.sortDateAccount();
         showListView();
         clearSelectedAccount();
         handleSelectedListView();
@@ -62,7 +66,22 @@ public class AdminHomepageController {
 //                return -(account.getLastLogin().compareTo(account.getLastLogin()));
 //            }
 //        };
-        listViewUser.getItems().addAll(accountsList.getAllUsers());
+        ArrayList<Account> users = userList.getAllUsers();
+        users.sort(new Comparator<Account>() {
+
+            @Override
+            public int compare(Account o1, Account o2) {
+                if (o1.getLastLogin().equals("never")){
+                    return 1;
+                }
+                if (o2.getLastLogin().equals("never"))return -1;
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dt1 = LocalDateTime.parse(o1.getLastLogin(),dtf);
+                LocalDateTime dt2 = LocalDateTime.parse(o2.getLastLogin(),dtf);
+                return -dt1.compareTo(dt2);
+            }
+        });
+        listViewUser.getItems().addAll(users);
        listViewUser.refresh();
     }
 
@@ -75,7 +94,6 @@ public class AdminHomepageController {
         listViewUser.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
             @Override
             public void changed(ObservableValue<? extends Account> observable, Account oldValue, Account newValue) {
-                System.out.println("Selected item: " + newValue);
                 imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
                 showSelectedAccount(newValue);
             }

@@ -3,6 +3,9 @@ package ku.cs.models.account;
 import ku.cs.models.account.Account;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AccountList {
     private ArrayList<Account> accountList;
@@ -49,6 +52,12 @@ public class AccountList {
     public void removeUser(String username) {
         Account user = findUser(username);
         accountList.remove(user);
+    }
+    public void sortDateAccount(){
+        Comparator<Account> comparator = (c1,c2)->{
+            return c1.getLastLogin().compareTo(c2.getLastLogin());
+        };
+        Collections.sort(accountList,comparator);
     }
 
 }

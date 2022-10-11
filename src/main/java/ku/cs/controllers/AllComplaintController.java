@@ -4,6 +4,7 @@ import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -19,6 +20,7 @@ import ku.cs.services.ReportFIleDataSource;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AllComplaintController {
     @FXML private Label topicLabel;
@@ -31,7 +33,14 @@ public class AllComplaintController {
     @FXML private TextField searchReportTextField;
     @FXML private TextArea detailTextArea;
     @FXML private ListView reportListView;
+
     @FXML private ChoiceBox typeChoiceBox;
+
+    @FXML private ChoiceBox agencyChoiceBox;
+    @FXML private ChoiceBox statusChoiceBox;
+    @FXML private ChoiceBox categoryChoiceBox;
+    @FXML private ChoiceBox sortByChoiceBox;
+
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
@@ -55,6 +64,7 @@ public class AllComplaintController {
         showListView();
         clearSelectedReport();
         handleSelectedListView();
+
         detailTextArea.setDisable(true);
 
         accountListDataSource = new AccountListDataSource("assets","accountsVote.csv");
@@ -66,11 +76,15 @@ public class AllComplaintController {
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
+
+        showStatusChoiceBox();
+
     }
 
     private String[] type = {"พาหนะ", "อาคารและสถานที่" , "ความสะอาด", "บุคคล", "ความปลอดภัย", "ทรัพย์สิน"};
 
     private void showListView(){
+        reportListView.getItems().clear();
         reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();
     }
@@ -96,6 +110,23 @@ public class AllComplaintController {
             }
         });
     }
+    public void showStatusChoiceBox(){
+        ArrayList<String> status = new ArrayList<>();
+        status.add("ทั้งหมด");
+        status.add("ยังไม่ดำเนินการ");
+        status.add("กำลังดำเนินการ");
+        status.add("เสร็จสิ้น");
+        statusChoiceBox.getItems().addAll(status);
+        statusChoiceBox.setOnAction(this::handleSearchStatusChoiceBox);
+    }
+
+    private void handleSearchStatusChoiceBox(Event event) {
+        String status = (String) statusChoiceBox.getValue();
+        dataSource = new ReportFIleDataSource();
+        reportList = dataSource.readData();
+        reportList = reportList.findStatus(status);
+        showListView();
+    }
 
     public void showSelectedReport(Report report){
         topicLabel.setText(report.getTopic());
@@ -104,6 +135,7 @@ public class AllComplaintController {
         voteLabel.setText(report.getVote());
 //        dateLabel.setText(report.getPicPath());
     }
+
 
     @FXML
     public void handleSearchReportButton(javafx.event.ActionEvent actionEvent){

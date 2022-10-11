@@ -46,15 +46,14 @@ public class RegisterController {
     private Alert alert;
     private DataSource<AccountList> accountListDataSource;
     private AccountList accountList;
-
     @FXML
     public void initialize() {
         accounts = new Account();
         AccountListDataSource accountListDataSource1 = new AccountListDataSource("assets", "accounts.csv");
         accountList = accountListDataSource1.readData();
-        for (Account account : accountList.getAllUsers()){
-            System.out.println(account.getRole());
-        }
+//        for (Account account : accountList.getAllUsers()){
+//            System.out.println(account.getRole());
+//        }
         alert = new Alert(Alert.AlertType.NONE);
     }
 
@@ -113,12 +112,12 @@ public class RegisterController {
             accountListDataSource = new AccountListDataSource("assets","accounts.csv");
 
             if (pathImage == null) {
-                UserAccount user = new UserAccount("User",name,usernameText,password,"profile-user.png");
+                UserAccount user = new UserAccount("User",name,usernameText,password,"profile-user.png","never");
                 System.out.println(user.getUsername());
                 accountList.addUser(user);
             } else {
                 File dest = new File("assets/imagesAvatar/" + pathImage);
-                accountList.addUser(new UserAccount("User",name,usernameText,password,pathImage));
+                accountList.addUser(new UserAccount("User",name,usernameText,password,pathImage,"never"));
             }
             System.out.println(accountList.getAllUsers().get(0));
             accountListDataSource.writeData(accountList);
