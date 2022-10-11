@@ -60,7 +60,7 @@ public class ManageReportsController {
             @Override
             public boolean filter(Report report) {
 
-                return report.getCategory().equals(staff.getCategory());
+                return report.getCategory().equals("A");
             }
         });
         reportListView.getItems().addAll(reportListFiltered.getaAllReport());
@@ -95,7 +95,7 @@ public class ManageReportsController {
 
 
     @FXML
-    public void handleSearchReportButton(javafx.event.ActionEvent actionEvent){
+    public void handleSearchReportButton(javafx.event.ActionEvent actionEvent) {
         String input = searchReportTextField.getText();
 
         reportList = reportList.filter(new Filterer<Report>() {
@@ -104,11 +104,15 @@ public class ManageReportsController {
                 return report.getTopic().contains(input);
             }
         });
-        if (input.equals(" ")){
-            reportList = dataSource.readData();
+
+        if (input.equals("")) {
+
+            if (input.equals(" ")) {
+                reportList = dataSource.readData();
+            }
+            reportListView.getItems().clear();
+            showListView();
         }
-        reportListView.getItems().clear();
-        showListView();
     }
 
     @FXML

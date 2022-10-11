@@ -5,12 +5,24 @@ public class Report {
     private String detail;
     private String userReport;
     private String status;
-    private int vote = 0;
-    private String v;
-    private String category;
+    private int vote;
+    private String agency;
     private String solution;
+    private String category;
+
+    public Report(String topic, String detail){
+        this.topic = topic;
+        this.detail = detail;
+        this.userReport = "b";
+        this.category = "A";
+        this.status = "a";
+        this.vote = 0;
+        this.solution = "G";
+    }
+
 
     public Report(String topic, String detail, String userReport, String category, int vote, String solution, String status){
+
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
@@ -19,6 +31,7 @@ public class Report {
         this.status = status;
         this.solution = solution;
     }
+
 
     public Report(String topic, String detail, int vote, String category) {
         this.topic = topic;
@@ -29,10 +42,6 @@ public class Report {
         this.solution = " ";
     }
 
-
-    public Report(int vote) {
-        this.vote = vote;
-    }
 
     public String getSolution() {
         return solution;
@@ -55,7 +64,8 @@ public class Report {
     }
 
     public String getVote() {
-        return v = Integer.toString(vote);
+        String v = Integer.toString(vote);
+        return v;
     }
 
     public String getCategory() {
@@ -67,13 +77,12 @@ public class Report {
         return topic + "("+vote+")";
     }
 
-    public void addVote() {
-
+    public void setVote(int vote) {
+        this.vote = vote;
     }
 
     public void setStatus(String status){
         this.status = status;
-
     }
 
     public void setSolution(String solution) {
