@@ -43,19 +43,20 @@ public class ChangePasswordController {
     private AccountList accountList;
     private String pathImage;
     private AccountListDataSource userListDataSource;
-    private Account account;
+    private Account accounts;
     private Account account1;
     private File file;
 
     @FXML
     public void initialize() {
+        accounts = new Account();
         alert = new Alert(Alert.AlertType.NONE);
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = userListDataSource.readData();
-        account = accountList.findUser((String) FXRouter.getData());
-        userName.setText(account.getUsername());
+        accounts = accountList.findUser((String) FXRouter.getData());
+        userName.setText(accounts.getUsername());
         userName.setDisable(true);
-        imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
+        imageView.setImage(new Image(new File("imagesAvatar/" + accounts.getPicPath()).toURI().toString()));
     }
     public String handleAddPhoto(ActionEvent event) {
 
@@ -73,13 +74,13 @@ public class ChangePasswordController {
     @FXML
     public void handleCancelButton(ActionEvent actionEvent) {
         try {
-            if (account instanceof StaffAccount){
+            if (accounts instanceof StaffAccount){
                 com.github.saacsos.FXRouter.goTo("staff_homepage");
             }
-            else if (account instanceof UserAccount) {
+            else if (accounts instanceof UserAccount) {
                 com.github.saacsos.FXRouter.goTo("welcome_page");
             }
-            else if (account instanceof Account) {
+            else if (accounts instanceof Account) {
                 com.github.saacsos.FXRouter.goTo("admin");
             }
         } catch (IOException e) {
@@ -110,8 +111,8 @@ public class ChangePasswordController {
             }
         }
         if (accountList.changePicture(userName1) != null) {
-            account = accountList.changePicture(userName1);
-            account.setPicPath(pathImage);
+            accounts = accountList.changePicture(userName1);
+            accounts.setPicPath(pathImage);
             userListDataSource.writeData(accountList);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("เปลี่ยรูปภาพสำเร็จ");
@@ -131,6 +132,16 @@ public class ChangePasswordController {
             alert.setContentText("โปรดกรอกรหัสผ่านให้เหมือนกัน");
             alert.show();
         }
+        else if ((!accounts.validUsername(userName1))) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("Username ใส่ได้แค่ A-Z หรือ a-z ยาว 3-20 ตัวอักษร");
+            alert.show();
+        }
+        else if ((!accounts.validPassword(newPassword1))&& (!accounts.validPassword(confirmNewPassword1))) {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("password ใส่ได้แค่ A-Z หรือ a-z หรือ 0-9 ยาว 6-20 ตัวอักษร");
+            alert.show();
+        }
         else if (newPassword.getText().isEmpty() || confirmNewPassword.getText().isEmpty()) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("โปรดกรอกรหัสผ่าน");
@@ -147,8 +158,8 @@ public class ChangePasswordController {
             alert.show();
         }
         else if (accountList.changePassword(userName1) != null) {
-            account = accountList.changePassword(userName1);
-            account.setPassword(newPassword1);
+            accounts = accountList.changePassword(userName1);
+            accounts.setPassword(newPassword1);
             userListDataSource.writeData(accountList);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("เปลี่ยนรหัสผ่านสำเร็จ");
