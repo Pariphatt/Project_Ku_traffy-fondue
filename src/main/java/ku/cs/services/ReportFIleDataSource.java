@@ -54,7 +54,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                 if (data.length == 7){
                     report = new Report(data[0].trim(),data[1].trim(),data[2].trim()
                             ,data[3].trim(),Integer.parseInt(data[4].trim()),
-                            data[6].trim(),data[5]);
+                            data[5].trim(),data[6]);
                 }
                 reportList.addReport(report);
             }
@@ -88,6 +88,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                 String line = report.getTopic().trim() + ","
                         + report.getDetail().trim() + ","
                         + report.getUserReport().trim()+","
+                        +report.getCategory().trim()+","
                         +report.getVote()+","
                         +report.getSolution()+ ","
                         +report.getStatus();

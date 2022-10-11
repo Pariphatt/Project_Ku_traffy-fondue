@@ -49,7 +49,7 @@ public class ManageReportsController {
         handleSelectedListView();
     }
 
-    //    private void showChoiceBox(){
+//        private void showChoiceBox(){
 //        Collection<String>
 //        agencyChoiceBox.getItems().addAll()
 //    }
@@ -104,7 +104,7 @@ public class ManageReportsController {
                 return report.getTopic().contains(input);
             }
         });
-        if (input == ""){
+        if (input.equals(" ")){
             reportList = dataSource.readData();
         }
         reportListView.getItems().clear();

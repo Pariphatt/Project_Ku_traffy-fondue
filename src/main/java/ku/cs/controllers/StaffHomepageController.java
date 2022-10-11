@@ -124,9 +124,9 @@ public class StaffHomepageController {
         try {
             com.github.saacsos.FXRouter.goTo("manage_reports",staff.getUsername());
         } catch (IOException e) {
-            throw new RuntimeException();
-//            System.err.println("ไปที่หน้า admin ไม่ได้");
-//            System.err.println("ให้ตรวจสอบการกำหนด route");
+//            throw new RuntimeException();
+            System.err.println("ไปที่หน้า admin ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
 

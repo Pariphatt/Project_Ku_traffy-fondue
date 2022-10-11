@@ -10,7 +10,7 @@ public class Report {
     private String category;
     private String solution;
 
-    public Report(String topic, String detail, String userReport, String category, int vote, String status, String solution) {
+    public Report(String topic, String detail, String userReport, String category, int vote, String solution, String status){
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
@@ -23,8 +23,8 @@ public class Report {
     public Report(String topic, String detail, int vote, String category) {
         this.topic = topic;
         this.detail = detail;
-        this.vote = vote;
         this.category = category;
+        this.vote = vote;
         this.status = "ยังไม่ดำเนินการ";
         this.solution = " ";
     }

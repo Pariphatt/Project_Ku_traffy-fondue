@@ -38,7 +38,7 @@ public class HomeController {
     @FXML
     public void handleRegisterButton(ActionEvent actionEvent) {
         try {
-            FXRouter.goTo("Register",account.getUsername());
+            FXRouter.goTo("Register");
         } catch (IOException e) {
             System.err.println("ไปที7หน้า login ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนด route");
