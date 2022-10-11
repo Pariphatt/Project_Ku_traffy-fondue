@@ -53,6 +53,7 @@ public class AdminHomepageController {
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
         adminNameLabel.setText(account.getUsername());
+
         //accountsList.sortDateAccount();
         showListView();
         clearSelectedAccount();
@@ -121,7 +122,7 @@ public class AdminHomepageController {
 
     @FXML void handleGoToReportUserButton(ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("report_user");
+            com.github.saacsos.FXRouter.goTo("report_user",account.getUsername());
         } catch (IOException e) {
             System.err.println("ไปที่หน้า report_user ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");

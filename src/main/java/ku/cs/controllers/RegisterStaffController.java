@@ -61,7 +61,7 @@ public class RegisterStaffController {
 
     }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักงานทรัพย์สิน", "สำนักงานอธิการบดี"};
 
     // add รูปภาพ
     public String handleAddPhoto(ActionEvent event) {

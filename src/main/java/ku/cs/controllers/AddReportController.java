@@ -62,10 +62,6 @@ public class AddReportController {
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
     }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
-            "" +
-            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
-
     public void handleSubmitButton(ActionEvent actionEvent){
         if (topicTextField.getText().equals("") || detailTextArea.getText().equals("")) {
             alert.setAlertType(Alert.AlertType.WARNING);
@@ -74,7 +70,7 @@ public class AddReportController {
         } else {
             String topic = topicTextField.getText();
             String detail = detailTextArea.getText();
-//            Report report = new Report(topic,detail);
+            Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue());
             reportList.addReport(report);
             dataSource.writeData(reportList);
 
@@ -87,7 +83,8 @@ public class AddReportController {
     }
 
 
-    private String[] type = {"พาหนะ", "อาคารและสถานที่" , "ความสะอาด", "บุคคล", "ความปลอดภัย", "ทรัพย์สิน"};
+    private String[] type = {"ยานพาหนะ", "อาคารสถานที่และความปลอดภัย" , "IT หรือ ปัญหาด้านคอมพิวเตอร์", "กิจกรรมนิสิต", "ทรัพย์สินในมหาวิทยาลัย", "อื่นๆ"
+    };
 
 
     public String handleAddPhoto(ActionEvent event) {

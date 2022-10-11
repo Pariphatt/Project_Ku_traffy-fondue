@@ -32,6 +32,7 @@ public class StaffHomepageController {
     private ReportList reportList;
     private ReportList reportListFiltered;
     private StaffAccount staff;
+    private StaffAccount a;
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
@@ -55,9 +56,7 @@ public class StaffHomepageController {
 //        agencyChoiceBox.getItems().addAll()
 //    }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" +
-            "" +
-            "ี่", "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     private void showListView(ReportList reportList){
         reportListView.getItems().addAll(reportList.getaAllReport());
@@ -122,6 +121,7 @@ public class StaffHomepageController {
     @FXML
     void handleManageButton(javafx.event.ActionEvent actionEvent) {
         try {
+            System.out.println(staff.getAgency());
             com.github.saacsos.FXRouter.goTo("manage_reports",staff.getUsername());
         } catch (IOException e) {
 //            throw new RuntimeException();

@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
 import ku.cs.models.reports.Report;
@@ -31,9 +32,10 @@ public class ManageReportsController {
     private ReportList reportList;
 
     private Report selectedReport;
-    private StaffAccount staff;
+    private StaffAccount staff,a;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
+    private Account account;
 
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
@@ -60,7 +62,7 @@ public class ManageReportsController {
             @Override
             public boolean filter(Report report) {
 
-                return report.getCategory().equals("A");
+                return report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์");
             }
         });
         reportListView.getItems().addAll(reportListFiltered.getaAllReport());

@@ -81,7 +81,8 @@ public class AllComplaintController {
 
     }
 
-    private String[] type = {"พาหนะ", "อาคารและสถานที่" , "ความสะอาด", "บุคคล", "ความปลอดภัย", "ทรัพย์สิน"};
+    private String[] type =
+            {"ยานพาหนะ", "อาคารสถานที่และความปลอดภัย" , "IT หรือ ปัญหาด้านคอมพิวเตอร์", "กิจกรรมนิสิต", "ทรัพย์สินในมหาวิทยาลัย", "อื่นๆ"};
 
     private void showListView(){
         reportListView.getItems().clear();

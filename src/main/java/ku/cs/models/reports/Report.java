@@ -8,35 +8,35 @@ public class Report {
     private int vote;
     private String agency;
     private String solution;
-    private String category;
+    private String type;
 
-    public Report(String topic, String detail){
+    public Report(String topic, String detail,String account,String type){
         this.topic = topic;
         this.detail = detail;
-        this.userReport = "b";
-        this.category = "A";
-        this.status = "a";
+        this.userReport = account;
+        this.type = type;
+        this.status = "ยังไม่ดำเนินการ";
         this.vote = 0;
-        this.solution = "G";
+        this.solution = "";
     }
 
 
-    public Report(String topic, String detail, String userReport, String category, int vote, String solution, String status){
+    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status){
 
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
-        this.category = category;
+        this.type = type;
         this.vote = vote;
         this.status = status;
         this.solution = solution;
     }
 
 
-    public Report(String topic, String detail, int vote, String category) {
+    public Report(String topic, String detail, int vote, String type) {
         this.topic = topic;
         this.detail = detail;
-        this.category = category;
+        this.type = type;
         this.vote = vote;
         this.status = "ยังไม่ดำเนินการ";
         this.solution = " ";
@@ -68,8 +68,8 @@ public class Report {
         return v;
     }
 
-    public String getCategory() {
-        return category;
+    public String getType() {
+        return type;
     }
 
     @Override
