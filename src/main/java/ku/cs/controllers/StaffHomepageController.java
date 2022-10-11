@@ -38,6 +38,8 @@ public class StaffHomepageController {
     private AccountList userList;
 
 
+
+
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
@@ -56,11 +58,12 @@ public class StaffHomepageController {
 //        agencyChoiceBox.getItems().addAll()
 //    }
 
-    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานท" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
+    private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
     private void showListView(ReportList reportList){
         reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();
+
     }
     private void clearSelectedReport(){
         statusLabel.setText("");
