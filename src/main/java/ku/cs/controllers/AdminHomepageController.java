@@ -128,12 +128,21 @@ public class AdminHomepageController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
+
+    @FXML void handleGoToReportComplainButton(ActionEvent actionEvent) {
+        try {
+            com.github.saacsos.FXRouter.goTo("report_complain",account.getUsername());
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า report_complain ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด route");
+        }
+    }
     @FXML
     void handleLogoutButton(ActionEvent actionEvent) {
         try {
             com.github.saacsos.FXRouter.goTo("login");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า home ไม่ได้");
+            System.err.println("ไปที่หน้า login ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }

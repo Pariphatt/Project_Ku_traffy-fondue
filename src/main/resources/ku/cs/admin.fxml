@@ -35,5 +35,7 @@
       <Label layoutX="437.0" layoutY="512.0" text="เพิ่มบัญชีเจ้าหน้าที่ :" />
       <Label fx:id="nameLabel" layoutX="557.0" layoutY="32.0" text="NameLabel" />
       <ImageView fx:id="imageView" fitHeight="101.0" fitWidth="150.0" layoutX="620.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="169.0" layoutY="512.0" text="รวมเรื่องร้องเรียนที่ถูกรายงาน:" />
+      <Button layoutX="183.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleGoToReportComplainButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportComplain" />
    </children>
 </AnchorPane>

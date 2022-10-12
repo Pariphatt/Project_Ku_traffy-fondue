@@ -55,7 +55,7 @@ public class ChangePasswordController {
         accountList = userListDataSource.readData();
         accounts = accountList.findUser((String) FXRouter.getData());
         userName.setText(accounts.getUsername());
-        userName.setDisable(true);
+        userName.setEditable(false);
         imageView.setImage(new Image(new File("imagesAvatar/" + accounts.getPicPath()).toURI().toString()));
     }
     public String handleAddPhoto(ActionEvent event) {
@@ -65,31 +65,6 @@ public class ChangePasswordController {
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
         Node source = (Node) event.getSource();
          file = chooser.showOpenDialog(source.getScene().getWindow());
-        if (file != null){
-            imageView.setImage(new Image(file.getAbsolutePath()));
-        }
-        return pathImage;
-    }
-
-    @FXML
-    public void handleCancelButton(ActionEvent actionEvent) {
-        try {
-            if (accounts instanceof StaffAccount){
-                com.github.saacsos.FXRouter.goTo("staff_homepage");
-            }
-            else if (accounts instanceof UserAccount) {
-                com.github.saacsos.FXRouter.goTo("welcome_page");
-            }
-            else if (accounts instanceof Account) {
-                com.github.saacsos.FXRouter.goTo("admin");
-            }
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า admin ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด route");
-        }
-    }
-    @FXML
-    public void handleConfirmButton(ActionEvent actionEvent){
         String userName1 = userName.getText();
         if (file != null) {
             try {
@@ -118,7 +93,27 @@ public class ChangePasswordController {
             alert.setContentText("เปลี่ยรูปภาพสำเร็จ");
             alert.show();
         }
+        return pathImage;
     }
+
+    @FXML
+    public void handleCancelButton(ActionEvent actionEvent) {
+        try {
+            if (accounts instanceof StaffAccount){
+                com.github.saacsos.FXRouter.goTo("staff_homepage");
+            }
+            else if (accounts instanceof UserAccount) {
+                com.github.saacsos.FXRouter.goTo("welcome_page");
+            }
+            else if (accounts instanceof Account) {
+                com.github.saacsos.FXRouter.goTo("admin");
+            }
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า admin ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด route");
+        }
+    }
+
     @FXML
     public void handleChangePasswordButton(ActionEvent actionEvent) {
         String userName1 = userName.getText();
