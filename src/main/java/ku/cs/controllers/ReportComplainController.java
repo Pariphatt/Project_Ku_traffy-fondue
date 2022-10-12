@@ -2,10 +2,18 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 
 import java.io.IOException;
 
 public class ReportComplainController {
+    @FXML private AnchorPane pane;
+
+    @FXML
+    public void initialize() {
+        Mode.setMode(pane);
+    }
     @FXML
     void handleBackButton(ActionEvent actionEvent) {
         try {

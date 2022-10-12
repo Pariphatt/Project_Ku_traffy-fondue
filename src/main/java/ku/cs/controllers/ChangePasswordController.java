@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
@@ -57,6 +58,8 @@ public class ChangePasswordController {
         userName.setText(accounts.getUsername());
         userName.setEditable(false);
         imageView.setImage(new Image(new File("imagesAvatar/" + accounts.getPicPath()).toURI().toString()));
+        Mode.setMode(pane);
+
     }
     public String handleAddPhoto(ActionEvent event) {
 

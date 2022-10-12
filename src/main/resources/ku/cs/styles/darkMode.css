@@ -1,5 +1,5 @@
 .background{
-    -fx-background-color : #f5fffa;
+    -fx-background-color : #323059;
 }
 .hide_button{
     -fx-background-color : transparent;
@@ -15,12 +15,12 @@
     -fx-border-radius: 50;
 }
 .login_button{
-    -fx-background-color: #70B17F;
+    -fx-background-color: #505862;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
 }
 .login_button:hover{
-    -fx-background-color: #3cb371;
+    -fx-background-color: #e1b6a2;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
 }
@@ -103,9 +103,9 @@
     -fx-text-fill: black;
 }
 .button-mode {
-    -fx-border-color: black;
-    -fx-background-color: white;
-    -fx-text-fill: black;
+    -fx-border-color: white;
+    -fx-background-color: #356f70;
+    -fx-text-fill: white;
     -fx-background-radius: 25px;
     -fx-color-label-visible: white;
     -fx-border-radius: 25px;
@@ -113,9 +113,9 @@
 
 .button-mode:hover
 {
-    -fx-border-color: black;
-    -fx-background-color: black;
-    -fx-text-fill: linear-gradient(to right,white,white);
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-text-fill: #1d6869;
     -fx-background-radius: 25px;
     -fx-color-label-visible: white;
     -fx-border-radius: 25px;

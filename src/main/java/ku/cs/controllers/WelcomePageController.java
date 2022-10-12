@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.reports.Report;
@@ -42,6 +44,8 @@ public class WelcomePageController {
     private ReportList reportList;
     private Report selectedReport;
     private DataSource<AccountList> accountListDataSource;
+    @FXML private AnchorPane pane;
+
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
         userShow.setImage(new Image(imagePic.toURI().toString()));
@@ -53,6 +57,7 @@ public class WelcomePageController {
 
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
+        Mode.setMode(pane);
 //        typeChoiceBox.getItems().addAll(type);
         showListView();
         clearSelectedReport();

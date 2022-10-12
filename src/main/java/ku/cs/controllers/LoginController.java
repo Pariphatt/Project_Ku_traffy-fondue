@@ -1,17 +1,16 @@
 package ku.cs.controllers;
-import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
 import ku.cs.models.account.UserAccount;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
-import ku.cs.services.ThemeMode;
 
 import java.io.IOException;
 
@@ -26,19 +25,17 @@ public class LoginController  {
 
     private DataSource<AccountList> dataSource;
     private AccountList accountList;
-
     @FXML private AnchorPane pane;
 
-    @FXML private Button mode;
-    public static boolean isLightMode = true;
-    private StaffAccount staff;
+
+
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
         dataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = dataSource.readData();
+        Mode.setMode(pane);
 
-//        ThemeMode.setThemeMode(pane);
 
     }
     public void handleLoginButton(ActionEvent actionEvent){
@@ -96,16 +93,7 @@ public class LoginController  {
        }
     }
 
-    @FXML
 
-    public void handleDarkModeButton(ActionEvent event) {
-        isLightMode = !isLightMode;
-        if (isLightMode) {
-            ThemeMode.setLightMode(pane, mode);
-        } else {
-            ThemeMode.setDarkMode(pane, mode);
-        }
-    }
 
 
     public void handleBackButton(ActionEvent actionEvent){

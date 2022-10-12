@@ -7,7 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.reports.Report;
@@ -50,6 +52,8 @@ public class AddReportController {
     private    String agency;
     private String userName;
     private String reportTime;
+    @FXML private AnchorPane pane;
+
 
     @FXML
     public void initialize() {
@@ -64,8 +68,8 @@ public class AddReportController {
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
-
         userLabel.setText(account.getUsername());
+        Mode.setMode(pane);
     }
 
     public void handleSubmitButton(ActionEvent actionEvent){

@@ -6,6 +6,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
@@ -37,6 +39,7 @@ public class ManageReportsController {
     private AccountList userList;
     private Account account;
     private StaffAccount staff = (StaffAccount)  FXRouter.getData();
+    @FXML private AnchorPane pane;
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
@@ -48,6 +51,8 @@ public class ManageReportsController {
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
+        Mode.setMode(pane);
+
     }
 
 //        private void showChoiceBox(){

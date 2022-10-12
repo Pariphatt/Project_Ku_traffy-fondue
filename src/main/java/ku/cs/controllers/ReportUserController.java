@@ -3,6 +3,8 @@ package ku.cs.controllers;
 import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.services.AccountListDataSource;
@@ -21,6 +23,7 @@ public class ReportUserController {
     @FXML ListView userReport;
     @FXML ImageView imageView;
 
+    @FXML private AnchorPane pane;
 
     private Account accounts;
     private AccountList accountList;
@@ -32,6 +35,7 @@ public class ReportUserController {
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = userListDataSource.readData();
         accounts = accountList.findUser((String) FXRouter.getData());
+        Mode.setMode(pane);
     }
 
     @FXML

@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.reports.Report;
@@ -59,7 +61,7 @@ public class AllComplaintController {
 
     private Report selectedReport;
     private DataSource<AccountList> accountListDataSource;
-
+    @FXML private AnchorPane pane;
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
@@ -79,7 +81,7 @@ public class AllComplaintController {
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
-
+        Mode.setMode(pane);
         showStatusChoiceBox();
 
     }

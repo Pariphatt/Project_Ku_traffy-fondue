@@ -6,23 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import com.github.saacsos.FXRouter;
-public class CreditController {
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 
-    //    @FXML
-//    private ImageView imagenat;
-//    private ImageView imageneuw;
-//    private ImageView imagechutter;
-//    private ImageView imagearty;
-//    @FXML public void initialize(){
-//        String url = getClass().getResource("/ku/cs/images/nat.jpg").toExternalForm();
-//        imagenat.setImage(new Image(url));
-//        String url = getClass().getResource("/ku/cs/images/neuw.jpg").toExternalForm();
-//        imageneuw.setImage(new Image(url));
-//        String url = getClass().getResource("/ku/cs/images/chutter.jpg").toExternalForm();
-//        imagechutter.setImage(new Image(url));
-//        String url = getClass().getResource("/ku/cs/images/arty.jpg").toExternalForm();
-//        imagearty.setImage(new Image(url));
-//    }
+public class CreditController {
+    @FXML private AnchorPane pane;
+
+    @FXML
+    public void initialize() {
+        Mode.setMode(pane);
+    }
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {
         try {

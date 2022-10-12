@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
@@ -43,7 +44,7 @@ public class AdminHomepageController {
     @FXML private Label timeLabel;
     @FXML private ListView listViewUser;
     @FXML private ImageView imageView;
-
+    @FXML private AnchorPane pane1;
 
     @FXML
     public void initialize() {
@@ -53,7 +54,7 @@ public class AdminHomepageController {
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
         adminNameLabel.setText(account.getUsername());
-
+        Mode.setMode(pane1);
         //accountsList.sortDateAccount();
         showListView();
         clearSelectedAccount();
