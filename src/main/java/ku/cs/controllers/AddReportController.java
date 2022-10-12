@@ -4,10 +4,7 @@ import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -31,6 +28,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
 public class AddReportController {
+    @FXML private Label userLabel;
     private Report report;
     @FXML private TextField topicTextField;
     @FXML private TextArea detailTextArea;
@@ -56,12 +54,15 @@ public class AddReportController {
         reportList = dataSource.readData();
         alert = new Alert(Alert.AlertType.NONE);
         typeChoiceBox.getItems().addAll(type);
+
         File imagePic = new File("imagesAvatar/profile-user.png");
         userShow.setImage(new Image(imagePic.toURI().toString()));
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
+
+        userLabel.setText(account.getUsername());
     }
 
     public void handleSubmitButton(ActionEvent actionEvent){
@@ -106,35 +107,6 @@ public class AddReportController {
     private String[] type = {"ยานพาหนะ", "อาคารสถานที่และความปลอดภัย" , "IT หรือ ปัญหาด้านคอมพิวเตอร์", "กิจกรรมนิสิต", "ทรัพย์สินในมหาวิทยาลัย", "อื่นๆ"
     };
 
-
-    public String handleAddPhoto(ActionEvent event) {
-        FileChooser chooser = new FileChooser();
-        chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
-        Node source = (Node) event.getSource();
-        File file = chooser.showOpenDialog(source.getScene().getWindow());
-        if (file != null) {
-            try {
-                File destDir = new File("imagesReport");
-                if (!destDir.exists()) destDir.mkdirs();
-                String[] fileSplit = file.getName().split("\\.");
-                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
-                java.nio.file.Path target = FileSystems.getDefault().getPath(
-                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
-                );
-                System.out.println(file.toPath());
-                System.out.println(target);
-                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-                imageView.setImage(new Image(target.toUri().toString()));
-                pathImage = filename;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return pathImage;
-    }
-
     @FXML
     public void handleHomeButton(ActionEvent actionEvent){
         try {
@@ -153,7 +125,7 @@ public class AddReportController {
         }
     }
     @FXML
-    public void handleAllComplaintButton(ActionEvent actionEvent){
+    public void handleMyReportButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("allComplaint_page", account.getUsername());
         } catch (IOException e) {
