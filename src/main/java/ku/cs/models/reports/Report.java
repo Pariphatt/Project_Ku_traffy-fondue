@@ -2,6 +2,9 @@ package ku.cs.models.reports;
 
 import ku.cs.models.account.StaffAccount;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Report {
     private String topic;
     private String detail;
@@ -12,8 +15,9 @@ public class Report {
     private String solution;
     private String type;
     private String staffReport; //เปลี่ยนชื่อ
+    private String reportTime;
 
-    public Report(String topic, String detail,String userReport,String type,String agency,String staffReport){
+    public Report(String topic, String detail,String userReport,String type,String agency,String reportTime){
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
@@ -22,14 +26,19 @@ public class Report {
         this.vote = 0;
         this.solution = "";
         this.agency = agency;
-        this.staffReport = staffReport;
+        this.staffReport = null;
+        this.reportTime =reportTime;
+    }
+
+    public String getReportTime() {
+        return reportTime;
     }
 
     public String getAgency() {
         return agency;
     }
 
-    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status,String agency,String staffReport){
+    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status,String agency,String staffReport,String reportTime){
 
         this.topic = topic;
         this.detail = detail;
@@ -40,6 +49,7 @@ public class Report {
         this.solution = solution;
         this.agency = agency;
         this.staffReport =staffReport;
+        this.reportTime = reportTime;
     }
 
 
@@ -84,7 +94,7 @@ public class Report {
 
     @Override
     public String toString() {
-        return topic + "("+vote+")"  ;
+        return topic + "("+vote+")"  +"    "+reportTime;
     }
 
     public void setVote(int vote) {
@@ -127,7 +137,6 @@ public class Report {
 //                return report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์");
         return false;
         }
-
 
 }
 

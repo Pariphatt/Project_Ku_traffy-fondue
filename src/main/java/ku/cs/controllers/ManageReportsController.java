@@ -21,6 +21,7 @@ import java.io.IOException;
 public class ManageReportsController {
 
     @FXML private TextField searchReportTextField;
+    @FXML private Button submitButton;
     @FXML private ListView reportListView;
     @FXML private Label topicLabel;
     @FXML private Label statusLabel;
@@ -42,8 +43,8 @@ public class ManageReportsController {
         showListView();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
-        detailTextArea.setDisable(true);
-        solutionTextArea.setDisable(true);
+        detailTextArea.setEditable(false);
+        solutionTextArea.setEditable(false);
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
@@ -65,6 +66,22 @@ public class ManageReportsController {
         reportListView.getItems().addAll(reportListFiltered.getaAllReport());
         reportListView.refresh();
     }
+    //     @FXML
+//     public void handleSearchReportButton(javafx.event.ActionEvent actionEvent){
+//        String input = searchReportTextField.getText();
+//
+//        reportListFiltered = reportList.filter(new Filterer<Report>() {
+//            @Override
+//            public boolean filter(Report report) {
+//                return report.getTopic().contains(input);
+//            }
+//        });
+//        if (input == ""){
+//            reportListFiltered = dataSource.readData();
+//        }
+//        reportListView.getItems().clear();
+//        showListView(reportListFiltered);
+//    }
 
     private void clearSelectedReport(){
         statusLabel.setText("");
@@ -140,6 +157,9 @@ public class ManageReportsController {
         showSelectedReport(selectedReport);
         dataSource.writeData(reportList);
     }
+    private void setSubmitButton(){
+        submitButton.setVisible(false);
+    }
 
     @FXML
     void handleSubmitButton(ActionEvent actionEvent) {
@@ -149,7 +169,8 @@ public class ManageReportsController {
         selectedReport.setStaffReport(staff.getName());
         dataSource.writeData(reportList);
         solutionTextField.clear();
-//        solutionTextField.setDisable(true); //ไปทำ method check
+        solutionTextField.setDisable(true); //ไปทำ method check
+        setSubmitButton();
         showSelectedReport(selectedReport);
 
     }
