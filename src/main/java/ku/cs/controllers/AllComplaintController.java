@@ -39,9 +39,9 @@ public class AllComplaintController {
 
     @FXML private ChoiceBox typeChoiceBox;
 
-    @FXML private ChoiceBox agencyChoiceBox;
+
     @FXML private ChoiceBox statusChoiceBox;
-    @FXML private ChoiceBox categoryChoiceBox;
+
     @FXML private ChoiceBox sortByChoiceBox;
 
 
@@ -81,6 +81,8 @@ public class AllComplaintController {
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
 
         showStatusChoiceBox();
+        showTypesChoiceBox();
+        showSortByChoiceBox();
 
     }
 
@@ -98,9 +100,7 @@ public class AllComplaintController {
         detailTextArea.setText("");
         topicLabel.setText("");
         voteLabel.setText("");
-
         agencyLabel.setText("");
-
         dateLabel.setText("");
     }
 
@@ -146,13 +146,51 @@ public class AllComplaintController {
         reportList = reportList.findStatus(status);
         showListView();
     }
+    private void handleSearchTypesChoiceBox(Event event){
+        String types = (String) typeChoiceBox.getValue();
+        dataSource = new ReportFIleDataSource();
+        reportList = dataSource.readData();
+        reportList = reportList.findTypes(types);
+        showListView();
+    }
+    public void showTypesChoiceBox(){
+        ArrayList<String> types = new ArrayList<>();
+        types.add("หน่วยงานทั้งหมด");
+        types.add("ยานพาหนะ");
+        types.add("อาคารสถานที่และความปลอดภัย");
+        types.add("IT หรือ ปัญหาด้านคอมพิวเตอร์");
+        types.add("กิจกรรมนิสิต");
+        types.add("ทรัพย์สินในมหาวิทยาลัย");
+        types.add("อื่นๆ");
+
+        typeChoiceBox.getItems().addAll(types);
+        typeChoiceBox.setOnAction(this::handleSearchTypesChoiceBox);
+    }
+    private void handleSearchSortBYChoiceBox(Event event){
+        String sortBys = (String) sortByChoiceBox.getValue();
+        dataSource = new ReportFIleDataSource();
+        reportList = dataSource.readData();
+        reportList = reportList.findSortBys(sortBys);
+        showListView();
+    }
+    public void showSortByChoiceBox(){
+        ArrayList<String> sortBys = new ArrayList<>();
+        sortBys.add("เวลาที่เเจ้งเเละโหวตทั้งหมด");
+        sortBys.add("เวลาที่เเจ้งล่าสุด-เก่าสุด");
+        sortBys.add("เวลาที่เเจ้งเก่าสุด-ล่าสุด");
+        sortBys.add("คะเเนนโหวตจากมากที่สุด-น้อยที่สุด");
+        sortBys.add("คะเเนนโหวตจากน้อยที่สุด-มากที่สุด");
+
+        sortByChoiceBox.getItems().addAll(sortBys);
+        sortByChoiceBox.setOnAction(this::handleSearchSortBYChoiceBox);
+    }
 
     public void showSelectedReport(Report report){
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
         voteLabel.setText(report.getVote());
-//        dateLabel.setText(report.getPicPath());
+        dateLabel.setText(report.getReportTime());
     }
 
 

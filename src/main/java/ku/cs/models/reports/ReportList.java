@@ -33,4 +33,29 @@ public class ReportList {
         }
         return reportList;
     }
+    public ReportList findTypes(String types){
+        ReportList reportList = new ReportList();
+        for (Report report:reports){
+            if (types.equals("หน่วยงานทั้งหมด")){
+                reportList.addReport(report);
+            }
+            if ((report.getStatus()).equals(types)){
+                reportList.addReport(report);
+            }
+        }
+        return reportList;
+    }
+    public ReportList findSortBys(String sortBys){
+        ReportList reportList = new ReportList();
+        for (Report report:reports){
+            if (sortBys.equals("เวลาที่เเจ้งเเละโหวตทั้งหมด")){
+                reportList.addReport(report);
+            }
+            if ((report.getStatus()).equals(sortBys)){
+                reportList.addReport(report);
+            }
+        }
+        return reportList;
+    }
 }
+
