@@ -1,4 +1,5 @@
 package ku.cs.controllers;
+import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -30,12 +31,13 @@ public class LoginController  {
 
     @FXML private Button mode;
     public static boolean isLightMode = true;
-
+    private StaffAccount staff;
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
         dataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = dataSource.readData();
+
 //        ThemeMode.setThemeMode(pane);
 
     }

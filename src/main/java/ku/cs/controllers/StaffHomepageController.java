@@ -27,6 +27,8 @@ public class StaffHomepageController {
     @FXML private Label topicLabel;
     @FXML private Label statusLabel;
     @FXML private TextArea detailTextArea;
+    @FXML private Label categoryLabel;
+    @FXML private Label agencyLabel;
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
@@ -36,7 +38,7 @@ public class StaffHomepageController {
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
-
+    private Report report;
 
 
 
@@ -46,7 +48,10 @@ public class StaffHomepageController {
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         showListView(reportList);
+        detailTextArea.setDisable(true);
         staff = (StaffAccount) userList.findUser((String) FXRouter.getData());
+//        System.out.println(report.getUserName());
+        System.out.println(staff.getUsername());
         //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
@@ -69,6 +74,8 @@ public class StaffHomepageController {
         statusLabel.setText("");
         detailTextArea.setText("");
         topicLabel.setText("");
+        agencyLabel.setText("");
+        categoryLabel.setText("");
     }
     private void handleSelectedListView(){
         reportListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Report>() {
@@ -83,6 +90,9 @@ public class StaffHomepageController {
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
+        agencyLabel.setText(report.getAgency());
+        categoryLabel.setText(report.getType());
+
     }
 
      @FXML
@@ -125,10 +135,12 @@ public class StaffHomepageController {
     void handleManageButton(javafx.event.ActionEvent actionEvent) {
         try {
             System.out.println(staff.getAgency());
-            com.github.saacsos.FXRouter.goTo("manage_reports",staff.getUsername());
+            System.out.println(staff);
+            com.github.saacsos.FXRouter.goTo("manage_reports",staff);
         } catch (IOException e) {
 //            throw new RuntimeException();
-            System.err.println("ไปที่หน้า admin ไม่ได้");
+            e.printStackTrace();
+            System.err.println("ไปที่หน้า manage_reports ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }

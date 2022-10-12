@@ -9,8 +9,10 @@ public class Report {
     private String agency;
     private String solution;
     private String type;
+    private String userName;
+    private String staffUser;
 
-    public Report(String topic, String detail,String account,String type){
+    public Report(String topic, String detail,String account,String type,String agency,String userName){
         this.topic = topic;
         this.detail = detail;
         this.userReport = account;
@@ -18,10 +20,15 @@ public class Report {
         this.status = "ยังไม่ดำเนินการ";
         this.vote = 0;
         this.solution = "";
+        this.agency = agency;
+        this.userName = userName;
     }
 
+    public String getAgency() {
+        return agency;
+    }
 
-    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status){
+    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status,String agency,String staffUser){
 
         this.topic = topic;
         this.detail = detail;
@@ -30,6 +37,8 @@ public class Report {
         this.vote = vote;
         this.status = status;
         this.solution = solution;
+        this.agency = agency;
+        this.staffUser =staffUser;
     }
 
 
@@ -74,7 +83,7 @@ public class Report {
 
     @Override
     public String toString() {
-        return topic + "("+vote+")";
+        return topic + "("+vote+")"  ;
     }
 
     public void setVote(int vote) {
@@ -83,6 +92,14 @@ public class Report {
 
     public void setStatus(String status){
         this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setSolution(String solution) {

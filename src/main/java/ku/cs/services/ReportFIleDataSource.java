@@ -1,5 +1,6 @@
 package ku.cs.services;
 
+import ku.cs.models.account.StaffAccount;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
 
@@ -8,6 +9,7 @@ import java.io.*;
 public class ReportFIleDataSource implements DataSource<ReportList> {
     private String directoryName;
     private String fileName;
+    private StaffAccount staffAccount;
 
     public ReportFIleDataSource(String directoryName, String fileName){
         this.directoryName = directoryName;
@@ -51,10 +53,10 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(",");
                 Report report = null;
-                if (data.length == 7){
+                if (data.length == 9){
                     report = new Report(data[0].trim(),data[1].trim(),data[2].trim()
                             ,data[3].trim(),Integer.parseInt(data[4].trim()),
-                            data[5].trim(),data[6]);
+                            data[5].trim(),data[6],data[7],data[8]);
                 }
                 reportList.addReport(report);
             }
@@ -91,7 +93,11 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                         +report.getType().trim()+","
                         +report.getVote()+","
                         +report.getSolution()+ ","
-                        +report.getStatus();
+                        +report.getStatus()+ ","
+                        +report.getAgency()+ ","
+                        +report.getUserName();
+                System.out.println(report.getUserName());
+
                 buffer.append(line);
                 buffer.newLine();
             }

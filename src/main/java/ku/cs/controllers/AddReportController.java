@@ -47,6 +47,8 @@ public class AddReportController {
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
+    private    String agency;
+    private String userName;
 
     @FXML
     public void initialize() {
@@ -70,7 +72,25 @@ public class AddReportController {
         } else {
             String topic = topicTextField.getText();
             String detail = detailTextArea.getText();
-            Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue());
+            if (typeChoiceBox.getValue().equals("ยานพาหนะ") ){
+                agency = "กองยานพาหนะ";
+            }
+            else if (typeChoiceBox.getValue().equals("อาคารสถานที่และความปลอดภัย") ){
+                agency = "อาคารและสถานที่";
+            }
+            else if (typeChoiceBox.getValue().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์") ){
+                agency = "สำนักบริการคอมพิวเตอร์";
+            }
+            else if (typeChoiceBox.getValue().equals("กิจกรรมนิสิต") ){
+                agency = "กองกิจการนิสิต";
+            }
+            else if (typeChoiceBox.getValue().equals("ทรัพย์สินในมหาวิทยาลัย") ){
+                agency = "สำนักงานทรัพย์สิน";
+            }
+            else if (typeChoiceBox.getValue().equals("อื่นๆ") ){
+                agency = "สำนักงานอธิการบดี";
+            }
+           Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue(),agency,userName);
             reportList.addReport(report);
             dataSource.writeData(reportList);
 
