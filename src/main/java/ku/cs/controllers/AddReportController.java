@@ -26,6 +26,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AddReportController {
     @FXML private Label userLabel;
@@ -47,6 +49,7 @@ public class AddReportController {
     private AccountList userList;
     private    String agency;
     private String userName;
+    private String reportTime;
 
     @FXML
     public void initialize() {
@@ -91,7 +94,9 @@ public class AddReportController {
             else if (typeChoiceBox.getValue().equals("อื่นๆ") ){
                 agency = "สำนักงานอธิการบดี";
             }
-           Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue(),agency,userName);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+           Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue(),agency,dtf.format(now));
             reportList.addReport(report);
             dataSource.writeData(reportList);
 

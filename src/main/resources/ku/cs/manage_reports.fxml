@@ -49,20 +49,19 @@
         <TextField fx:id="searchReportTextField" layoutX="31.0" layoutY="72.0" promptText="Search" />
         <Button layoutX="202.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleSearchReportButton" text="Search" />
       <Label layoutX="598.0" layoutY="18.0" styleClass="search_button" stylesheets="@styles/style.css" text="OO" textFill="#8e8e8e" />
-      <Button layoutX="455.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleProcessButton" text="Processing" />
-      <Label layoutX="364.0" layoutY="438.0" text="Status:">
+      <Label layoutX="371.0" layoutY="538.0" text="Status:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="364.0" layoutY="479.0" text="Solution :">
+      <Label layoutX="365.0" layoutY="438.0" text="Solution :">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="552.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleCompleteButton" text="Completed" />
-      <TextField fx:id="solutionTextField" alignment="TOP_LEFT" layoutX="453.0" layoutY="480.0" prefHeight="98.0" prefWidth="272.0" />
-      <Button layoutX="734.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleSubmitButton" text="Submit" />
+      <Button layoutX="447.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleCompleteButton" text="Completed" />
+      <TextField fx:id="solutionTextField" alignment="TOP_LEFT" layoutX="462.0" layoutY="431.0" prefHeight="98.0" prefWidth="272.0" />
+      <Button fx:id="submitButton" layoutX="734.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleSubmitButton" text="Submit" />
       <TextArea fx:id="solutionTextArea" layoutX="365.0" layoutY="302.0" prefHeight="83.0" prefWidth="422.0" />
       <Label layoutX="365.0" layoutY="264.0" text="Solution :">
          <font>

@@ -132,7 +132,8 @@ public class WelcomePageController {
         try {
             com.github.saacsos.FXRouter.goTo("allComplaint_page", account.getUsername());
         } catch (IOException e) {
-            System.err.println(e);
+            throw new RuntimeException();
+            //System.err.println(e);
         }
     }
 

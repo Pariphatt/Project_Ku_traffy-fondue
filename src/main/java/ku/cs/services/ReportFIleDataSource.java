@@ -5,11 +5,12 @@ import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ReportFIleDataSource implements DataSource<ReportList> {
     private String directoryName;
     private String fileName;
-    private StaffAccount staffAccount;
 
     public ReportFIleDataSource(String directoryName, String fileName){
         this.directoryName = directoryName;
@@ -53,10 +54,11 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(",");
                 Report report = null;
-                if (data.length == 9){
+                if (data.length == 10){
+                    Date currentDate = new Date();
                     report = new Report(data[0].trim(),data[1].trim(),data[2].trim()
                             ,data[3].trim(),Integer.parseInt(data[4].trim()),
-                            data[5].trim(),data[6],data[7],data[8]);
+                            data[5].trim(),data[6],data[7],data[8],data[9]);
                 }
                 reportList.addReport(report);
             }
@@ -95,8 +97,9 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                         +report.getSolution()+ ","
                         +report.getStatus()+ ","
                         +report.getAgency()+ ","
-                        +report.getUserName();
-                System.out.println(report.getUserName());
+                        +report.getStaffReport()+","
+                        +report.getReportTime();
+
 
                 buffer.append(line);
                 buffer.newLine();

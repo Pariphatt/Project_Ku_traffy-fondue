@@ -134,8 +134,6 @@ public class StaffHomepageController {
     @FXML
     void handleManageButton(javafx.event.ActionEvent actionEvent) {
         try {
-            System.out.println(staff.getAgency());
-            System.out.println(staff);
             com.github.saacsos.FXRouter.goTo("manage_reports",staff);
         } catch (IOException e) {
 //            throw new RuntimeException();
