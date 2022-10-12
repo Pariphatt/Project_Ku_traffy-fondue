@@ -95,8 +95,8 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                         +report.getSolution()+ ","
                         +report.getStatus()+ ","
                         +report.getAgency()+ ","
-                        +report.getUserName();
-                System.out.println(report.getUserName());
+                        +report.getStaffReport();
+
 
                 buffer.append(line);
                 buffer.newLine();

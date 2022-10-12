@@ -32,18 +32,16 @@ public class ManageReportsController {
     private ReportList reportList;
 
     private Report selectedReport;
-    private StaffAccount staff,a;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private Account account;
-    private StaffAccount staff1 = (StaffAccount)  FXRouter.getData();
+    private StaffAccount staff = (StaffAccount)  FXRouter.getData();
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
         showListView();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
-//        staff = (StaffAccount) userList.findUser((String) FXRouter.getData());
         detailTextArea.setDisable(true);
         solutionTextArea.setDisable(true);
         //showChoiceBox();
@@ -61,25 +59,7 @@ public class ManageReportsController {
         ReportList reportListFiltered = reportList.filter(new Filterer<Report>() {
             @Override
             public boolean filter(Report report) {
-                if (report.getType().equals("ยานพาหนะ") && staff1.getAgency().equals("กองยานพาหนะ")){
-                    return true;
-                } else if (report.getType().equals("อาคารสถานที่และความปลอดภัย")&& staff1.getAgency().equals("อาคารและสถานที่")) {
-                    return true;
-                }
-                else if (report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์")&& staff1.getAgency().equals("กองกิจการนิสิต")) {
-                    return true;
-                }
-                else if (report.getType().equals("กิจกรรมนิสิต")&& staff1.getAgency().equals("สำนักบริการคอมพิวเตอร์")) {
-                    return true;
-                }
-                else if (report.getType().equals("ทรัพย์สินในมหาวิทยาลัย")&& staff1.getAgency().equals("สำนักงานทรัพย์สิน")) {
-                    return true;
-                }
-                else if (report.getType().equals("อื่นๆ")&& staff1.getAgency().equals("สำนักงานอธิการบดี")) {
-                    return true;
-                }
-//                return report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์");
-                return false;
+                return report.goToManage(report,staff);
             }
         });
         reportListView.getItems().addAll(reportListFiltered.getaAllReport());
@@ -151,14 +131,6 @@ public class ManageReportsController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
-    @FXML
-    void handleProcessButton(ActionEvent actionEvent) {
-        String process = "กำลังดำเนินการ";
-        selectedReport.setStatus(process);
-        reportListView.refresh();
-        showSelectedReport(selectedReport);
-        dataSource.writeData(reportList);
-    }
 
     @FXML
     void handleCompleteButton(ActionEvent actionEvent) {
@@ -171,9 +143,14 @@ public class ManageReportsController {
 
     @FXML
     void handleSubmitButton(ActionEvent actionEvent) {
+        String process = "กำลังดำเนินการ";
+        selectedReport.setStatus(process);
         selectedReport.setSolution(solutionTextField.getText());
+        selectedReport.setStaffReport(staff.getName());
         dataSource.writeData(reportList);
         solutionTextField.clear();
+//        solutionTextField.setDisable(true); //ไปทำ method check
         showSelectedReport(selectedReport);
+
     }
 }

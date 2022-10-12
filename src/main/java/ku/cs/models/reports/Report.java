@@ -1,5 +1,7 @@
 package ku.cs.models.reports;
 
+import ku.cs.models.account.StaffAccount;
+
 public class Report {
     private String topic;
     private String detail;
@@ -9,26 +11,25 @@ public class Report {
     private String agency;
     private String solution;
     private String type;
-    private String userName;
-    private String staffUser;
+    private String staffReport; //เปลี่ยนชื่อ
 
-    public Report(String topic, String detail,String account,String type,String agency,String userName){
+    public Report(String topic, String detail,String userReport,String type,String agency,String staffReport){
         this.topic = topic;
         this.detail = detail;
-        this.userReport = account;
+        this.userReport = userReport;
         this.type = type;
         this.status = "ยังไม่ดำเนินการ";
         this.vote = 0;
         this.solution = "";
         this.agency = agency;
-        this.userName = userName;
+        this.staffReport = staffReport;
     }
 
     public String getAgency() {
         return agency;
     }
 
-    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status,String agency,String staffUser){
+    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status,String agency,String staffReport){
 
         this.topic = topic;
         this.detail = detail;
@@ -38,7 +39,7 @@ public class Report {
         this.status = status;
         this.solution = solution;
         this.agency = agency;
-        this.staffUser =staffUser;
+        this.staffReport =staffReport;
     }
 
 
@@ -94,15 +95,39 @@ public class Report {
         this.status = status;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getStaffReport() {
+        return staffReport;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStaffReport(String staffReport) {
+        this.staffReport = staffReport;
     }
 
     public void setSolution(String solution) {
         this.solution = solution;
     }
+    public boolean goToManage(Report report, StaffAccount staff){
+        if (report.getType().equals("ยานพาหนะ") && staff.getAgency().equals("กองยานพาหนะ")){
+            return true;
+        } else if (report.getType().equals("อาคารสถานที่และความปลอดภัย")&& staff.getAgency().equals("อาคารและสถานที่")) {
+            return true;
+        }
+        else if (report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์")&& staff.getAgency().equals("สำนักบริการคอมพิวเตอร์")) {
+            return true;
+        }
+        else if (report.getType().equals("กิจกรรมนิสิต")&& staff.getAgency().equals("กองกิจกรรมนิสิต")) {
+            return true;
+        }
+        else if (report.getType().equals("ทรัพย์สินในมหาวิทยาลัย")&& staff.getAgency().equals("สำนักงานทรัพย์สิน")) {
+            return true;
+        }
+        else if (report.getType().equals("อื่นๆ")&& staff.getAgency().equals("สำนักงานอธิการบดี")) {
+            return true;
+        }
+//                return report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์");
+        return false;
+        }
+
+
 }
+
