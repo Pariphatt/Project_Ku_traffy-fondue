@@ -19,7 +19,10 @@ import ku.cs.services.ReportFIleDataSource;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class WelcomePageController {
     @FXML private ImageView userShow;
@@ -57,11 +60,28 @@ public class WelcomePageController {
         showListView();
         clearSelectedReport();
         handleSelectedListView();
+        sortListView();
 
         showStatusChoiceBox();
         showTypeChoiceBox();
 
+
         detailTextArea.setDisable(true);
+    }
+    private void sortListView(){
+        ArrayList<Report> reports = reportList.getaAllReport();
+        reports.sort(new Comparator<Report>() {
+            @Override
+            public int compare(Report o1, Report o2) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dt1 = LocalDateTime.parse(o1.getReportTime(),dtf);
+                LocalDateTime dt2 = LocalDateTime.parse(o2.getReportTime(),dtf);
+                return -dt1.compareTo(dt2);
+            }
+        });
+        reportListView.getItems().clear();
+        reportListView.getItems().addAll(reports);
+        reportListView.refresh();
     }
 
     private void showListView(){
@@ -122,7 +142,7 @@ public class WelcomePageController {
         String type = (String) typeChoiceBox.getValue();
         dataSource = new ReportFIleDataSource();
         reportList = dataSource.readData();
-        reportList = reportList.findType(type);
+        reportList = reportList.findTypes(type);
         showListView();
     }
 
