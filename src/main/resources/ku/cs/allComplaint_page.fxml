@@ -3,11 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,263 +15,146 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AllComplaintController">
     <children>
-        <BorderPane layoutX="-3.0" layoutY="-6.0" prefHeight="609.0" prefWidth="800.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="-6.0">
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <VBox prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+                <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #878787;" styleClass="shadow" stylesheets="@styles/style.css" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
                     <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
+                        <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@styles/style.css">
                             <children>
-                                <Label text="Complaint" textFill="#878787">
-                                    <font>
-                                        <Font name="System Bold" size="36.0" />
-                                    </font>
-                                </Label>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@styles/style.css">
+                                    <VBox.margin>
+                                        <Insets left="20.0" top="20.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <ImageView fx:id="userShow" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@images/test.jpg" />
+                                            </image>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </ImageView>
+                                        <Label fx:id="userLabel" text="userLabel" textFill="#878787">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@styles/style.css">
+                                            <VBox.margin>
+                                                <Insets left="100.0" top="10.0" />
+                                            </VBox.margin>
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#handleSettingButton" styleClass="transparent" stylesheets="@styles/style.css" text="Setting" textFill="#878787">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                        <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@styles/style.css">
+                                            <VBox.margin>
+                                                <Insets bottom="50.0" left="120.0" top="10.0" />
+                                            </VBox.margin>
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="transparent" stylesheets="@styles/style.css" text="Logout" textFill="#878787">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
                             </children>
-                            <VBox.margin>
-                                <Insets left="10.0" top="20.0" />
-                            </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                            <VBox.margin>
-                                <Insets left="30.0" right="20.0" />
-                            </VBox.margin>
-                            <styleClass>
-                                <String fx:value="search_box" />
-                                <String fx:value="shadow" />
-                            </styleClass>
-                        </HBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                            <VBox.margin>
-                                <Insets left="30.0" right="20.0" top="20.0" />
-                            </VBox.margin>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                                    <styleClass>
-                                        <String fx:value="search_box" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #878787;" styleClass="shadow" stylesheets="@styles/style.css">
                                     <VBox.margin>
-                                        <Insets bottom="10.0" />
+                                        <Insets left="20.0" />
                                     </VBox.margin>
                                     <children>
-                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <Label text="Home" textFill="#878787">
-                                                    <font>
-                                                        <Font name="System Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets left="20.0" />
-                                            </HBox.margin>
-                                        </VBox>
-                                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <Button mnemonicParsing="false" onAction="#handleHomeButton" styleClass="search_button" stylesheets="@styles/style.css" text="O" textFill="#878787" />
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets right="20.0" />
-                                            </HBox.margin>
-                                        </VBox>
+                                        <Button mnemonicParsing="false" onAction="#handleHomeButton" styleClass="transparent" stylesheets="@styles/style.css" text="Home" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
+                                        </Button>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                                    <styleClass>
-                                        <String fx:value="search_box" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                    <children>
-                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <Label text="Report" textFill="#878787">
-                                                    <font>
-                                                        <Font name="System Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets left="20.0" />
-                                            </HBox.margin>
-                                        </VBox>
-                                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <Button mnemonicParsing="false" onAction="#handleAddReportButton" styleClass="search_button" stylesheets="@styles/style.css" text="O" textFill="#878787" />
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets right="20.0" />
-                                            </HBox.margin>
-                                        </VBox>
-                                    </children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #878787;" styleClass="shadow" stylesheets="@styles/style.css">
                                     <VBox.margin>
-                                        <Insets bottom="10.0" />
+                                        <Insets left="20.0" />
                                     </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                                    <styleClass>
-                                        <String fx:value="search_box" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
                                     <children>
-                                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <Label prefWidth="114.0" text="Complaint" textFill="#878787">
-                                                    <font>
-                                                        <Font name="System Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
+                                        <Button mnemonicParsing="false" onAction="#handleAddReportButton" styleClass="transparent" stylesheets="@styles/style.css" text="Report" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
                                             <HBox.margin>
-                                                <Insets left="20.0" />
+                                                <Insets />
                                             </HBox.margin>
-                                        </VBox>
-                                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="60.0">
-                                            <children>
-                                                <Button mnemonicParsing="false" onAction="#handleAllComplaintButton" styleClass="search_button" stylesheets="@styles/style.css" text="O" textFill="#878787" />
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets right="20.0" />
-                                            </HBox.margin>
-                                        </VBox>
+                                        </Button>
                                     </children>
-                                    <VBox.margin>
-                                        <Insets bottom="10.0" />
-                                    </VBox.margin>
                                 </HBox>
-                                <HBox prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/style.css">
+                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" stylesheets="@styles/style.css">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="20.0" top="10.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#handleAllComplaintButton" styleClass="transparent" stylesheets="@styles/style.css" text="My Report" textFill="#878787">
+                                            <font>
+                                                <Font name="System Bold" size="18.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
                                     <styleClass>
+                                        <String fx:value="shadow" />
                                         <String fx:value="combo_box" />
-                                        <String fx:value="shadow" />
                                     </styleClass>
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
                                 </HBox>
                             </children>
                         </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #878787;" styleClass="shadow" stylesheets="@styles/style.css">
+                                    <VBox.margin>
+                                        <Insets left="20.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #878787;" styleClass="shadow" stylesheets="@styles/style.css">
+                                    <VBox.margin>
+                                        <Insets left="20.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
+                                    <VBox.margin>
+                                        <Insets left="20.0" />
+                                    </VBox.margin>
+                                </HBox>
+                            </children></VBox>
                     </children>
                 </VBox>
             </left>
             <center>
-                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
+                <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@styles/style.css" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                     </BorderPane.margin>
                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="490.0">
-                            <children>
-                                <ImageView fx:id="userShow" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/test.jpg" />
-                                    </image>
-                                </ImageView>
-                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="140.0">
-                                    <children>
-                                        <Button mnemonicParsing="false" onAction="#handleLogOutButton" stylesheets="@styles/style.css" text="Logout">
-                                            <styleClass>
-                                                <String fx:value="logout_button" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                        </Button>
-                              <Button mnemonicParsing="false" onAction="#handleSettingButton" stylesheets="@styles/style.css" text="Setting">
-                                 <styleClass>
-                                    <String fx:value="setting_button" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Button>
-                                    </children>
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="280.0" stylesheets="@styles/style.css">
-                                    <styleClass>
-                                        <String fx:value="search_box" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                    <children>
-                                        <TextField fx:id="searchReportTextField" prefHeight="26.0" prefWidth="180.0" promptText="something.." styleClass="search_box" stylesheets="@styles/style.css">
-                                            <HBox.margin>
-                                                <Insets />
-                                            </HBox.margin>
-                                        </TextField>
-                                        <Button mnemonicParsing="false" onAction="#handleSearchReportButton" styleClass="search_button" stylesheets="@styles/style.css" text="Search" textFill="WHITE">
-                                            <HBox.margin>
-                                                <Insets />
-                                            </HBox.margin>
-                                        </Button>
-                                    </children>
-                                    <HBox.margin>
-                                        <Insets bottom="20.0" top="20.0" />
-                                    </HBox.margin>
-                                </HBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets left="30.0" />
-                            </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="450.0" prefWidth="200.0" style="-fx-background-color: white;" stylesheets="@styles/style.css">
-                            <styleClass>
-                                <String fx:value="search_button" />
-                                <String fx:value="shadow" />
-                            </styleClass>
-                            <VBox.margin>
-                                <Insets right="30.0" />
-                            </VBox.margin>
-                            <children>
-                                <Pane prefHeight="379.0" prefWidth="494.0">
-                                    <HBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </HBox.margin>
-                                    <children>
-                                        <Label layoutX="14.0" layoutY="62.0" textFill="#878787">
-                                            <font>
-                                                <Font name="System Bold" size="18.0" />
-                                            </font>
-                                        </Label>
-
-
-                                        <ListView fx:id="reportListView" layoutX="14.0" layoutY="37.0" prefHeight="400.0" prefWidth="200.0" />
-                                        <ChoiceBox fx:id="agencyChoiceBox" layoutX="293.0" layoutY="37.0" prefWidth="150.0" />
-
-                                        <Label layoutX="245.0" layoutY="41.0" text="Agency : " />
-                                        <ChoiceBox fx:id="typeChoiceBox" layoutX="295.0" layoutY="10.0" prefWidth="150.0" />
-                                        <Label layoutX="245.0" layoutY="14.0" text="Type :" />
-
-                                        <Label layoutX="245.0" layoutY="76.0" text="Topic : " />
-                                        <Label fx:id="topicLabel" layoutX="293.0" layoutY="76.0" text="topicLabel" />
-                                        <Label layoutX="245.0" layoutY="110.0" text="Detail : " />
-                                        <TextArea fx:id="detailTextArea" layoutX="293.0" layoutY="110.0" prefHeight="200.0" prefWidth="180.0" />
-                                        <Label layoutX="245.0" layoutY="327.0" text="Status : " />
-                                        <Label fx:id="statusLabel" layoutX="293.0" layoutY="327.0" text="statusLabel" />
-                                        <Button layoutX="424.0" layoutY="391.0" mnemonicParsing="false" onAction="#handleVoteButton" styleClass="search_button" stylesheets="@styles/style.css" text="Vote" textFill="WHITE" />
-                                        <Label layoutX="245.0" layoutY="353.0" text="Vote : " />
-                                        <Label fx:id="voteLabel" layoutX="293.0" layoutY="353.0" text="voteLabel" />
-
-                              <Label layoutX="247.0" layoutY="383.0" text="Date :" />
-                              <Label fx:id="dateLabel" layoutX="293.0" layoutY="383.0" text="dateLabel" />
-                                        <Label fx:id="agencyLabel" layoutX="295.0" layoutY="41.0" text="agencyLabel" />
-                                        <ChoiceBox fx:id="statusChoiceBox" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
-                                        <ChoiceBox fx:id="typeChoiceBox" layoutX="90.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
-                                        <ChoiceBox fx:id="sortByChoiceBox" layoutX="174.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
-                                        <TextField layoutX="40.0" layoutY="50.0" prefHeight="25.0" prefWidth="39.0" />
-                                        <TextField layoutX="151.0" layoutY="50.0" prefHeight="25.0" prefWidth="39.0" />
-                                        <Label layoutX="44.0" layoutY="-9.0" text="Status" />
-                                        <Label layoutX="114.0" layoutY="-9.0" text="Types" />
-                                        <Label layoutX="190.0" layoutY="-9.0" text="Sort By:" />
-                                        <Label layoutY="54.0" text="Max" />
-                                        <Label layoutX="119.0" layoutY="54.0" text="Min" />
-
-                                    </children>
-                                </Pane>
-                            </children>
-                        </HBox>
+                        <Pane prefHeight="640.0" prefWidth="600.0" />
                     </children>
                 </VBox>
             </center>
