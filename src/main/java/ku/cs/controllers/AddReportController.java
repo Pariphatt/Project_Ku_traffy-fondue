@@ -51,7 +51,7 @@ public class AddReportController {
     private AccountList userList;
     private    String agency;
     private String userName;
-    private String reportTime;
+
 
     @FXML
     public void initialize() {
@@ -95,9 +95,12 @@ public class AddReportController {
             }
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
-           Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue(),agency,dtf.format(now));
+            Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue(),agency,dtf.format(now));
             reportList.addReport(report);
             dataSource.writeData(reportList);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("เเจ้งเรื่องร้องเรียนสำเร็จ");
+            alert.show();
 
             try {
                 com.github.saacsos.FXRouter.goTo("addReport_page", account.getUsername());

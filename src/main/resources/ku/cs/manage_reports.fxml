@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ManageReportsController">
     <children>
-        <ListView fx:id="reportListView" layoutX="31.0" layoutY="108.0" prefHeight="471.0" prefWidth="278.0" />
+        <ListView fx:id="reportListView" layoutX="31.0" layoutY="108.0" prefHeight="428.0" prefWidth="278.0" />
         <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutButton" text="Logout" />
         <Button layoutX="714.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
         <Separator layoutX="343.0" layoutY="27.0" orientation="VERTICAL" prefHeight="552.0" prefWidth="0.0" />
@@ -68,5 +68,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button layoutX="253.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleRefreshButton" text="Refresh" />
     </children>
 </AnchorPane>

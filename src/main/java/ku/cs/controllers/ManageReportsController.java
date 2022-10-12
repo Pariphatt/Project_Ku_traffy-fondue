@@ -36,6 +36,7 @@ public class ManageReportsController {
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private Account account;
+
     private StaffAccount staff = (StaffAccount)  FXRouter.getData();
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
@@ -108,24 +109,19 @@ public class ManageReportsController {
 
 
     @FXML
-    public void handleSearchReportButton(javafx.event.ActionEvent actionEvent) {
+    public void handleSearchReportButton(javafx.event.ActionEvent actionEvent){
         String input = searchReportTextField.getText();
-
         reportList = reportList.filter(new Filterer<Report>() {
             @Override
             public boolean filter(Report report) {
                 return report.getTopic().contains(input);
             }
         });
-
-        if (input.equals("")) {
-
-            if (input.equals(" ")) {
-                reportList = dataSource.readData();
-            }
-            reportListView.getItems().clear();
-            showListView();
+        if (input == ""){
+            reportList = dataSource.readData();
         }
+        reportListView.getItems().clear();
+        showListView();
     }
 
     @FXML
@@ -172,6 +168,15 @@ public class ManageReportsController {
         solutionTextField.setDisable(true); //ไปทำ method check
         setSubmitButton();
         showSelectedReport(selectedReport);
+
+    }
+    @FXML
+    void handleRefreshButton(ActionEvent actionEvent) {
+        searchReportTextField.clear();
+        reportListView.getItems().clear();
+        dataSource = new ReportFIleDataSource("assets","reports.csv");
+        reportList = dataSource.readData();
+        showListView();
 
     }
 }
