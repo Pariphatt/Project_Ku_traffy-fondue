@@ -33,4 +33,18 @@ public class ReportList {
         }
         return reportList;
     }
+
+    public ReportList findType(String type){
+        ReportList reportList = new ReportList();
+        for (Report report:reports){
+            if (type.equals("ทั้งหมด")){
+                reportList.addReport(report);
+            }
+            if ((report.getType()).equals(type)){
+                reportList.addReport(report);
+            }
+        }
+        return reportList;
+    }
+
 }

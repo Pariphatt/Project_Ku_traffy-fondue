@@ -166,19 +166,17 @@
                      <children>
                         <ListView fx:id="reportListView" layoutX="14.0" layoutY="186.0" prefHeight="400.0" prefWidth="200.0" />
                         <ChoiceBox fx:id="statusChoiceBox" layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="80.0" />
-                        <ChoiceBox fx:id="categoryChoiceBox" layoutX="94.0" layoutY="37.0" prefHeight="25.0" prefWidth="80.0" />
+                        <ChoiceBox fx:id="typeChoiceBox" layoutX="94.0" layoutY="37.0" prefHeight="25.0" prefWidth="80.0" />
                         <ChoiceBox fx:id="sortByChoiceBox" layoutX="174.0" layoutY="37.0" prefHeight="25.0" prefWidth="80.0" />
                         <Label layoutX="14.0" layoutY="18.0" text="Status" />
-                        <Label layoutX="94.0" layoutY="18.0" text="Category" />
+                        <Label layoutX="94.0" layoutY="18.0" text="Type" />
                         <Label layoutX="174.0" layoutY="18.0" text="Sort By" />
                         <TextField layoutX="53.0" layoutY="85.0" prefHeight="25.0" prefWidth="39.0" />
                         <TextField layoutX="53.0" layoutY="117.0" prefHeight="25.0" prefWidth="39.0" />
                         <Label layoutX="19.0" layoutY="89.0" text="Max" />
                         <Label layoutX="20.0" layoutY="121.0" text="Min" />
-                        <ChoiceBox fx:id="typeChoiceBox" layoutX="300.0" layoutY="85.0" prefWidth="150.0" />
                         <Label layoutX="254.0" layoutY="89.0" text="Type :" />
                         <Label layoutX="239.0" layoutY="119.0" text="Agency :" />
-                        <ChoiceBox fx:id="agencyChoiceBox" layoutX="300.0" layoutY="115.0" prefWidth="150.0" />
                         <Label layoutX="252.0" layoutY="150.0" text="Topic :" />
                         <Label fx:id="topicLabel" layoutX="300.0" layoutY="150.0" text="topicLabel" />
                         <Label layoutX="251.0" layoutY="178.0" text="Detail :" />
@@ -187,6 +185,8 @@
                         <Label fx:id="statusLabel" layoutX="300.0" layoutY="386.0" text="statusLabel" />
                         <Label layoutX="258.0" layoutY="413.0" text="Vote :" />
                         <Label fx:id="voteLabel" layoutX="300.0" layoutY="413.0" text="voteLabel" />
+                        <Label fx:id="agencyLabel" layoutX="297.0" layoutY="119.0" text="agencyLabel" />
+                        <Label fx:id="typeLabel" layoutX="298.0" layoutY="89.0" text="typeLabel" />
                      </children>
                   </Pane>
                </children>

@@ -111,7 +111,7 @@
                                         <Insets bottom="10.0" left="20.0" top="10.0" />
                                     </VBox.margin>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleMyReportButton" styleClass="transparent" stylesheets="@styles/style.css" text="My Report" textFill="#878787">
+                                        <Button mnemonicParsing="false" onAction="#handleAllComplaintButton" styleClass="transparent" stylesheets="@styles/style.css" text="My Report" textFill="#878787">
                                             <font>
                                                 <Font name="System Bold" size="18.0" />
                                             </font>
