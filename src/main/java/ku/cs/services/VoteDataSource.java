@@ -55,9 +55,9 @@ public class VoteDataSource implements DataSource<VoteList> {
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(",");
                 Vote vote = null;
-                if (data.length == 3){
+                if (data.length == 2){
                     Date currentDate = new Date();
-                    vote = new Vote(data[0].trim(),data[1].trim(),Integer.parseInt(data[2].trim()));
+                    vote = new Vote(data[0].trim(),data[1].trim());
                 }
                 voteList.addVote(vote);
             }
@@ -90,8 +90,7 @@ public class VoteDataSource implements DataSource<VoteList> {
 
             for (Vote vote : voteList.getaAllVote()){
                 String line = vote.getTopic().trim() + ","
-                        + vote.getUserReport().trim()+","
-                        + vote.getVote();
+                        + vote.getUserReport();
 
                 buffer.append(line);
                 buffer.newLine();

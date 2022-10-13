@@ -76,37 +76,43 @@ public class AddReportController {
         } else {
             String topic = topicTextField.getText();
             String detail = detailTextArea.getText();
-            if (typeChoiceBox.getValue().equals("ยานพาหนะ") ){
-                agency = "กองยานพาหนะ";
-            }
-            else if (typeChoiceBox.getValue().equals("อาคารสถานที่และความปลอดภัย") ){
-                agency = "อาคารและสถานที่";
-            }
-            else if (typeChoiceBox.getValue().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์") ){
-                agency = "สำนักบริการคอมพิวเตอร์";
-            }
-            else if (typeChoiceBox.getValue().equals("กิจกรรมนิสิต") ){
-                agency = "กองกิจการนิสิต";
-            }
-            else if (typeChoiceBox.getValue().equals("ทรัพย์สินในมหาวิทยาลัย") ){
-                agency = "สำนักงานทรัพย์สิน";
-            }
-            else if (typeChoiceBox.getValue().equals("อื่นๆ") ){
-                agency = "สำนักงานอธิการบดี";
-            }
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue(),agency,dtf.format(now));
-            reportList.addReport(report);
-            dataSource.writeData(reportList);
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("เเจ้งเรื่องร้องเรียนสำเร็จ");
-            alert.show();
+            if (reportList.isExistTopic(topic)){
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setContentText("ไม่สามารถตั้งหัวข้อซ้ำกันได้");
+                alert.show();
+            } else {
+                if (typeChoiceBox.getValue().equals("ยานพาหนะ") ){
+                    agency = "กองยานพาหนะ";
+                }
+                else if (typeChoiceBox.getValue().equals("อาคารสถานที่และความปลอดภัย") ){
+                    agency = "อาคารและสถานที่";
+                }
+                else if (typeChoiceBox.getValue().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์") ){
+                    agency = "สำนักบริการคอมพิวเตอร์";
+                }
+                else if (typeChoiceBox.getValue().equals("กิจกรรมนิสิต") ){
+                    agency = "กองกิจการนิสิต";
+                }
+                else if (typeChoiceBox.getValue().equals("ทรัพย์สินในมหาวิทยาลัย") ){
+                    agency = "สำนักงานทรัพย์สิน";
+                }
+                else if (typeChoiceBox.getValue().equals("อื่นๆ") ){
+                    agency = "สำนักงานอธิการบดี";
+                }
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                Report report = new Report(topic,detail,account.getUsername(), (String) typeChoiceBox.getValue(),agency,dtf.format(now));
+                reportList.addReport(report);
+                dataSource.writeData(reportList);
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setContentText("เเจ้งเรื่องร้องเรียนสำเร็จ");
+                alert.show();
 
-            try {
-                com.github.saacsos.FXRouter.goTo("addReport_page", account.getUsername());
-            } catch (IOException e) {
-                System.err.println(e);
+                try {
+                    com.github.saacsos.FXRouter.goTo("addReport_page", account.getUsername());
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
             }
         }
     }

@@ -3,22 +3,19 @@ package ku.cs.models.reports;
 public class Vote {
     private String topic;
     private String userReport;
-    private int vote;
 
-    public Vote(String topic, String userReport, int vote) {
+    public Vote() {
+        this.topic = null;
+        this.userReport = null;
+    }
+
+    public Vote(String topic, String userReport) {
         this.topic = topic;
         this.userReport = userReport;
-        this.vote = vote;
     }
 
     public String getTopic() {
         return topic;
     }
-    public String getUserReport() {
-        return userReport;
-    }
-    public int getVote() {return vote;}
-
-
-
+    public String getUserReport() {return userReport;}
 }

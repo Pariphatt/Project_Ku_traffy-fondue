@@ -1,5 +1,6 @@
 package ku.cs.models.reports;
 
+import ku.cs.models.account.Account;
 import ku.cs.services.Filterer;
 
 import java.util.ArrayList;
@@ -11,5 +12,24 @@ public class VoteList {
         votes.add(vote);
     }
     public ArrayList<Vote> getaAllVote(){return votes;}
+
+    public boolean isExistTopic(String topic) {
+        for(Vote vote: votes) {
+            if(vote.getTopic().equals(topic)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isExistUserReport(String userReport) {
+        for(Vote vote: votes) {
+            if(vote.getUserReport().equals(userReport)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

@@ -97,9 +97,7 @@ public class Report {
         return topic + "("+vote+")"  +"    "+reportTime;
     }
 
-    public void setVote(int vote) {
-        this.vote = vote;
-    }
+    public void setVote(int vote) {this.vote = vote;}
 
     public void setStatus(String status){
         this.status = status;
@@ -137,6 +135,9 @@ public class Report {
 //                return report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์");
         return false;
         }
+
+    public void plusVote() {this.vote += 1;}
+    public void minusVote(){this.vote -= 1;}
 
 }
 

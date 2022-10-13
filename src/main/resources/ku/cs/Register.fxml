@@ -81,5 +81,7 @@
             <Font size="18.0" />
          </font>
       </PasswordField>
+      <Label layoutX="158.0" layoutY="157.0" text="ใส่ได้แค่ A-Z หรือ a-z ยาว 3-20 ตัวอักษร" />
+      <Label layoutX="158.0" layoutY="370.0" text="ใส่ได้แค่ A-Z หรือ a-z หรือ 0-9 ยาว 6-20 ตัวอักษร" />
    </children>
 </AnchorPane>

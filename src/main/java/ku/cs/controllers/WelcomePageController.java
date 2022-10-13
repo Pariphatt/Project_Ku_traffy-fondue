@@ -40,6 +40,7 @@ public class WelcomePageController {
     @FXML private ChoiceBox typeChoiceBox;
     @FXML private ChoiceBox statusChoiceBox;
     @FXML private ChoiceBox sortByChoiceBox;
+    private Alert alert;
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
@@ -47,9 +48,12 @@ public class WelcomePageController {
     private ReportList reportList;
     private Report selectedReport;
     private DataSource<AccountList> accountListDataSource;
-
+    private Vote selectedVote;
     private VoteList voteList;
     private DataSource<VoteList> voteListDataSource;
+
+    public WelcomePageController() {
+    }
 
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
@@ -75,6 +79,7 @@ public class WelcomePageController {
 
         voteListDataSource = new VoteDataSource("assets","votes.csv");
         voteList = voteListDataSource.readData();
+        alert = new Alert(Alert.AlertType.NONE);
     }
     private void sortListView(){
         ArrayList<Report> reports = reportList.getaAllReport();
@@ -166,9 +171,20 @@ public class WelcomePageController {
     }
 
     public void handleVoteButton(ActionEvent actionEvent){
-        Vote vote = new Vote("test", account.getUsername(), 1);
-        voteList.addVote(vote);
-        voteListDataSource.writeData(voteList);
+        if ((voteList.isExistTopic(selectedReport.getTopic()) && voteList.isExistUserReport(account.getUsername()))
+                || (selectedReport.getTopic() == null && account.getUsername() == null)){
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("คุณโหวตไปแล้ว");
+            alert.show();
+        } else {
+            selectedReport.plusVote();
+            reportListView.refresh();
+            showSelectedReport(selectedReport);
+            dataSource.writeData(reportList);
+            Vote vote = new Vote(selectedReport.getTopic(), account.getUsername());
+            voteList.addVote(vote);
+            voteListDataSource.writeData(voteList);
+        }
     }
 
     @FXML
