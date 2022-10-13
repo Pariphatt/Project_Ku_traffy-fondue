@@ -1,5 +1,6 @@
 package ku.cs.models.reports;
 
+import ku.cs.models.account.Account;
 import ku.cs.services.Filterer;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class ReportList {
             if (types.equals("หน่วยงานทั้งหมด")){
                 reportList.addReport(report);
             }
-            if ((report.getStatus()).equals(types)){
+            if ((report.getType()).equals(types)){
                 reportList.addReport(report);
             }
         }
@@ -52,6 +53,16 @@ public class ReportList {
                 reportList.addReport(report);
             }
             if ((report.getStatus()).equals(sortBys)){
+                reportList.addReport(report);
+            }
+        }
+        return reportList;
+    }
+
+    public ReportList findMyReport(String users){
+        ReportList reportList = new ReportList();
+        for (Report report:reports){
+            if ((report.getUserReport()).equals(users)){
                 reportList.addReport(report);
             }
         }
