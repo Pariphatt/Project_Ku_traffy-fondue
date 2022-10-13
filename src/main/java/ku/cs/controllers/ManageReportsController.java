@@ -24,6 +24,7 @@ public class ManageReportsController {
 
     @FXML private TextField searchReportTextField;
     @FXML private Button submitButton;
+    @FXML private Button completeButton;
     @FXML private ListView reportListView;
     @FXML private Label topicLabel;
     @FXML private Label statusLabel;
@@ -69,7 +70,7 @@ public class ManageReportsController {
                 return report.goToManage(report,staff);
             }
         });
-        reportListView.getItems().addAll(reportListFiltered.getaAllReport());
+        reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();
     }
     //     @FXML
@@ -109,6 +110,11 @@ public class ManageReportsController {
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
         solutionTextArea.setText(report.getSolution());
+        if (report.getSolution().isEmpty()){
+            submitButton.setVisible(true);
+        }else{
+            submitButton.setVisible(false);
+        }
     }
 
 
@@ -157,7 +163,11 @@ public class ManageReportsController {
         reportListView.refresh();
         showSelectedReport(selectedReport);
         dataSource.writeData(reportList);
+//        solutionTextField.setDisable(true); //ไปทำ method check
+//        setCompleteButton();
+//        showSelectedReport(selectedReport);
     }
+//    private void setCompleteButton(){completeButton.setVisible(false);}
     private void setSubmitButton(){
         submitButton.setVisible(false);
     }
@@ -182,6 +192,5 @@ public class ManageReportsController {
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
         showListView();
-
     }
 }

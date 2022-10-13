@@ -35,6 +35,7 @@ public class WelcomePageController {
     @FXML private Label agencyLabel;
     @FXML private Label statusLabel;
     @FXML private Label voteLabel;
+    @FXML private Label dateLabel;
     @FXML private TextArea detailTextArea;
     @FXML private ListView reportListView;
     @FXML private ChoiceBox typeChoiceBox;
@@ -70,6 +71,7 @@ public class WelcomePageController {
 
         showStatusChoiceBox();
         showTypeChoiceBox();
+        showSortByChoiceBox();
 
         detailTextArea.setDisable(true);
 
@@ -105,6 +107,7 @@ public class WelcomePageController {
         voteLabel.setText("");
         agencyLabel.setText("");
         typeLabel.setText("");
+        dateLabel.setText("");
     }
 
     public void showSelectedReport(Report report){
@@ -114,6 +117,7 @@ public class WelcomePageController {
         voteLabel.setText(report.getVote());
         agencyLabel.setText(report.getAgency());
         typeLabel.setText(report.getType());
+        dateLabel.setText(report.getReportTime());
     }
 
     public void showStatusChoiceBox(){
@@ -153,6 +157,26 @@ public class WelcomePageController {
         reportList = reportList.findTypes(type);
         showListView();
     }
+    public void showSortByChoiceBox(){
+        ArrayList<String> sortBys = new ArrayList<>();
+        sortBys.add("เวลาที่เเจ้งเเละโหวตทั้งหมด");
+        sortBys.add("เวลาที่เเจ้งล่าสุด");
+        sortBys.add("เวลาที่เเจ้งเก่าสุด");
+        sortBys.add("คะเเนนโหวตมากที่สุด");
+        sortBys.add("คะเเนนโหวตน้อยที่สุด");
+
+        sortByChoiceBox.getItems().addAll(sortBys);
+        sortByChoiceBox.setOnAction(this::handleSearchSortBYChoiceBox);
+    }
+    private void handleSearchSortBYChoiceBox(Event event){
+        String sortBys = (String) sortByChoiceBox.getValue();
+        dataSource = new ReportFIleDataSource();
+        reportList = dataSource.readData();
+        reportList = reportList.findSortBys(sortBys);
+        showListView();
+    }
+
+
 
     private void handleSelectedListView(){
         reportListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Report>() {
