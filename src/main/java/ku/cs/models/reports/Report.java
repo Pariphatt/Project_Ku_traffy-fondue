@@ -27,7 +27,7 @@ public class Report {
         this.solution = "";
         this.agency = agency;
         this.staffReport = null;
-        this.reportTime =reportTime;
+        this.reportTime = reportTime;
     }
 
     public String getReportTime() {
@@ -83,10 +83,7 @@ public class Report {
         return status;
     }
 
-    public String getVote() {
-        String v = Integer.toString(vote);
-        return v;
-    }
+    public int getVote() {return vote;}
 
     public String getType() {
         return type;

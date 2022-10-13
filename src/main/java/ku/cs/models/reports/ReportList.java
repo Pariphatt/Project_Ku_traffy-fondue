@@ -46,18 +46,18 @@ public class ReportList {
         }
         return reportList;
     }
-    public ReportList findSortBys(String sortBys){
-        ReportList reportList = new ReportList();
-        for (Report report:reports){
-            if (sortBys.equals("เวลาที่เเจ้งเเละโหวตทั้งหมด")){
-                reportList.addReport(report);
-            }
-            if ((report.getStatus()).equals(sortBys)){
-                reportList.addReport(report);
-            }
-        }
-        return reportList;
-    }
+//    public ReportList findSortBys(String sortBys){
+//        ReportList reportList = new ReportList();
+//        for (Report report:reports){
+//            if (sortBys.equals("เวลาที่เเจ้งเเละโหวตทั้งหมด")){
+//                reportList.addReport(report);
+//            }
+//            if ((report.getVote()).equals(sortBys)){
+//                reportList.addReport(report);
+//            }
+//        }
+//        return reportList;
+//    }
 
     public ReportList findMyReport(String users){
         ReportList reportList = new ReportList();

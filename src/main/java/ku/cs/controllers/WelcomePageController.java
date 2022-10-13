@@ -15,10 +15,7 @@ import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
 import ku.cs.models.reports.Vote;
 import ku.cs.models.reports.VoteList;
-import ku.cs.services.AccountListDataSource;
-import ku.cs.services.DataSource;
-import ku.cs.services.ReportFIleDataSource;
-import ku.cs.services.VoteDataSource;
+import ku.cs.services.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,6 +48,10 @@ public class WelcomePageController {
 
     private VoteList voteList;
     private DataSource<VoteList> voteListDataSource;
+
+    private ReportList filterReportList;
+
+    private ArrayList<Report> sortReportList;
 
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
@@ -88,7 +89,9 @@ public class WelcomePageController {
                 LocalDateTime dt2 = LocalDateTime.parse(o2.getReportTime(),dtf);
                 return -dt1.compareTo(dt2);
             }
+
         });
+
         reportListView.getItems().clear();
         reportListView.getItems().addAll(reports);
         reportListView.refresh();
@@ -114,7 +117,7 @@ public class WelcomePageController {
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
-        voteLabel.setText(report.getVote());
+        voteLabel.setText(String.valueOf(report.getVote()));
         agencyLabel.setText(report.getAgency());
         typeLabel.setText(report.getType());
         dateLabel.setText(report.getReportTime());
@@ -127,19 +130,17 @@ public class WelcomePageController {
         status.add("กำลังดำเนินการ");
         status.add("เสร็จสิ้น");
         statusChoiceBox.getItems().addAll(status);
+        statusChoiceBox.getSelectionModel().selectFirst();
         statusChoiceBox.setOnAction(this::handleSearchStatusChoiceBox);
     }
 
     private void handleSearchStatusChoiceBox(Event event) {
-        String status = (String) statusChoiceBox.getValue();
-        dataSource = new ReportFIleDataSource();
-        reportList = dataSource.readData();
-        reportList = reportList.findStatus(status);
-        showListView();
+        handleListView();
     }
 
     public void showTypeChoiceBox(){
         ArrayList<String> type = new ArrayList<>();
+        type.add("หน่วยงานทั้งหมด");
         type.add("ยานพาหนะ");
         type.add("อาคารสถานที่และความปลอดภัย");
         type.add("IT หรือ ปัญหาด้านคอมพิวเตอร์");
@@ -147,15 +148,12 @@ public class WelcomePageController {
         type.add("ทรัพย์สินในมหาวิทยาลัย");
         type.add("อื่นๆ");
         typeChoiceBox.getItems().addAll(type);
+        typeChoiceBox.getSelectionModel().selectFirst();
         typeChoiceBox.setOnAction(this::handleSearchTypeChoiceBox);
     }
 
     private void handleSearchTypeChoiceBox(Event event) {
-        String type = (String) typeChoiceBox.getValue();
-        dataSource = new ReportFIleDataSource();
-        reportList = dataSource.readData();
-        reportList = reportList.findTypes(type);
-        showListView();
+        handleListView();
     }
     public void showSortByChoiceBox(){
         ArrayList<String> sortBys = new ArrayList<>();
@@ -166,14 +164,80 @@ public class WelcomePageController {
         sortBys.add("คะเเนนโหวตน้อยที่สุด");
 
         sortByChoiceBox.getItems().addAll(sortBys);
+        sortByChoiceBox.getSelectionModel().selectFirst();
         sortByChoiceBox.setOnAction(this::handleSearchSortBYChoiceBox);
     }
     private void handleSearchSortBYChoiceBox(Event event){
-        String sortBys = (String) sortByChoiceBox.getValue();
-        dataSource = new ReportFIleDataSource();
-        reportList = dataSource.readData();
-        reportList = reportList.findSortBys(sortBys);
-        showListView();
+        handleListView();
+        System.out.println("-----------------");
+
+
+    }
+    private void handleListView(){
+        filterReportList = reportList.filter(new Filterer<Report>() {
+            @Override
+            public boolean filter(Report report) {
+                if (statusChoiceBox.getValue().equals("ทั้งหมด"))
+                    return true;
+                return statusChoiceBox.getValue().equals(report.getStatus());
+            }
+        });
+        filterReportList = filterReportList.filter(new Filterer<Report>() {
+            @Override
+            public boolean filter(Report report) {
+                if (typeChoiceBox.getValue().equals("หน่วยงานทั้งหมด"))
+                    return true;
+                return typeChoiceBox.getValue().equals(report.getType());
+            }
+        });
+        ArrayList<Report> sortReportList = filterReportList.getaAllReport();
+
+        if(sortByChoiceBox.getValue().equals("คะเเนนโหวตน้อยที่สุด")) {
+            sortReportList.sort(new Comparator<Report>() {
+                @Override
+                public int compare(Report o1, Report o2) {
+                    return Integer.compare(o1.getVote(), o2.getVote());
+                }
+            });
+        }
+        if(sortByChoiceBox.getValue().equals("คะเเนนโหวตมากที่สุด")) {
+            sortReportList.sort(new Comparator<Report>() {
+                @Override
+                public int compare(Report o1, Report o2) {
+                    return -Integer.compare(o1.getVote(), o2.getVote());
+
+                }
+            });
+        }
+
+        if(sortByChoiceBox.getValue().equals("เวลาที่เเจ้งล่าสุด")) {
+            sortReportList.sort(new Comparator<Report>() {
+                @Override
+                public int compare(Report o1, Report o2) {
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    LocalDateTime dt1 = LocalDateTime.parse(o1.getReportTime(), dtf);
+                    LocalDateTime dt2 = LocalDateTime.parse(o2.getReportTime(), dtf);
+                    return -dt1.compareTo(dt2);
+                }
+
+            });
+        }
+        if(sortByChoiceBox.getValue().equals("เวลาที่เเจ้งเก่าสุด")) {
+            sortReportList.sort(new Comparator<Report>() {
+                @Override
+                public int compare(Report o1, Report o2) {
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    LocalDateTime dt1 = LocalDateTime.parse(o1.getReportTime(), dtf);
+                    LocalDateTime dt2 = LocalDateTime.parse(o2.getReportTime(), dtf);
+                    return dt1.compareTo(dt2);
+
+                }
+            });
+        }
+
+        reportListView.getItems().clear();
+        reportListView.getItems().addAll(sortReportList);
+        reportListView.refresh();
     }
 
 
@@ -183,8 +247,10 @@ public class WelcomePageController {
             @Override
             public void changed(ObservableValue<? extends Report> observable, Report oldValue, Report newValue) {
                 System.out.println("Selected item: " + newValue);
-                showSelectedReport(newValue);
-                selectedReport = newValue;
+                if(newValue != null){
+                    showSelectedReport(newValue);
+                    selectedReport = newValue;
+                }
             }
         });
     }
