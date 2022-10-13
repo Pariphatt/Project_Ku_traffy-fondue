@@ -1,4 +1,7 @@
 package ku.cs.controllers;
+import animatefx.animation.Bounce;
+import animatefx.animation.BounceIn;
+import animatefx.animation.FadeIn;
 import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +14,7 @@ import ku.cs.models.account.AccountList;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 
+
 import java.io.IOException;
 
 public class HomeController {
@@ -21,13 +25,14 @@ public class HomeController {
     public static boolean isLightMode = true;
     @FXML private Button mode;
     @FXML private AnchorPane pane;
+    @FXML private Button loginBTN;
     @FXML
     public void initialize() {
         Mode.setMode(pane);
+        new FadeIn(pane).play();
 
     }
     @FXML
-
     public void handleDarkModeButton(ActionEvent event) {
         isLightMode = !isLightMode;
         if (isLightMode) {
@@ -35,7 +40,7 @@ public class HomeController {
         } else {
             Mode.setDarkMode(pane, mode);
         }
-
+        new BounceIn(mode).play();
     }
     @FXML
     public void handleCreditButton(ActionEvent actionEvent) {
@@ -67,9 +72,11 @@ public class HomeController {
             e.printStackTrace(); //ดูว่าerorตรงไหนบ้าง
         }
     }
+
     @FXML
     public void handleSignInButton(ActionEvent actionEvent) {
         try {
+
             FXRouter.goTo("login");
         } catch (IOException e) {
             System.err.println("ไปที7หน้า login ไม่ได้");

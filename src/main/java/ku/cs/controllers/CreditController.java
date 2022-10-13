@@ -1,6 +1,8 @@
 package ku.cs.controllers;
 import java.io.IOException;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeInDown;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -15,6 +17,7 @@ public class CreditController {
     @FXML
     public void initialize() {
         Mode.setMode(pane);
+        new FadeInDown(pane).play();
     }
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {

@@ -1,4 +1,5 @@
 package ku.cs.controllers;
+import animatefx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -35,6 +36,7 @@ public class LoginController  {
         dataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = dataSource.readData();
         Mode.setMode(pane);
+        new FadeIn(pane).play();
 
 
     }
@@ -50,7 +52,9 @@ public class LoginController  {
        else {
             Account account = accountList.findUser(username.getText());
             if (account == null) {
-
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setContentText("username is incorrect.");
+                alert.show();
             } else {
                 if (!account.isPassword(password.getText())) {
                     account.loginFailed();
@@ -58,15 +62,13 @@ public class LoginController  {
                     alert.setContentText("password is incorrect.");
                     alert.show();
                 }
+
                 else {
                     account.loginPass();
                     dataSource.writeData(accountList);
                     if (account instanceof StaffAccount) {
                         try {
                             com.github.saacsos.FXRouter.goTo("staff_homepage", account.getUsername());
-                            AccountListDataSource <StaffAccount> staffAccountAccountListDataSource = new
-                                    AccountListDataSource<>("assets","log.csv");
-                            staffAccountAccountListDataSource.log((StaffAccount) account);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -74,9 +76,6 @@ public class LoginController  {
                     } else if (account instanceof UserAccount) {
                         try {
                             com.github.saacsos.FXRouter.goTo("welcome_page", account.getUsername());
-                            AccountListDataSource <UserAccount> userAccountAccountListDataSource = new
-                                    AccountListDataSource<>("assets","log.csv");
-                           userAccountAccountListDataSource.log((UserAccount) account);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

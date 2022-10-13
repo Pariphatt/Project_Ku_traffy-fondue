@@ -25,7 +25,7 @@
             <Image url="@images/kulogo.png" />
          </image>
       </ImageView>
-      <Button layoutX="327.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleSignInButton" prefHeight="51.0" prefWidth="113.0" stylesheets="@styles/style.css" text="Sign in">
+      <Button fx:id="loginBTN" layoutX="327.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleSignInButton" prefHeight="51.0" prefWidth="113.0" stylesheets="@styles/style.css" text="Sign in">
          <font>
             <Font size="24.0" />
          </font>
