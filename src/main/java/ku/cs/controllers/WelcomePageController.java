@@ -37,6 +37,7 @@ public class WelcomePageController {
     @FXML private ChoiceBox typeChoiceBox;
     @FXML private ChoiceBox statusChoiceBox;
     @FXML private ChoiceBox sortByChoiceBox;
+    @FXML private TextArea reasonsTextArea;
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
@@ -44,13 +45,14 @@ public class WelcomePageController {
     private ReportList reportList;
     private Report selectedReport;
     private DataSource<AccountList> accountListDataSource;
+    private Alert alert;
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
         userShow.setImage(new Image(imagePic.toURI().toString()));
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
-
+        alert = new Alert(Alert.AlertType.NONE);
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
         userLabel.setText(account.getUsername());
 
@@ -69,7 +71,7 @@ public class WelcomePageController {
         detailTextArea.setDisable(true);
     }
     private void sortListView(){
-        ArrayList<Report> reports = reportList.getaAllReport();
+        ArrayList<Report> reports = reportList.getAllReport();
         reports.sort(new Comparator<Report>() {
             @Override
             public int compare(Report o1, Report o2) {
@@ -86,7 +88,7 @@ public class WelcomePageController {
 
     private void showListView(){
         reportListView.getItems().clear();
-        reportListView.getItems().addAll(reportList.getaAllReport());
+        reportListView.getItems().addAll(reportList.getAllReport());
         reportListView.refresh();
     }
 
@@ -200,6 +202,29 @@ public class WelcomePageController {
         } catch (IOException e) {
             System.err.println(e);
         }
+    }
+    @FXML
+    public void handleImpoliticButton(ActionEvent actionEvent){
+            String reasons = reasonsTextArea.getText();
+           if (selectedReport == null){
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดเลือกเรื่องในการร้องเรียน");
+            alert.show();
+            }
+            else if (reasons.isEmpty()){
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setContentText("โปรดกรอกเหตุผลในการร้องเรียน");
+                alert.show();
+            }
+            else {
+                ReportFIleDataSource reportPost = new ReportFIleDataSource("assets","report_post.csv");
+                reportPost.reportPost(selectedReport,reasons);
+               reasonsTextArea.clear();
+               alert.setAlertType(Alert.AlertType.INFORMATION);
+               alert.setContentText("ส่งการรายงานสำเร็จ");
+               alert.show();
+
+            }
     }
 
 }
