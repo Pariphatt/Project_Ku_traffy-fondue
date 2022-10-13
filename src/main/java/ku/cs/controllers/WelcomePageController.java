@@ -13,9 +13,12 @@ import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
+import ku.cs.models.reports.Vote;
+import ku.cs.models.reports.VoteList;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 import ku.cs.services.ReportFIleDataSource;
+import ku.cs.services.VoteDataSource;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,13 +47,16 @@ public class WelcomePageController {
     private ReportList reportList;
     private Report selectedReport;
     private DataSource<AccountList> accountListDataSource;
+
+    private VoteList voteList;
+    private DataSource<VoteList> voteListDataSource;
+
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
         userShow.setImage(new Image(imagePic.toURI().toString()));
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
-
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
         userLabel.setText(account.getUsername());
 
@@ -65,8 +71,10 @@ public class WelcomePageController {
         showStatusChoiceBox();
         showTypeChoiceBox();
 
-
         detailTextArea.setDisable(true);
+
+        voteListDataSource = new VoteDataSource("assets","votes.csv");
+        voteList = voteListDataSource.readData();
     }
     private void sortListView(){
         ArrayList<Report> reports = reportList.getaAllReport();
@@ -155,6 +163,12 @@ public class WelcomePageController {
                 selectedReport = newValue;
             }
         });
+    }
+
+    public void handleVoteButton(ActionEvent actionEvent){
+        Vote vote = new Vote("test", account.getUsername(), 1);
+        voteList.addVote(vote);
+        voteListDataSource.writeData(voteList);
     }
 
     @FXML
