@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import com.github.saacsos.FXRouter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.UserAccount;
@@ -50,6 +52,7 @@ public class RegisterController {
     private AccountList accountList;
 
     private File file;
+    @FXML private AnchorPane pane;
 
     @FXML
     public void initialize() {
@@ -61,6 +64,8 @@ public class RegisterController {
             System.out.println(account.getRole());
         }
         alert = new Alert(Alert.AlertType.NONE);
+        Mode.setMode(pane);
+
     }
 
 

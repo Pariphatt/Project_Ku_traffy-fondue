@@ -7,7 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
@@ -48,6 +50,7 @@ public class RegisterStaffController {
     private Account accounts;
     private Alert alert;
     private File file;
+    @FXML private AnchorPane pane;
     @FXML
     public void initialize() {
         accounts = new Account();
@@ -58,6 +61,7 @@ public class RegisterStaffController {
         alert = new Alert(Alert.AlertType.NONE);
         AccountListDataSource accountListDataSource1 = new AccountListDataSource("assets", "accounts.csv");
         accountList = accountListDataSource1.readData();
+        Mode.setMode(pane);
 
     }
 

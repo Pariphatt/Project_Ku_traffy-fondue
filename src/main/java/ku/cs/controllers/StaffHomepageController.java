@@ -6,6 +6,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
@@ -39,6 +41,7 @@ public class StaffHomepageController {
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private Report report;
+    @FXML private AnchorPane pane;
 
 
 
@@ -50,6 +53,7 @@ public class StaffHomepageController {
 //        showListView(reportList);
 //        detailTextArea.setDisable(true);
         staff = (StaffAccount) userList.findUser((String) FXRouter.getData());
+        Mode.setMode(pane);
 ////        System.out.println(report.getUserName());
 //        System.out.println(staff.getUsername());
 //        //showChoiceBox();

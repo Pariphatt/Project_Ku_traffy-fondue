@@ -1,17 +1,17 @@
 package ku.cs.controllers;
-import com.github.saacsos.FXRouter;
+import animatefx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.StaffAccount;
 import ku.cs.models.account.UserAccount;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
-import ku.cs.services.ThemeMode;
 
 import java.io.IOException;
 
@@ -26,19 +26,18 @@ public class LoginController  {
 
     private DataSource<AccountList> dataSource;
     private AccountList accountList;
-
     @FXML private AnchorPane pane;
 
-    @FXML private Button mode;
-    public static boolean isLightMode = true;
-    private StaffAccount staff;
+
+
     @FXML
     public void initialize() {
         alert = new Alert(Alert.AlertType.NONE);
         dataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = dataSource.readData();
+        Mode.setMode(pane);
+        new FadeIn(pane).play();
 
-//        ThemeMode.setThemeMode(pane);
 
     }
     public void handleLoginButton(ActionEvent actionEvent){
@@ -53,7 +52,9 @@ public class LoginController  {
        else {
             Account account = accountList.findUser(username.getText());
             if (account == null) {
-
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setContentText("username is incorrect.");
+                alert.show();
             } else {
                 if (!account.isPassword(password.getText())) {
                     account.loginFailed();
@@ -61,15 +62,13 @@ public class LoginController  {
                     alert.setContentText("password is incorrect.");
                     alert.show();
                 }
+
                 else {
                     account.loginPass();
                     dataSource.writeData(accountList);
                     if (account instanceof StaffAccount) {
                         try {
                             com.github.saacsos.FXRouter.goTo("staff_homepage", account.getUsername());
-                            AccountListDataSource <StaffAccount> staffAccountAccountListDataSource = new
-                                    AccountListDataSource<>("assets","log.csv");
-                            staffAccountAccountListDataSource.log((StaffAccount) account);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -77,9 +76,6 @@ public class LoginController  {
                     } else if (account instanceof UserAccount) {
                         try {
                             com.github.saacsos.FXRouter.goTo("welcome_page", account.getUsername());
-                            AccountListDataSource <UserAccount> userAccountAccountListDataSource = new
-                                    AccountListDataSource<>("assets","log.csv");
-                           userAccountAccountListDataSource.log((UserAccount) account);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -96,16 +92,7 @@ public class LoginController  {
        }
     }
 
-    @FXML
 
-    public void handleDarkModeButton(ActionEvent event) {
-        isLightMode = !isLightMode;
-        if (isLightMode) {
-            ThemeMode.setLightMode(pane, mode);
-        } else {
-            ThemeMode.setDarkMode(pane, mode);
-        }
-    }
 
 
     public void handleBackButton(ActionEvent actionEvent){

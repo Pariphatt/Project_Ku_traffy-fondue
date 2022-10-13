@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.GuideBookController">
+<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.GuideBookController">
    <children>
       <Label layoutX="322.0" layoutY="51.0" text="คู่มือการใช้งานโปรแกรม">
          <font>
@@ -22,5 +24,135 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <VBox layoutX="24.0" layoutY="160.0" prefHeight="277.0" prefWidth="752.0">
+         <children>
+            <Label text="1. Username  ไม่สามารถซ้ำกันได้ต้องมีมากกว่า 3 ตัวเเละต้องเป็นภาษาอังกฤษ Password ต้องเป็นภาษาอังกฤษต้องมากกว่า 6 เเละต้องไม่เกิน 20 ตัว">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="2. ในช่องอัพโหลดรูปภาพไม่ควรที่จะอัพโหลดไฟล์ที่ไม่ใช่รูปภาพลงไปในโปรแกรมควรที่จะเป็น jpg และ png">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="3. ข้อมูลสำหรับใส่เข้าไปที่ช่องร้องเรียนควรจะใช้คำที่เหมาะสมและสุภาพ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="4. สามารถดูเรื่องร้องเรียนของผู้ใช้งานทั่วไปในระบบได้ ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="5. ในช่องอัพโหลดรูปภาพไม่ควรที่จะอัพโหลดไฟล์ที่ไม่ใช่รูปภาพลงไปในโปรแกรมควรที่จะเป็น gif,jpg,png">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="6. ควรที่จะมีมารยาทในการใช้งานโปรแกรมเนื่องจากโปรแกรมถูกสร้างมาให้เป็นสาธารณะโดยที่แอดมินสามารถระงับการใช้งานผู้ใช้ได้">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="7. สามารถแก้ไขข้อมูลโปรไฟล์ได้ในหน้า &quot;Setting&quot;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="8. และสามารถจัดเรียงลำดับของเรื่องร้องเรียนได้จาก sort by,category,vote point,day,status">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="9. สามารถดูเรื่องที่ตัวเองร้องเรียนได้ในหน้า &quot;My Report&quot;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="10. สามารถ Vote เรื่องร้องเรียนของผู้ใช้อื่นๆได้">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="11.">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="12.">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="13. ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+            <Label text="14. ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-prompt" />
+                  <String fx:value="fill-text-color" />
+               </styleClass>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

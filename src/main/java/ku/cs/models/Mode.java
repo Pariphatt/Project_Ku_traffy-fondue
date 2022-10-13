@@ -1,27 +1,27 @@
-package ku.cs.services;
+package ku.cs.models;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import ku.cs.controllers.HomeController;
 import ku.cs.controllers.LoginController;
 
-public class ThemeMode {
-
-//    public static void setThemeMode(AnchorPane parent) {
-//        if (LoginController.isLightMode) {
-//            setLightMode(parent);
-//        } else {
-//            setDarkMode(parent);
-//        }
-//    }
+public class Mode {
+    public static void setMode(AnchorPane parent) {
+        if (HomeController.isLightMode) {
+            setLightMode(parent);
+        } else {
+            setDarkMode(parent);
+        }
+    }
 
     public static void setLightMode(AnchorPane parent) {
         parent.getStylesheets().clear();
-        parent.getStylesheets().add(ThemeMode.class.getResource("/ku/cs/styles/style.css").toExternalForm());
+        parent.getStylesheets().add(Mode.class.getResource("/ku/cs/styles/style.css").toExternalForm());
     }
 
     public static void setDarkMode(AnchorPane parent) {
         parent.getStylesheets().clear();
-        parent.getStylesheets().add(ThemeMode.class.getResource("/ku/cs/styles/dark-mode.css").toExternalForm());
+        parent.getStylesheets().add(Mode.class.getResource("/ku/cs/styles/darkMode.css").toExternalForm());
     }
 
     public static void setLightMode(AnchorPane parent, Button mode) {
@@ -33,5 +33,4 @@ public class ThemeMode {
         setDarkMode(parent);
         mode.setText("Light Mode");
     }
-
 }
