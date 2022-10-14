@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportUserController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportUserController">
    <children>
-      <ListView layoutX="63.0" layoutY="136.0" prefHeight="426.0" prefWidth="288.0" />
+      <ListView fx:id="userIssueListView" layoutX="63.0" layoutY="136.0" prefHeight="426.0" prefWidth="288.0" />
       <Button layoutX="668.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="24.0" prefWidth="69.0" text="Back" />
       <Text fill="#2218d9" layoutX="63.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="รายชื่อผู้ใช้ที่ถูกรายงาน" underline="true">
          <font>
@@ -21,14 +21,13 @@
       <Label layoutX="384.0" layoutY="202.0" text="จำนวนครั้งที่พยายามเข้าสู่ระบบ" />
       <ImageView fitHeight="108.0" fitWidth="139.0" layoutX="610.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="386.0" layoutY="253.0" text="สถานะ" />
-      <Label layoutX="386.0" layoutY="300.0" prefHeight="18.0" prefWidth="53.0" text="Massge " />
-      <Button layoutX="383.0" layoutY="336.0" mnemonicParsing="false" text="Ban" />
-      <Button layoutX="375.0" layoutY="457.0" mnemonicParsing="false" text="UnBan" />
-      <Label layoutX="454.0" layoutY="158.0" text="userNameLabel" />
-      <Label layoutX="541.0" layoutY="202.0" text="loginAttemptsLabel" />
-      <Label layoutX="426.0" layoutY="253.0" text="statusLabel" />
-      <Label layoutX="440.0" layoutY="300.0" prefHeight="18.0" prefWidth="299.0" text="messageLabel" />
-      <Label layoutX="379.0" layoutY="432.0" text="คำขอปลดแบน" />
-      <Label layoutX="471.0" layoutY="431.0" prefHeight="18.0" prefWidth="244.0" text="resonUnbanLabel" />
+      <Label layoutX="386.0" layoutY="300.0" prefHeight="18.0" prefWidth="53.0" text="Reason" />
+      <Button layoutX="383.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleBanButton" text="Ban" />
+      <Label fx:id="userNameLabel" layoutX="454.0" layoutY="158.0" text="userNameLabel" />
+      <Label fx:id="loginAttemptsLabel" layoutX="541.0" layoutY="202.0" text="loginAttemptsLabel" />
+      <Label fx:id="banLabel" layoutX="426.0" layoutY="253.0" text="banLabel" />
+      <Label fx:id="reasonLabel" layoutX="440.0" layoutY="300.0" prefHeight="18.0" prefWidth="299.0" text="reasonLabel" />
+      <Label layoutX="359.0" layoutY="432.0" text="คำขอปลดแบน" />
+      <Button layoutX="645.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleGoToBannedUserButton" prefHeight="26.0" prefWidth="131.0" text="goToBannedUser" />
    </children>
 </AnchorPane>

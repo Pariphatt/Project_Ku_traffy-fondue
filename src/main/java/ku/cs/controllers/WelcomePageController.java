@@ -11,11 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
+import ku.cs.models.account.UserAccount;
+import ku.cs.models.issue.UserIssue;
+import ku.cs.models.issue.UserListIssue;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
-import ku.cs.services.AccountListDataSource;
-import ku.cs.services.DataSource;
-import ku.cs.services.ReportFIleDataSource;
+import ku.cs.services.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,14 +39,20 @@ public class WelcomePageController {
     @FXML private ChoiceBox statusChoiceBox;
     @FXML private ChoiceBox sortByChoiceBox;
     @FXML private TextArea reasonsTextArea;
+    @FXML private TextArea reasonsUserTextArea;
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private Report selectedReport;
+    private UserAccount selectedAccount;
     private DataSource<AccountList> accountListDataSource;
     private Alert alert;
+    private AccountList accountList;
+    private UserListIssueDataSource userListIssueDataSource;
+    private UserListIssue userListIssue;
+
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
         userShow.setImage(new Image(imagePic.toURI().toString()));
@@ -58,6 +65,11 @@ public class WelcomePageController {
 
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
+
+
+        userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
+        userListIssue = userListIssueDataSource.readData();
+        accountList = userListDataSource.readData();
 
         showListView();
         clearSelectedReport();
@@ -155,6 +167,8 @@ public class WelcomePageController {
                 System.out.println("Selected item: " + newValue);
                 showSelectedReport(newValue);
                 selectedReport = newValue;
+                System.out.println(newValue.getUserReport());
+                selectedAccount = (UserAccount) accountList.findUser(newValue.getUserReport());
             }
         });
     }
@@ -225,6 +239,30 @@ public class WelcomePageController {
                alert.show();
 
             }
+    }
+
+    @FXML
+    public void handleReportUserButton(ActionEvent actionEvent) {
+        String reasons = reasonsUserTextArea.getText();
+        if (selectedReport == null) {
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดเลือกเรื่องในการร้องเรียน");
+            alert.show();
+        } else if (reasons.isEmpty()) {
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดกรอกเหตุผลในการร้องเรียน");
+            alert.show();
+        } else {
+            UserListIssueDataSource reportUser = new UserListIssueDataSource();
+            userListIssue.addUserIssue(new UserIssue(selectedReport.getUserReport(), 0,false,reasons));
+            reportUser.writeData(userListIssue);
+            reasonsTextArea.clear();
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("ส่งการรายงานสำเร็จ");
+            alert.show();
+            reasonsUserTextArea.clear();
+            System.out.println("090909090");
+        }
     }
 
 }

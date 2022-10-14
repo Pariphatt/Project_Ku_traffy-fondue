@@ -39,6 +39,8 @@ public class ProjectApplication extends Application {
         FXRouter.when("RegisterStaff", packageStr+"RegisterStaff.fxml");
         FXRouter.when("manage_reports", packageStr+"manage_reports.fxml");
         FXRouter.when("report_complain", packageStr+"report_complain.fxml");
+        FXRouter.when("request_unBan", packageStr+"request_unBan.fxml");
+        FXRouter.when("banned_user", packageStr+"banned_user.fxml");
     }
     public static void main(String[] args) {
         launch();

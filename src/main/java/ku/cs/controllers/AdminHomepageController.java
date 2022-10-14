@@ -13,17 +13,17 @@ import javafx.scene.layout.*;
 import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
-import ku.cs.models.account.StaffAccount;
+import ku.cs.models.issue.UserListIssue;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
+import ku.cs.services.BannedUserListFileDataSource;
+import ku.cs.services.UserListIssueDataSource;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -34,6 +34,8 @@ public class AdminHomepageController {
     private Account account;
     private AccountList userList;
     private AccountList accountsList;
+    private UserListIssueDataSource userListIssueDataSource;
+    private UserListIssue userListIssue;
 
     @FXML StackPane pane;
 
@@ -52,6 +54,10 @@ public class AdminHomepageController {
 //        accountsList = dataSource.readData();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
+        userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
+        userListIssue = userListIssueDataSource.readData();
+//        UserIssue userban = userListIssue.searchUser("pedpap");
+//        System.out.println(userban.getName());
         account = userList.findUser((String) FXRouter.getData());
         adminNameLabel.setText(account.getUsername());
         Mode.setMode(pane1);
@@ -125,8 +131,9 @@ public class AdminHomepageController {
         try {
             com.github.saacsos.FXRouter.goTo("report_user",account.getUsername());
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า report_user ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด route");
+            e.printStackTrace();
+//            System.err.println("ไปที่หน้า report_user ไม่ได้");
+//            System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
 
