@@ -59,7 +59,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="447.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleCompleteButton" text="Completed" />
+      <Button fx:id="completeButton" layoutX="447.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleCompleteButton" text="Completed" />
       <TextField fx:id="solutionTextField" alignment="TOP_LEFT" layoutX="462.0" layoutY="431.0" prefHeight="98.0" prefWidth="272.0" />
       <Button fx:id="submitButton" layoutX="734.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleSubmitButton" text="Submit" />
       <TextArea fx:id="solutionTextArea" layoutX="365.0" layoutY="302.0" prefHeight="83.0" prefWidth="422.0" />

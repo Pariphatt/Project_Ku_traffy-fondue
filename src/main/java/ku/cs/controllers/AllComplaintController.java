@@ -102,7 +102,7 @@ public class AllComplaintController {
         topicLabel.setText("");
         detailTextArea.setText("");
         statusLabel.setText("");
-        voteLabel.setText("");
+//        voteLabel.setText("");
     }
 
     public void showSelectedReport(Report report){
@@ -111,7 +111,7 @@ public class AllComplaintController {
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
-        voteLabel.setText(report.getVote());
+//        voteLabel.setText(report.getVote());
     }
 
     public void showMyReport(){

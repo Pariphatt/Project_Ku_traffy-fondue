@@ -69,7 +69,7 @@ public class ManageReportsController {
                 return report.goToManage(report,staff);
             }
         });
-        reportListView.getItems().addAll(reportListFiltered.getAllReport());
+        reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();
     }
     //     @FXML
@@ -109,6 +109,11 @@ public class ManageReportsController {
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
         solutionTextArea.setText(report.getSolution());
+        if (report.getSolution().isEmpty()) {
+            submitButton.setVisible(true);
+        } else {
+            submitButton.setVisible(false);
+        }
     }
 
 
@@ -157,7 +162,11 @@ public class ManageReportsController {
         reportListView.refresh();
         showSelectedReport(selectedReport);
         dataSource.writeData(reportList);
+//        solutionTextField.setDisable(true); //ไปทำ method check
+//        setCompleteButton();
+//        showSelectedReport(selectedReport);
     }
+//    private void setCompleteButton(){completeButton.setVisible(false);}
     private void setSubmitButton(){
         submitButton.setVisible(false);
     }

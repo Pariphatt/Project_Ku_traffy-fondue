@@ -2,8 +2,10 @@ package ku.cs.models.reports;
 
 import ku.cs.models.account.Account;
 import ku.cs.services.Filterer;
+import ku.cs.services.IllegalConditionException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ReportList {
     private ArrayList<Report> reports;
@@ -78,4 +80,10 @@ public class ReportList {
         return false;
     }
 }
+
+
+
+
+
+
 
