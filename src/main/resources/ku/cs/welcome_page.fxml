@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.WelcomePageController">
    <children>
@@ -171,29 +172,32 @@
                         <Label layoutX="14.0" layoutY="18.0" text="Status" />
                         <Label layoutX="94.0" layoutY="18.0" text="Type" />
                         <Label layoutX="174.0" layoutY="18.0" text="Sort By" />
-                        <TextField layoutX="53.0" layoutY="85.0" prefHeight="25.0" prefWidth="39.0" />
-                        <TextField layoutX="53.0" layoutY="117.0" prefHeight="25.0" prefWidth="39.0" />
-                        <Label layoutX="19.0" layoutY="89.0" text="Max" />
-                        <Label layoutX="20.0" layoutY="121.0" text="Min" />
-                        <Label layoutX="254.0" layoutY="89.0" text="Type :" />
-                        <Label layoutX="239.0" layoutY="119.0" text="Agency :" />
-                        <Label layoutX="252.0" layoutY="150.0" text="Topic :" />
-                        <Label fx:id="topicLabel" layoutX="300.0" layoutY="150.0" text="topicLabel" />
-                        <Label layoutX="251.0" layoutY="178.0" text="Detail :" />
-                        <TextArea fx:id="detailTextArea" layoutX="300.0" layoutY="178.0" prefHeight="200.0" prefWidth="180.0" />
-                        <Label layoutX="250.0" layoutY="386.0" text="Status :" />
-                        <Label fx:id="statusLabel" layoutX="300.0" layoutY="386.0" text="statusLabel" />
-                        <Label layoutX="258.0" layoutY="413.0" text="Vote :" />
-                        <Label fx:id="voteLabel" layoutX="300.0" layoutY="413.0" text="voteLabel" />
-                        <Label fx:id="agencyLabel" layoutX="297.0" layoutY="119.0" text="agencyLabel" />
-                        <Label fx:id="typeLabel" layoutX="298.0" layoutY="89.0" text="typeLabel" />
-                        <Button layoutX="375.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleVoteButton" styleClass="search_button" stylesheets="@styles/style.css" text="Vote" textFill="WHITE">
+                        <TextField fx:id="maxTextField" layoutX="93.0" layoutY="85.0" prefHeight="25.0" prefWidth="39.0" />
+                        <TextField fx:id="minTextField" layoutX="182.0" layoutY="85.0" prefHeight="25.0" prefWidth="39.0" />
+                        <Label layoutX="66.0" layoutY="89.0" text="Max" />
+                        <Label layoutX="156.0" layoutY="89.0" text="Min" />
+                        <Label layoutX="290.0" layoutY="139.0" text="Type :" />
+                        <Label layoutX="275.0" layoutY="169.0" text="Agency :" />
+                        <Label layoutX="288.0" layoutY="200.0" text="Topic :" />
+                        <Label fx:id="topicLabel" layoutX="336.0" layoutY="200.0" text="topicLabel" />
+                        <Label layoutX="287.0" layoutY="228.0" text="Detail :" />
+                        <TextArea fx:id="detailTextArea" layoutX="336.0" layoutY="228.0" prefHeight="200.0" prefWidth="180.0" />
+                        <Label layoutX="286.0" layoutY="436.0" text="Status :" />
+                        <Label fx:id="statusLabel" layoutX="336.0" layoutY="436.0" text="statusLabel" />
+                        <Label layoutX="294.0" layoutY="463.0" text="Vote :" />
+                        <Label fx:id="voteLabel" layoutX="336.0" layoutY="463.0" text="voteLabel" />
+                        <Label fx:id="agencyLabel" layoutX="333.0" layoutY="169.0" text="agencyLabel" />
+                        <Label fx:id="typeLabel" layoutX="334.0" layoutY="139.0" text="typeLabel" />
+                        <Button layoutX="367.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleVoteButton" styleClass="search_button" stylesheets="@styles/style.css" text="Vote" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Label layoutX="258.0" layoutY="442.0" text="Date :" />
-                        <Label fx:id="dateLabel" layoutX="298.0" layoutY="442.0" text="dateLabel" />
+                        <Label layoutX="294.0" layoutY="492.0" text="Date :" />
+                        <Label fx:id="dateLabel" layoutX="334.0" layoutY="492.0" text="dateLabel" />
+                        <Text layoutX="139.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+                        <Text layoutX="19.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votes :" />
+                        <Button layoutX="246.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleSearchVoteButton" prefHeight="25.0" prefWidth="58.0" text="search" />
                      </children>
                   </Pane>
                </children>

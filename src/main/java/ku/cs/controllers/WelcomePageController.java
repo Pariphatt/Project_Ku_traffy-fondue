@@ -38,6 +38,7 @@ public class WelcomePageController {
     @FXML private ChoiceBox typeChoiceBox;
     @FXML private ChoiceBox statusChoiceBox;
     @FXML private ChoiceBox sortByChoiceBox;
+    private Alert alert;
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
@@ -52,6 +53,10 @@ public class WelcomePageController {
     private ReportList filterReportList;
 
     private ArrayList<Report> sortReportList;
+
+    @FXML private TextField maxTextField;
+
+    @FXML private TextField minTextField;
 
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
@@ -169,8 +174,6 @@ public class WelcomePageController {
     }
     private void handleSearchSortBYChoiceBox(Event event){
         handleListView();
-        System.out.println("-----------------");
-
 
     }
     private void handleListView(){
@@ -190,7 +193,21 @@ public class WelcomePageController {
                 return typeChoiceBox.getValue().equals(report.getType());
             }
         });
-        ArrayList<Report> sortReportList = filterReportList.getaAllReport();
+
+
+        if(!(maxTextField.getText().isEmpty())) {
+            filterReportList = filterReportList.filter(new Filterer<Report>() {
+                @Override
+                public boolean filter(Report report) {
+                    int min = Integer.parseInt(minTextField.getText());
+                    int max = Integer.parseInt(maxTextField.getText());
+                    return report.getVote() >= min && report.getVote() <= max;
+                }
+            });
+        }
+
+
+      ArrayList<Report> sortReportList = filterReportList.getaAllReport();
 
         if(sortByChoiceBox.getValue().equals("คะเเนนโหวตน้อยที่สุด")) {
             sortReportList.sort(new Comparator<Report>() {
@@ -233,12 +250,23 @@ public class WelcomePageController {
 
                 }
             });
+
         }
 
         reportListView.getItems().clear();
         reportListView.getItems().addAll(sortReportList);
         reportListView.refresh();
     }
+
+    @FXML
+    private void handleSearchVoteButton() {
+        handleListView();
+    }
+
+
+
+
+
 
 
 
@@ -305,5 +333,6 @@ public class WelcomePageController {
             System.err.println(e);
         }
     }
+
 
 }

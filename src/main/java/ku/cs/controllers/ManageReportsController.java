@@ -50,7 +50,6 @@ public class ManageReportsController {
         userList = userListDataSource.readData();
         detailTextArea.setEditable(false);
         solutionTextArea.setEditable(false);
-        //showChoiceBox();
         clearSelectedReport();
         handleSelectedListView();
         Mode.setMode(pane);
@@ -105,14 +104,14 @@ public class ManageReportsController {
             }
         });
     }
-    public void showSelectedReport(Report report){
+    public void showSelectedReport(Report report) {
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
         solutionTextArea.setText(report.getSolution());
-        if (report.getSolution().isEmpty()){
+        if (report.getSolution().isEmpty()) {
             submitButton.setVisible(true);
-        }else{
+        } else {
             submitButton.setVisible(false);
         }
     }
@@ -128,7 +127,7 @@ public class ManageReportsController {
                 return report.getTopic().contains(input);
             }
         });
-        if (input == ""){
+        if (input.equals("")){
             reportList = dataSource.readData();
         }
         reportListView.getItems().clear();
