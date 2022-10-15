@@ -16,6 +16,7 @@ public class Report {
     private String type;
     private String staffReport; //เปลี่ยนชื่อ
     private String reportTime;
+    private String reasonsPost;
 
     public Report(String topic, String detail,String userReport,String type,String agency,String reportTime){
         this.topic = topic;
@@ -61,7 +62,20 @@ public class Report {
         this.status = "ยังไม่ดำเนินการ";
         this.solution = " ";
     }
+    public Report(String topic, String type,String detail,String reasonsPost){
+        this.topic = topic;
+        this.detail = detail;
+        this.type = type;
+        this.reasonsPost = reasonsPost;
+    }
 
+    public String getReasonsPost() {
+        return reasonsPost;
+    }
+
+    public void setReasonsPost(String reasonsPost) {
+        this.reasonsPost = reasonsPost;
+    }
 
     public String getSolution() {
         return solution;
@@ -97,7 +111,9 @@ public class Report {
         return topic + "("+vote+")"  +"    "+reportTime;
     }
 
-    public void setVote(int vote) {this.vote = vote;}
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
 
     public void setStatus(String status){
         this.status = status;

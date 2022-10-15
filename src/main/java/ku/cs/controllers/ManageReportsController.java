@@ -69,7 +69,7 @@ public class ManageReportsController {
                 return report.goToManage(report,staff);
             }
         });
-        reportListView.getItems().addAll(reportListFiltered.getaAllReport());
+        reportListView.getItems().addAll(reportListFiltered.getAllReport());
         reportListView.refresh();
     }
     //     @FXML

@@ -4,7 +4,6 @@ import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -15,7 +14,6 @@ import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
 import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
-import ku.cs.services.Filterer;
 import ku.cs.services.ReportFIleDataSource;
 
 import java.io.File;
@@ -66,7 +64,7 @@ public class AllComplaintController {
     }
 
     private void sortListView(){
-        ArrayList<Report> reports = reportList.getaAllReport();
+        ArrayList<Report> reports = reportList.getAllReport();
         reports.sort(new Comparator<Report>() {
             @Override
             public int compare(Report o1, Report o2) {
@@ -94,7 +92,7 @@ public class AllComplaintController {
 
     private void showListView(){
         reportListView.getItems().clear();
-        reportListView.getItems().addAll(reportList.getaAllReport());
+        reportListView.getItems().addAll(reportList.getAllReport());
         reportListView.refresh();
     }
 

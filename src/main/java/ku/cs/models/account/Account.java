@@ -13,6 +13,10 @@ public class Account {
     private String role;
 
 
+    public void setLoginAttempts() {
+        this.loginAttempts += 1;
+    }
+
     public Account(String name, String username, String password) {
         this.name = name;
         this.username = username;

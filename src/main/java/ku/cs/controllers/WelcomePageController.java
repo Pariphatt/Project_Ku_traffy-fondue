@@ -11,6 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
+import ku.cs.models.account.UserAccount;
+import ku.cs.models.issue.UserIssue;
+import ku.cs.models.issue.UserListIssue;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
 import ku.cs.models.reports.Vote;
@@ -19,6 +22,7 @@ import ku.cs.services.AccountListDataSource;
 import ku.cs.services.DataSource;
 import ku.cs.services.ReportFIleDataSource;
 import ku.cs.services.VoteDataSource;
+import ku.cs.services.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,14 +44,21 @@ public class WelcomePageController {
     @FXML private ChoiceBox typeChoiceBox;
     @FXML private ChoiceBox statusChoiceBox;
     @FXML private ChoiceBox sortByChoiceBox;
-    private Alert alert;
+    @FXML private TextArea reasonsTextArea;
+    @FXML private TextArea reasonsUserTextArea;
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private Report selectedReport;
+    private UserAccount selectedAccount;
     private DataSource<AccountList> accountListDataSource;
+    private Alert alert;
+    private AccountList accountList;
+    private UserListIssueDataSource userListIssueDataSource;
+    private UserListIssue userListIssue;
+
     private Vote selectedVote;
     private VoteList voteList;
     private DataSource<VoteList> voteListDataSource;
@@ -61,11 +72,17 @@ public class WelcomePageController {
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         account = userList.findUser((String) FXRouter.getData());
+
         userShow.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
         userLabel.setText(account.getUsername());
 
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
+
+
+        userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
+        userListIssue = userListIssueDataSource.readData();
+        accountList = userListDataSource.readData();
 
         showListView();
         clearSelectedReport();
@@ -74,6 +91,7 @@ public class WelcomePageController {
 
         showStatusChoiceBox();
         showTypeChoiceBox();
+
 
         detailTextArea.setDisable(true);
 
@@ -166,6 +184,8 @@ public class WelcomePageController {
                 System.out.println("Selected item: " + newValue);
                 showSelectedReport(newValue);
                 selectedReport = newValue;
+                System.out.println(newValue.getUserReport());
+                selectedAccount = (UserAccount) accountList.findUser(newValue.getUserReport());
             }
         });
     }
@@ -229,6 +249,53 @@ public class WelcomePageController {
             com.github.saacsos.FXRouter.goTo("change_password", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
+        }
+    }
+    @FXML
+    public void handleImpoliticButton(ActionEvent actionEvent){
+            String reasons = reasonsTextArea.getText();
+           if (selectedReport == null){
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดเลือกเรื่องในการร้องเรียน");
+            alert.show();
+            }
+            else if (reasons.isEmpty()){
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setContentText("โปรดกรอกเหตุผลในการร้องเรียน");
+                alert.show();
+            }
+            else {
+                ReportFIleDataSource reportPost = new ReportFIleDataSource("assets","report_post.csv");
+                reportPost.reportPost(selectedReport,reasons);
+               reasonsTextArea.clear();
+               alert.setAlertType(Alert.AlertType.INFORMATION);
+               alert.setContentText("ส่งการรายงานสำเร็จ");
+               alert.show();
+
+            }
+    }
+
+    @FXML
+    public void handleReportUserButton(ActionEvent actionEvent) {
+        String reasons = reasonsUserTextArea.getText();
+        if (selectedReport == null) {
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดเลือกเรื่องในการร้องเรียน");
+            alert.show();
+        } else if (reasons.isEmpty()) {
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดกรอกเหตุผลในการร้องเรียน");
+            alert.show();
+        } else {
+            UserListIssueDataSource reportUser = new UserListIssueDataSource();
+            userListIssue.addUserIssue(new UserIssue(selectedReport.getUserReport(), 0,false,reasons));
+            reportUser.writeData(userListIssue);
+            reasonsTextArea.clear();
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("ส่งการรายงานสำเร็จ");
+            alert.show();
+            reasonsUserTextArea.clear();
+            System.out.println("090909090");
         }
     }
 
