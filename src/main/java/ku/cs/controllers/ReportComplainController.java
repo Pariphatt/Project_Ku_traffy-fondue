@@ -21,42 +21,51 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ReportComplainController {
-    @FXML private AnchorPane pane;
-
-    @FXML private ListView<String> complainListView;
-    @FXML private Label typeLabel;
-    @FXML private Label topicLabel;
-    @FXML private TextArea detailTextArea;
-    @FXML private TextArea reasonsTextArea;
+    @FXML
+    private AnchorPane pane;
+    @FXML
+    private ListView<String> complainListView;
+    @FXML
+    private Label typeLabel;
+    @FXML
+    private Label topicLabel;
+    @FXML
+    private TextArea detailTextArea;
+    @FXML
+    private TextArea reasonsTextArea;
     private List<Report> reportPostLists;
-    private  String selectedReportTopic;
-    private  Report tempReport = null;
-    private  ArrayList<String>   arrayList;
+    private String selectedReportTopic;
+    private Report tempReport = null;
+    private ArrayList<String> arrayList;
+
+    private ReportFIleDataSource reportFIleDataSource;
 
 
     @FXML
     public void initialize() {
         Mode.setMode(pane);
-        ReportFIleDataSource reportFIleDataSource = new ReportFIleDataSource("assets","report_post.csv");
-         reportPostLists = reportFIleDataSource.readReportPost();
-         detailTextArea.setEditable(false);
+        reportFIleDataSource = new ReportFIleDataSource("assets", "report_post.csv");
+        reportPostLists = reportFIleDataSource.readReportPost();
+        detailTextArea.setEditable(false);
         reasonsTextArea.setEditable(false);
         handleSelectedListView();
         arrayList = new ArrayList<>();
-        for(Report reportTemp: reportPostLists){
-           arrayList.add(reportTemp.getTopic());
+        for (Report reportTemp : reportPostLists) {
+            arrayList.add(reportTemp.getTopic());
         }
         showListView();
     }
-    public void showListView(){
 
-        for(String reportTemp: arrayList){
+    public void showListView() {
+
+        for (String reportTemp : arrayList) {
             complainListView.getItems().add(reportTemp);
         }
 //            complainListView.getItems().addAll(allTopic);
 
     }
-    private void handleSelectedListView(){
+
+    private void handleSelectedListView() {
         complainListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -66,22 +75,24 @@ public class ReportComplainController {
             }
         });
     }
-    public void showSelectedReport(String title){
+
+    public void showSelectedReport(String title) {
         topicLabel.setText(title);
-         tempReport = null;
-         for(Report reportTemp: reportPostLists){
-            if (reportTemp.getTopic().equals(title)){
+        tempReport = null;
+        for (Report reportTemp : reportPostLists) {
+            if (reportTemp.getTopic().equals(title)) {
                 tempReport = reportTemp;
             }
         }
-         if (tempReport != null){
-             typeLabel.setText(tempReport.getType());
-             detailTextArea.setText(tempReport.getDetail());
-             reasonsTextArea.setText(tempReport.getReasonsPost());
+        if (tempReport != null) {
+            typeLabel.setText(tempReport.getType());
+            detailTextArea.setText(tempReport.getDetail());
+            reasonsTextArea.setText(tempReport.getReasonsPost());
 
-         }
+        }
     }
-    private void refresh(){
+
+    private void refresh() {
 
     }
 
@@ -95,6 +106,20 @@ public class ReportComplainController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
+
+    @FXML
+    void handleDeleteButton(ActionEvent actionEvent) throws IOException {
+        ReportList rl = new ReportList();
+        ReportList reportList = reportFIleDataSource.readFileDelete();
+        for (Report reportscomplaint : reportList.getaAllReport()) {
+            if (!reportscomplaint.equals(reportList.findReportComplaint(selectedReportTopic))) {
+                rl.addReport(reportscomplaint);
+            }
+        }
+        reportFIleDataSource.writeFileDelete(rl);
+        com.github.saacsos.FXRouter.goTo("report_complain");
+    }
+}
 //    @FXML
 //    public void handleDeleteButton(ActionEvent actionEvent) {
 //        if (tempReport != null){
@@ -114,4 +139,4 @@ public class ReportComplainController {
 ////           showListView();
 //        }
 //    }
-}
+

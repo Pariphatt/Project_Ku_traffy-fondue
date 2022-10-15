@@ -263,4 +263,73 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             }
         }
     }
+    public ReportList readFileDelete(){
+        ReportList reportList = new ReportList();
+        String filePath = directoryName + File.separator + fileName;
+        File file = new File(filePath);
+
+        FileReader reader = null;
+        BufferedReader buffer = null;
+        try{
+            reader = new FileReader(file);
+            buffer = new BufferedReader(reader);
+
+            String line = "";
+            while((line = buffer.readLine()) != null){
+                String[] data = line.split(",");
+
+
+                 Report report = new Report(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim());
+                   reportList.addReport(report);
+
+
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                buffer.close();
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+        return reportList;
+    }
+
+    public void writeFileDelete(ReportList reportList){
+        String filePath = directoryName + File.separator + fileName;
+        File file = new File(filePath);
+        FileWriter writer = null;
+        BufferedWriter buffer1 = null;
+        try{
+            writer = new FileWriter(file);
+            buffer1 = new BufferedWriter(writer);
+            String line = "";
+
+            for(Report report : reportList.getaAllReport()){
+                line = report.getTopic() + "," +
+                        report.getType() + "," +
+                        report.getDetail() + "," +
+                        report.getReasonsPost();
+                buffer1.append(line);
+                buffer1.newLine();
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            try {
+                writer.flush();
+                buffer1.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
 }

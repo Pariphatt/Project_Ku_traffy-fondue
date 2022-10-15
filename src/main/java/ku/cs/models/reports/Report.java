@@ -105,6 +105,8 @@ public class Report {
         return type;
     }
 
+
+
     @Override
     public String toString() {
         return topic + "("+vote+")"  +"    "+reportTime;

@@ -220,16 +220,18 @@ public class WelcomePageController {
                     int max = Integer.parseInt(maxTextField.getText());
                     return report.getVote() >= min && report.getVote() <= max;
                 }
+
             });
+
         }
 
-
-      ArrayList<Report> sortReportList = filterReportList.getaAllReport();
+        ArrayList<Report> sortReportList = filterReportList.getaAllReport();
 
         if(sortByChoiceBox.getValue().equals("คะเเนนโหวตน้อยที่สุด")) {
             sortReportList.sort(new Comparator<Report>() {
                 @Override
                 public int compare(Report o1, Report o2) {
+
                     return Integer.compare(o1.getVote(), o2.getVote());
                 }
             });
