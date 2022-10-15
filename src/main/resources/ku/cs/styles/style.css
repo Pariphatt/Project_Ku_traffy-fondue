@@ -1,8 +1,23 @@
 .background{
-    -fx-background-color : #f5fffa;
+    -fx-background-color : #ffffff;
 }
-.hide_button{
-    -fx-background-color : transparent;
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+.cube_box{
+    -fx-background-radius: 30;
+}
+.color_theme_0{
+    -fx-background-color: #EFEFEF;
+}
+.color_theme_1{
+    -fx-background-color: #76BA9A;
+}
+.color_theme_2{
+    -fx-background-color: #5D9379;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
 }
 .upload_button{
     -fx-background-color: #33CC66;
@@ -64,21 +79,7 @@
     -fx-background-radius: 30;
 }
 
-.transparent{
-    -fx-background-color: rgba(0,0,0,0);
-}
-
-.combo_box{
-    -fx-background-color: rgba(255,255,255,1);
-    -fx-background-radius: 30;
-}
-
-.shadow{
-    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
-}
-
-.button-change_password
-{
+.button-change_password {
     -fx-border-color: #D35400;
     -fx-background-color: transparent;
     -fx-text-fill: #D35400;
@@ -111,8 +112,7 @@
     -fx-border-radius: 25px;
 }
 
-.button-mode:hover
-{
+.button-mode:hover {
     -fx-border-color: black;
     -fx-background-color: black;
     -fx-text-fill: linear-gradient(to right,white,white);

@@ -180,7 +180,6 @@ public class WelcomePageController {
     }
     public void showSortByChoiceBox(){
         ArrayList<String> sortBys = new ArrayList<>();
-        sortBys.add("เวลาที่เเจ้งเเละโหวตทั้งหมด");
         sortBys.add("เวลาที่เเจ้งล่าสุด");
         sortBys.add("เวลาที่เเจ้งเก่าสุด");
         sortBys.add("คะเเนนโหวตมากที่สุด");
@@ -281,13 +280,6 @@ public class WelcomePageController {
         handleListView();
     }
 
-
-
-
-
-
-
-
     private void handleSelectedListView(){
         reportListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Report>() {
             @Override
@@ -302,8 +294,8 @@ public class WelcomePageController {
     }
 
     public void handleVoteButton(ActionEvent actionEvent){
-        if ((voteList.isExistTopic(selectedReport.getTopic()) && voteList.isExistUserReport(account.getUsername()))
-                || (selectedReport.getTopic() == null && account.getUsername() == null)){
+        if (voteList.isExistEverVote(selectedReport.getTopic()+account.getUsername())
+                || (selectedReport.getTopic()+account.getUsername() == null)){
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("คุณโหวตไปแล้ว");
             alert.show();
@@ -312,7 +304,7 @@ public class WelcomePageController {
             reportListView.refresh();
             showSelectedReport(selectedReport);
             dataSource.writeData(reportList);
-            Vote vote = new Vote(selectedReport.getTopic(), account.getUsername());
+            Vote vote = new Vote(selectedReport.getTopic() + account.getUsername());
             voteList.addVote(vote);
             voteListDataSource.writeData(voteList);
         }
@@ -401,7 +393,7 @@ public class WelcomePageController {
             UserListIssueDataSource reportUser = new UserListIssueDataSource();
             userListIssue.addUserIssue(new UserIssue(selectedReport.getUserReport(), 0,false,reasons));
             reportUser.writeData(userListIssue);
-            reasonsTextArea.clear();
+            reasonsUserTextArea.clear();
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("ส่งการรายงานสำเร็จ");
             alert.show();

@@ -2,8 +2,6 @@ package ku.cs.models.reports;
 
 import ku.cs.models.account.Account;
 import ku.cs.services.Filterer;
-import ku.cs.services.IllegalConditionException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 

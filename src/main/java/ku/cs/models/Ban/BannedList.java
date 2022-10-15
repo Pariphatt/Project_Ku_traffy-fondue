@@ -13,7 +13,6 @@ public class BannedList {
 
     public Banned searchUser(String userName){
         for (Banned bannedUser:bannedUsers){
-            System.out.println(bannedUser.getUserName());
             if (bannedUser.getUserName().equals(userName)){
                 return bannedUser;
             }

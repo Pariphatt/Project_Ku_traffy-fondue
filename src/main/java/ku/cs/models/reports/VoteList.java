@@ -31,5 +31,13 @@ public class VoteList {
         return false;
     }
 
+    public boolean isExistEverVote(String everVote){
+        for (Vote vote: votes) {
+            if (vote.getTopicAndUserReport().equals(everVote)){
+                return true;
+            }
+        } return false;
+    }
+
 
 }

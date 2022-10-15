@@ -33,6 +33,7 @@ public class AllComplaintController {
     @FXML private Label statusLabel;
     @FXML private Label voteLabel;
     @FXML private ListView reportListView;
+    @FXML private TextArea solutionTextArea;
     private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
@@ -64,7 +65,7 @@ public class AllComplaintController {
     }
 
     private void sortListView(){
-        ArrayList<Report> reports = reportList.getAllReport();
+        ArrayList<Report> reports = reportList.getaAllReport();
         reports.sort(new Comparator<Report>() {
             @Override
             public int compare(Report o1, Report o2) {
@@ -92,7 +93,7 @@ public class AllComplaintController {
 
     private void showListView(){
         reportListView.getItems().clear();
-        reportListView.getItems().addAll(reportList.getAllReport());
+        reportListView.getItems().addAll(reportList.getaAllReport());
         reportListView.refresh();
     }
 
@@ -102,7 +103,7 @@ public class AllComplaintController {
         topicLabel.setText("");
         detailTextArea.setText("");
         statusLabel.setText("");
-//        voteLabel.setText("");
+        voteLabel.setText("");
     }
 
     public void showSelectedReport(Report report){
@@ -112,6 +113,7 @@ public class AllComplaintController {
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
 //        voteLabel.setText(report.getVote());
+        solutionTextArea.setText(report.getSolution());
     }
 
     public void showMyReport(){

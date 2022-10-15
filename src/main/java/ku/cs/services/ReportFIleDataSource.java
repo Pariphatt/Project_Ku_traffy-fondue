@@ -234,7 +234,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             writer = new FileWriter(file);
             buffer = new BufferedWriter(writer);
 
-            for (Report report : reportList.getAllReport()){
+            for (Report report : reportList.getaAllReport()){
                 String line = report.getTopic().trim() + ","
                         + report.getDetail().trim() + ","
                         + report.getUserReport().trim()+","
