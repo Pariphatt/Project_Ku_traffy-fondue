@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.UserAccount;
@@ -34,12 +36,12 @@ import java.util.Comparator;
 public class WelcomePageController {
     @FXML private ImageView userShow;
     @FXML private Label userLabel;
-    @FXML private Label topicLabel;
     @FXML private Label typeLabel;
     @FXML private Label agencyLabel;
     @FXML private Label statusLabel;
     @FXML private Label voteLabel;
     @FXML private Label dateLabel;
+    @FXML private TextArea topicTextArea;
     @FXML private TextArea detailTextArea;
     @FXML private ListView reportListView;
     @FXML private ChoiceBox typeChoiceBox;
@@ -67,10 +69,9 @@ public class WelcomePageController {
     private ReportList filterReportList;
 
     private ArrayList<Report> sortReportList;
-
     @FXML private TextField maxTextField;
-
     @FXML private TextField minTextField;
+    @FXML private AnchorPane pane;
 
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
@@ -98,11 +99,13 @@ public class WelcomePageController {
         showTypeChoiceBox();
         showSortByChoiceBox();
 
-        detailTextArea.setDisable(true);
+        detailTextArea.setEditable(false);
+        topicTextArea.setEditable(false);
 
         voteListDataSource = new VoteDataSource("assets","votes.csv");
         voteList = voteListDataSource.readData();
         alert = new Alert(Alert.AlertType.NONE);
+        Mode.setMode(pane);
     }
     private void sortListView(){
         ArrayList<Report> reports = reportList.getaAllReport();
@@ -129,7 +132,7 @@ public class WelcomePageController {
     private void clearSelectedReport(){
         statusLabel.setText("");
         detailTextArea.setText("");
-        topicLabel.setText("");
+        topicTextArea.setText("");
         voteLabel.setText("");
         agencyLabel.setText("");
         typeLabel.setText("");
@@ -137,7 +140,7 @@ public class WelcomePageController {
     }
 
     public void showSelectedReport(Report report){
-        topicLabel.setText(report.getTopic());
+        topicTextArea.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
         voteLabel.setText(String.valueOf(report.getVote()));
@@ -184,14 +187,12 @@ public class WelcomePageController {
         sortBys.add("เวลาที่เเจ้งเก่าสุด");
         sortBys.add("คะเเนนโหวตมากที่สุด");
         sortBys.add("คะเเนนโหวตน้อยที่สุด");
-
         sortByChoiceBox.getItems().addAll(sortBys);
         sortByChoiceBox.getSelectionModel().selectFirst();
         sortByChoiceBox.setOnAction(this::handleSearchSortBYChoiceBox);
     }
     private void handleSearchSortBYChoiceBox(Event event){
         handleListView();
-
     }
     private void handleListView(){
         filterReportList = reportList.filter(new Filterer<Report>() {
@@ -210,8 +211,6 @@ public class WelcomePageController {
                 return typeChoiceBox.getValue().equals(report.getType());
             }
         });
-
-
         if(!(maxTextField.getText().isEmpty())) {
             filterReportList = filterReportList.filter(new Filterer<Report>() {
                 @Override
@@ -222,10 +221,7 @@ public class WelcomePageController {
                 }
             });
         }
-
-
       ArrayList<Report> sortReportList = filterReportList.getaAllReport();
-
         if(sortByChoiceBox.getValue().equals("คะเเนนโหวตน้อยที่สุด")) {
             sortReportList.sort(new Comparator<Report>() {
                 @Override
@@ -239,11 +235,9 @@ public class WelcomePageController {
                 @Override
                 public int compare(Report o1, Report o2) {
                     return -Integer.compare(o1.getVote(), o2.getVote());
-
                 }
             });
         }
-
         if(sortByChoiceBox.getValue().equals("เวลาที่เเจ้งล่าสุด")) {
             sortReportList.sort(new Comparator<Report>() {
                 @Override
@@ -264,12 +258,9 @@ public class WelcomePageController {
                     LocalDateTime dt1 = LocalDateTime.parse(o1.getReportTime(), dtf);
                     LocalDateTime dt2 = LocalDateTime.parse(o2.getReportTime(), dtf);
                     return dt1.compareTo(dt2);
-
                 }
             });
-
         }
-
         reportListView.getItems().clear();
         reportListView.getItems().addAll(sortReportList);
         reportListView.refresh();

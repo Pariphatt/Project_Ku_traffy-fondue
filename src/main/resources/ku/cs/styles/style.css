@@ -7,8 +7,30 @@
 .cube_box{
     -fx-background-radius: 30;
 }
+.cube_select_main{
+    -fx-background-radius: 10;
+}
+.cube_select_main:hover{
+    -fx-border-color: #5D9379;
+    -fx-background-color: #5D9379;
+    -fx-text-fill: linear-gradient(to right,white,white);
+    -fx-background-radius: 10px;
+    -fx-color-label-visible: #5D9379;
+    -fx-border-radius: 10px;
+}
+.cube_select_vocal{
+    -fx-background-radius: 10;
+}
+.cube_select_vocal:hover{
+    -fx-border-color: #D5D8DC;
+    -fx-background-color: #D5D8DC;
+    -fx-text-fill: linear-gradient(to right,white,white);
+    -fx-background-radius: 10px;
+    -fx-color-label-visible: #D5D8DC;
+    -fx-border-radius: 10px;
+}
 .color_theme_0{
-    -fx-background-color: #EFEFEF;
+    -fx-background-color: #F7F9F9;
 }
 .color_theme_1{
     -fx-background-color: #76BA9A;
@@ -120,3 +142,5 @@
     -fx-color-label-visible: white;
     -fx-border-radius: 25px;
 }
+
+

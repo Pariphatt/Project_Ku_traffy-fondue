@@ -142,7 +142,7 @@ public class AllComplaintController {
         }
     }
     @FXML
-    public void handleAllComplaintButton(ActionEvent actionEvent){
+    public void handleMyReportButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("allComplaint_page", account.getUsername());
         } catch (IOException e) {
