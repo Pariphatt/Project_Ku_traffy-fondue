@@ -41,6 +41,7 @@ public class ManageReportsController {
 
     private StaffAccount staff = (StaffAccount)  FXRouter.getData();
     @FXML private AnchorPane pane;
+
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
@@ -61,7 +62,13 @@ public class ManageReportsController {
 //        agencyChoiceBox.getItems().addAll()
 //    }
 
-
+    private void checkStatus(){
+        if (selectedReport.getStatus().equals("กำลังดำเนินการ")){
+            solutionTextArea.setEditable(false);
+        } else if (selectedReport.getStatus().equals("เสร็จสิ้น")){
+            solutionTextArea.setEditable(false);
+        }
+    }
     private void showListView(){
         ReportList reportListFiltered = reportList.filter(new Filterer<Report>() {
             @Override
@@ -69,7 +76,7 @@ public class ManageReportsController {
                 return report.goToManage(report,staff);
             }
         });
-        reportListView.getItems().addAll(reportList.getaAllReport());
+        reportListView.getItems().addAll(reportListFiltered.getaAllReport());
         reportListView.refresh();
     }
     //     @FXML
@@ -179,10 +186,10 @@ public class ManageReportsController {
         selectedReport.setStaffReport(staff.getName());
         dataSource.writeData(reportList);
         solutionTextField.clear();
-        solutionTextField.setDisable(true); //ไปทำ method check
+//        solutionTextField.setDisable(true); //ไปทำ method check
         setSubmitButton();
         showSelectedReport(selectedReport);
-
+        checkStatus();
     }
     @FXML
     void handleRefreshButton(ActionEvent actionEvent) {

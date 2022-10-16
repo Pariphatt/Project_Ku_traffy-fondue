@@ -154,5 +154,6 @@ public class Report {
     public void plusVote() {this.vote += 1;}
     public void minusVote(){this.vote -= 1;}
 
+
 }
 
