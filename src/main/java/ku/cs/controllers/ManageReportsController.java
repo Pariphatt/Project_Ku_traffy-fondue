@@ -19,10 +19,6 @@ import ku.cs.services.Filterer;
 import ku.cs.services.ReportFIleDataSource;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
 
 public class ManageReportsController {
 
@@ -45,6 +41,7 @@ public class ManageReportsController {
 
     private StaffAccount staff = (StaffAccount)  FXRouter.getData();
     @FXML private AnchorPane pane;
+
     public void initialize(){
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
@@ -57,7 +54,6 @@ public class ManageReportsController {
         clearSelectedReport();
         handleSelectedListView();
         Mode.setMode(pane);
-        sortListView();
 
     }
 
@@ -66,23 +62,13 @@ public class ManageReportsController {
 //        agencyChoiceBox.getItems().addAll()
 //    }
 
-    private void sortListView(){
-        ArrayList<Report> reports = reportList.getaAllReport();
-        reports.sort(new Comparator<Report>() {
-            @Override
-            public int compare(Report o1, Report o2) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDateTime dt1 = LocalDateTime.parse(o1.getReportTime(),dtf);
-                LocalDateTime dt2 = LocalDateTime.parse(o2.getReportTime(),dtf);
-                return -dt1.compareTo(dt2);
-            }
-        });
-        reportListView.getItems().clear();
-        reportListView.getItems().addAll(reports);
-        reportListView.refresh();
+    private void checkStatus(){
+        if (selectedReport.getStatus().equals("กำลังดำเนินการ")){
+            solutionTextArea.setEditable(false);
+        } else if (selectedReport.getStatus().equals("เสร็จสิ้น")){
+            solutionTextArea.setEditable(false);
+        }
     }
-
-
     private void showListView(){
         ReportList reportListFiltered = reportList.filter(new Filterer<Report>() {
             @Override
@@ -90,7 +76,7 @@ public class ManageReportsController {
                 return report.goToManage(report,staff);
             }
         });
-        reportListView.getItems().addAll(reportList.getaAllReport());
+        reportListView.getItems().addAll(reportListFiltered.getaAllReport());
         reportListView.refresh();
     }
     //     @FXML
@@ -200,10 +186,10 @@ public class ManageReportsController {
         selectedReport.setStaffReport(staff.getName());
         dataSource.writeData(reportList);
         solutionTextField.clear();
-        solutionTextField.setDisable(true); //ไปทำ method check
+//        solutionTextField.setDisable(true); //ไปทำ method check
         setSubmitButton();
         showSelectedReport(selectedReport);
-
+        checkStatus();
     }
     @FXML
     void handleRefreshButton(ActionEvent actionEvent) {
