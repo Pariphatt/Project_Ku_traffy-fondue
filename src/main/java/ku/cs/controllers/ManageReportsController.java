@@ -175,6 +175,7 @@ public class ManageReportsController {
         dataSource.writeData(reportList);
         if (selectedReport.getStatus().equals("เสร็จสิ้น")){
             completeButton.setVisible(false);
+            solutionTextField.setEditable(false);
         }else{
             completeButton.setVisible(true);
         }
@@ -204,6 +205,7 @@ public class ManageReportsController {
         setSubmitButton();
         showSelectedReport(selectedReport);
         checkStatus();
+
     }
     @FXML
     void handleRefreshButton(ActionEvent actionEvent) {
