@@ -117,7 +117,7 @@ public class ReportComplainController {
             }
         }
         reportFIleDataSource.writeFileDelete(rl);
-        com.github.saacsos.FXRouter.goTo("report_complain");
+            com.github.saacsos.FXRouter.goTo("report_complain");
     }
 }
 //    @FXML

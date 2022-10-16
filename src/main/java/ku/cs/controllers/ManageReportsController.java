@@ -24,6 +24,8 @@ public class ManageReportsController {
 
     @FXML private TextField searchReportTextField;
     @FXML private Button submitButton;
+
+    @FXML private Button completeButton;
     @FXML private ListView reportListView;
     @FXML private Label topicLabel;
     @FXML private Label statusLabel;
@@ -35,6 +37,8 @@ public class ManageReportsController {
     private ReportList reportList;
 
     private Report selectedReport;
+
+    private Alert alert;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private Account account;
@@ -62,13 +66,7 @@ public class ManageReportsController {
 //        agencyChoiceBox.getItems().addAll()
 //    }
 
-    private void checkStatus(){
-        if (selectedReport.getStatus().equals("กำลังดำเนินการ")){
-            solutionTextArea.setEditable(false);
-        } else if (selectedReport.getStatus().equals("เสร็จสิ้น")){
-            solutionTextArea.setEditable(false);
-        }
-    }
+
     private void showListView(){
         ReportList reportListFiltered = reportList.filter(new Filterer<Report>() {
             @Override
@@ -100,6 +98,7 @@ public class ManageReportsController {
         statusLabel.setText("");
         detailTextArea.setText("");
         topicLabel.setText("");
+        solutionTextArea.setText("");
     }
     private void handleSelectedListView(){
         reportListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Report>() {
@@ -118,9 +117,14 @@ public class ManageReportsController {
         solutionTextArea.setText(report.getSolution());
         if (report.getSolution().isEmpty()) {
             submitButton.setVisible(true);
+            completeButton.setVisible(true);
         } else {
             submitButton.setVisible(false);
         }
+    }
+
+    public void handleRefresh(){
+        reportListView.refresh();
     }
 
 
@@ -134,7 +138,7 @@ public class ManageReportsController {
                 return report.getTopic().contains(input);
             }
         });
-        if (input == ""){
+        if (input.equals("")){
             reportList = dataSource.readData();
         }
         reportListView.getItems().clear();
@@ -169,13 +173,24 @@ public class ManageReportsController {
         reportListView.refresh();
         showSelectedReport(selectedReport);
         dataSource.writeData(reportList);
-//        solutionTextField.setDisable(true); //ไปทำ method check
-//        setCompleteButton();
-//        showSelectedReport(selectedReport);
+        if (selectedReport.getStatus().equals("เสร็จสิ้น")){
+            completeButton.setVisible(false);
+        }else{
+            completeButton.setVisible(true);
+        }
     }
-//    private void setCompleteButton(){completeButton.setVisible(false);}
+
     private void setSubmitButton(){
         submitButton.setVisible(false);
+    }
+    private void checkStatus(){
+        if(selectedReport.getStatus().equals("กำลังดำเนินการ")){
+            solutionTextField.setEditable(false);
+        } else if (selectedReport.getStatus().equals("เสร็จสิ้น")){
+            solutionTextField.setEditable(false);
+        } else {
+            solutionTextField.setEditable(false);
+        }
     }
 
     @FXML
@@ -186,7 +201,6 @@ public class ManageReportsController {
         selectedReport.setStaffReport(staff.getName());
         dataSource.writeData(reportList);
         solutionTextField.clear();
-//        solutionTextField.setDisable(true); //ไปทำ method check
         setSubmitButton();
         showSelectedReport(selectedReport);
         checkStatus();
@@ -195,9 +209,8 @@ public class ManageReportsController {
     void handleRefreshButton(ActionEvent actionEvent) {
         searchReportTextField.clear();
         reportListView.getItems().clear();
-        dataSource = new ReportFIleDataSource("assets","reports.csv");
+        handleRefresh();
         reportList = dataSource.readData();
         showListView();
-
     }
 }

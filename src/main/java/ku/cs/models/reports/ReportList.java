@@ -41,8 +41,6 @@ public class ReportList {
         return null;
     }
 
-
-
     public boolean isExistTopic(String topic) {
         for(Report report: reports) {
             if(report.getTopic().equals(topic)){
