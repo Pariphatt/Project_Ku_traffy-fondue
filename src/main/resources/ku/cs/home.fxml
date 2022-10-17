@@ -9,56 +9,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="color_theme_0" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
    <children>
-      <Label alignment="CENTER" layoutX="605.0" layoutY="75.0" prefHeight="56.0" prefWidth="129.0" style="-fx-position-shape: absolute; -fx-max-width: 278;" text="Report ">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="620.0" layoutY="131.0" text="System">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Label>
-      <Button fx:id="loginBTN" layoutX="613.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleSignInButton" prefHeight="51.0" prefWidth="113.0" stylesheets="@styles/style.css" text="Sign in">
+      <Button layoutX="612.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleRegisterButton" stylesheets="@styles/style.css" text="Sign up" textFill="#8e8e8e">
          <font>
             <Font size="24.0" />
          </font>
          <styleClass>
-            <String fx:value="hide_button" />
-            <String fx:value="login_button" />
+            <String fx:value="cube_select_vocal" />
+            <String fx:value="color_theme_0" />
+            <String fx:value="shadow" />
          </styleClass>
       </Button>
-      <Button layoutX="613.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleRegisterButton" stylesheets="@styles/style.css" text="Sign up">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <styleClass>
-            <String fx:value="hide_button" />
-            <String fx:value="register_button" />
-         </styleClass>
-      </Button>
-      <Button layoutX="559.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleCreditButton" stylesheets="@styles/style.css" text="ผู้พัฒนา">
-         <styleClass>
-            <String fx:value="hide_button" />
-            <String fx:value="credit_button" />
-         </styleClass>
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button layoutX="559.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleguidebookButton" stylesheets="@styles/style.css" text="คู่มือการใช้งาน">
-         <styleClass>
-            <String fx:value="hide_button" />
-            <String fx:value="about_button" />
-         </styleClass>
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Pane layoutX="40.0" layoutY="50.0" prefHeight="500.0" prefWidth="500.0" stylesheets="@styles/style.css">
+      <Pane fx:id="pane1" layoutX="40.0" layoutY="50.0" prefHeight="500.0" prefWidth="500.0" stylesheets="@styles/style.css">
          <styleClass>
             <String fx:value="cube_box" />
-            <String fx:value="color_theme_0" />
+            <String fx:value="color_box" />
             <String fx:value="shadow" />
          </styleClass>
          <children>
@@ -68,7 +34,55 @@
                   <Image url="@images/kulogo.png" />
                </image>
             </ImageView>
+            <Button layoutX="118.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleguidebookButton" stylesheets="@styles/style.css" text="How to use this app?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="cube_select_vocal" />
+               </styleClass>
+            </Button>
+            <Button layoutX="14.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleCreditButton" stylesheets="@styles/style.css" text="Credit">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="cube_select_vocal" />
+               </styleClass>
+            </Button>
+            <Label layoutX="118.0" layoutY="177.0" text="FAQ">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="396.0" layoutY="71.0" text="Report">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="396.0" layoutY="98.0" text="System">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="396.0" layoutY="125.0" text="App">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
+      <Button fx:id="loginBTN" layoutX="613.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleSignInButton" stylesheets="@styles/style.css" text="Sign in" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <styleClass>
+            <String fx:value="color_theme_1" />
+            <String fx:value="cube_select_main" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>

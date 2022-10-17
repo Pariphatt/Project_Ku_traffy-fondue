@@ -1,5 +1,6 @@
 package ku.cs.controllers;
 
+import animatefx.animation.FadeIn;
 import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -8,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.reports.Report;
@@ -28,7 +31,8 @@ public class AllComplaintController {
     @FXML private ImageView userShow;
     @FXML private Label typeLabel;
     @FXML private Label agencyLabel;
-    @FXML private Label topicLabel;
+    @FXML private Label dateLabel;
+    @FXML private TextArea topicTextArea;
     @FXML private TextArea detailTextArea;
     @FXML private Label statusLabel;
     @FXML private Label voteLabel;
@@ -40,6 +44,7 @@ public class AllComplaintController {
     private ReportList reportList;
     private Report selectedReport;
     private DataSource<ReportList> dataSource;
+    @FXML private AnchorPane pane;
 
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
@@ -54,7 +59,9 @@ public class AllComplaintController {
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
 
-        detailTextArea.setDisable(true);
+        detailTextArea.setEditable(false);
+        topicTextArea.setEditable(false);
+        solutionTextArea.setEditable(false);
 
         sortListView();
         handleSelectedListView();
@@ -62,6 +69,8 @@ public class AllComplaintController {
         clearSelectedReport();
 
         showMyReport();
+        Mode.setMode(pane);
+        new FadeIn(pane).play();
     }
 
     private void sortListView(){
@@ -100,20 +109,22 @@ public class AllComplaintController {
     private void clearSelectedReport(){
         typeLabel.setText("");
         agencyLabel.setText("");
-        topicLabel.setText("");
+        topicTextArea.setText("");
         detailTextArea.setText("");
         statusLabel.setText("");
         voteLabel.setText("");
+        dateLabel.setText("");
     }
 
     public void showSelectedReport(Report report){
         typeLabel.setText(report.getType());
         agencyLabel.setText(report.getAgency());
-        topicLabel.setText(report.getTopic());
+        topicTextArea.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
-//        voteLabel.setText(report.getVote());
+        voteLabel.setText(String.valueOf(report.getVote()));
         solutionTextArea.setText(report.getSolution());
+        dateLabel.setText(report.getReportTime());
     }
 
     public void showMyReport(){

@@ -55,11 +55,11 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(",");
                 Report report = null;
-                if (data.length == 10){
+                if (data.length == 11){
                     Date currentDate = new Date();
                     report = new Report(data[0].trim(),data[1].trim(),data[2].trim()
                             ,data[3].trim(),Integer.parseInt(data[4].trim()),
-                            data[5].trim(),data[6],data[7],data[8],data[9]);
+                            data[5].trim(),data[6].trim(),data[7],data[8],data[9],data[10].trim());
                 }
                 reportList.addReport(report);
             }
@@ -243,7 +243,8 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                         +report.getStatus()+ ","
                         +report.getAgency()+ ","
                         +report.getStaffReport()+","
-                        +report.getReportTime();
+                        +report.getReportTime()+","
+                        +report.getSpecificTopic();
 
 
                 buffer.append(line);

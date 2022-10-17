@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
@@ -30,7 +31,6 @@ public class HomeController {
     public void initialize() {
         Mode.setMode(pane);
         new FadeIn(pane).play();
-
     }
     @FXML
     public void handleDarkModeButton(ActionEvent event) {

@@ -1,5 +1,6 @@
 package ku.cs.controllers;
 
+import animatefx.animation.FadeIn;
 import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
@@ -72,6 +74,9 @@ public class WelcomePageController {
     @FXML private TextField maxTextField;
     @FXML private TextField minTextField;
     @FXML private AnchorPane pane;
+    @FXML private Pane pane1;
+    @FXML private Pane pane2;
+    @FXML private Pane pane3;
 
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
@@ -84,7 +89,6 @@ public class WelcomePageController {
 
         dataSource = new ReportFIleDataSource("assets","reports.csv");
         reportList = dataSource.readData();
-
 
         userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
         userListIssue = userListIssueDataSource.readData();
@@ -106,6 +110,7 @@ public class WelcomePageController {
         voteList = voteListDataSource.readData();
         alert = new Alert(Alert.AlertType.NONE);
         Mode.setMode(pane);
+        new FadeIn(pane).play();
     }
     private void sortListView(){
         ArrayList<Report> reports = reportList.getaAllReport();
@@ -285,19 +290,25 @@ public class WelcomePageController {
     }
 
     public void handleVoteButton(ActionEvent actionEvent){
-        if (voteList.isExistEverVote(selectedReport.getTopic()+account.getUsername())
-                || (selectedReport.getTopic()+account.getUsername() == null)){
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText("คุณโหวตไปแล้ว");
+        if (selectedReport == null){
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดเลือกเรื่องในการโหวต");
             alert.show();
         } else {
-            selectedReport.plusVote();
-            reportListView.refresh();
-            showSelectedReport(selectedReport);
-            dataSource.writeData(reportList);
-            Vote vote = new Vote(selectedReport.getTopic() + account.getUsername());
-            voteList.addVote(vote);
-            voteListDataSource.writeData(voteList);
+            if (voteList.isExistEverVote(selectedReport.getTopic()+account.getUsername())
+                    || (selectedReport.getTopic()+account.getUsername() == null)){
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setContentText("คุณโหวตไปแล้ว");
+                alert.show();
+            } else {
+                selectedReport.plusVote();
+                reportListView.refresh();
+                showSelectedReport(selectedReport);
+                dataSource.writeData(reportList);
+                Vote vote = new Vote(selectedReport.getTopic() + account.getUsername());
+                voteList.addVote(vote);
+                voteListDataSource.writeData(voteList);
+            }
         }
     }
 

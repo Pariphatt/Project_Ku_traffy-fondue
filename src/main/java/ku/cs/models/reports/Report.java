@@ -19,10 +19,11 @@ public class Report {
     private String staffReport; //เปลี่ยนชื่อ
     private String reportTime;
     private String reasonsPost;
+    private String specificTopic;
 
 
 
-    public Report(String topic, String detail,String userReport,String type,String agency,String reportTime){
+    public Report(String topic, String detail,String userReport,String type,String agency,String reportTime, String specificTopic){
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
@@ -33,6 +34,7 @@ public class Report {
         this.agency = agency;
         this.staffReport = null;
         this.reportTime = reportTime;
+        this.specificTopic = specificTopic;
     }
 
     public String getReportTime() {
@@ -43,8 +45,8 @@ public class Report {
         return agency;
     }
 
-    public Report(String topic, String detail, String userReport, String type, int vote, String solution, String status,String agency,String staffReport,String reportTime){
-
+    public Report(String topic, String detail, String userReport, String type, int vote, String solution,
+                  String status,String agency,String staffReport,String reportTime,String specificTopic){
         this.topic = topic;
         this.detail = detail;
         this.userReport = userReport;
@@ -55,8 +57,8 @@ public class Report {
         this.agency = agency;
         this.staffReport =staffReport;
         this.reportTime = reportTime;
+        this.specificTopic = specificTopic;
     }
-
 
     public Report(String topic, String detail, int vote, String type) {
         this.topic = topic;
@@ -158,6 +160,12 @@ public class Report {
     public void plusVote() {this.vote += 1;}
     public void minusVote(){this.vote -= 1;}
 
+    public String getSpecificTopic() {
+        return specificTopic;
+    }
 
+    public void setSpecificTopic(String specificTopic) {
+        this.specificTopic = specificTopic;
+    }
 }
 

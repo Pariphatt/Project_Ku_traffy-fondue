@@ -16,311 +16,299 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.WelcomePageController">
+<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.WelcomePageController">
    <children>
-      <Pane prefHeight="360.0" prefWidth="200.0" styleClass="color_theme_0" stylesheets="@styles/style.css">
+      <HBox alignment="CENTER" layoutY="29.0" prefHeight="80.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
          <children>
-            <HBox alignment="CENTER" layoutY="20.0" prefHeight="80.0" prefWidth="200.0">
+            <ImageView fx:id="userShow" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/test.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="userLabel" text="userLabel">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutY="109.0" prefHeight="250.0" prefWidth="200.0" stylesheets="@styles/style.css" AnchorPane.bottomAnchor="249.6" AnchorPane.topAnchor="100.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
                <children>
-                  <ImageView fx:id="userShow" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/test.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="userLabel" text="userLabel">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
+                  <Label text="Page - you can go" textFill="#8e8e8e">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
             </HBox>
-            <VBox layoutY="110.0" prefHeight="250.0" prefWidth="200.0" stylesheets="@styles/style.css">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
-                     <children>
-                        <Label text="Page -you can go" textFill="#8e8e8e">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleHomeButton" styleClass="transparent" stylesheets="@styles/style.css" text="Home" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="cube_select" />
-                        <String fx:value="cube_select_main" />
-                        <String fx:value="color_theme_1" />
-                     </styleClass>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="cube_select_vocal" stylesheets="@styles/style.css">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleAddReportButton" styleClass="transparent" stylesheets="@styles/style.css" text="Report" textFill="#8e8e8e">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="cube_select_vocal" stylesheets="@styles/style.css">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleMyReportButton" styleClass="transparent" stylesheets="@styles/style.css" text="My Report" textFill="#8e8e8e">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleSettingButton" styleClass="transparent" stylesheets="@styles/style.css" text="Setting" textFill="#8e8e8e">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="transparent" stylesheets="@styles/style.css" text="Logout" textFill="#bc8484">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </Pane>
-      <Pane layoutX="201.0" prefHeight="600.0" prefWidth="598.0" styleClass="color_theme_0" stylesheets="@styles/style.css">
-         <children>
-            <Pane layoutX="40.0" layoutY="20.0" prefHeight="230.0" prefWidth="300.0" stylesheets="@styles/style.css">
-               <styleClass>
-                  <String fx:value="background" />
-                  <String fx:value="cube_box" />
-                  <String fx:value="shadow" />
-               </styleClass>
-               <children>
-                  <ListView fx:id="reportListView" layoutX="10.0" layoutY="15.0" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: white;" styleClass="transparent" stylesheets="@styles/style.css" />
-               </children>
-            </Pane>
-            <Pane layoutX="360.0" layoutY="20.0" prefHeight="230.0" prefWidth="200.0" stylesheets="@styles/style.css">
-               <styleClass>
-                  <String fx:value="background" />
-                  <String fx:value="cube_box" />
-                  <String fx:value="shadow" />
-               </styleClass>
-               <children>
-                  <VBox layoutY="15.0" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Sort By">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ChoiceBox fx:id="statusChoiceBox" prefHeight="25.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css" />
-                           </children>
-                           <VBox.margin>
-                              <Insets right="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="161.0">
-                           <children>
-                              <ChoiceBox fx:id="typeChoiceBox" prefHeight="25.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css" />
-                           </children>
-                           <VBox.margin>
-                              <Insets right="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ChoiceBox fx:id="sortByChoiceBox" prefHeight="25.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css" />
-                           </children>
-                           <VBox.margin>
-                              <Insets right="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <TextField fx:id="maxTextField" prefHeight="25.0" prefWidth="40.0" promptText="Max" />
-                              <TextField fx:id="minTextField" prefHeight="25.0" prefWidth="40.0" promptText="Min">
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button mnemonicParsing="false" onAction="#handleSearchVoteButton" styleClass="color_theme_1" stylesheets="@styles/style.css" text="Search" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
-            <Pane layoutX="40.0" layoutY="270.0" prefHeight="300.0" prefWidth="520.0" stylesheets="@styles/style.css">
-               <styleClass>
-                  <String fx:value="background" />
-                  <String fx:value="cube_box" />
-                  <String fx:value="shadow" />
-               </styleClass>
-               <children>
-                  <TextArea fx:id="topicTextArea" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="300.0">
+                  <Button mnemonicParsing="false" onAction="#handleHomeButton" styleClass="transparent" stylesheets="@styles/style.css" text="Homeㅤㅤㅤㅤㅤ" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
-                  </TextArea>
-                  <TextArea fx:id="detailTextArea" layoutX="14.0" layoutY="86.0" prefHeight="200.0" prefWidth="300.0" stylesheets="@styles/style.css" />
-                  <VBox layoutX="340.0" layoutY="86.0" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="agencyLabel" text="agencyLabel" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="typeLabel" text="typeLabel" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="dateLabel" text="dateLabel" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label fx:id="statusLabel" text="statusLabel" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label />
-                              <Label fx:id="voteLabel" text="voteLabel" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-                  <Button layoutX="455.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleVoteButton" stylesheets="@styles/style.css" text="Vote" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="cube_box" />
-                        <String fx:value="color_theme_1" />
-                     </styleClass>
                   </Button>
                </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane layoutY="361.0" prefHeight="238.0" prefWidth="200.0" styleClass="color_theme_0" stylesheets="@styles/style.css">
-         <children>
-            <VBox prefHeight="238.0" prefWidth="200.0" stylesheets="@styles/style.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="cube_select" />
+                  <String fx:value="cube_select_main" />
+                  <String fx:value="color_theme_1" />
+               </styleClass>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="cube_select_vocal" stylesheets="@styles/style.css">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
+                  <Button mnemonicParsing="false" onAction="#handleAddReportButton" styleClass="transparent" stylesheets="@styles/style.css" text="Reportㅤㅤㅤㅤㅤ" textFill="#8e8e8e">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="cube_select_vocal" stylesheets="@styles/style.css">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleMyReportButton" styleClass="transparent" stylesheets="@styles/style.css" text="My Reportㅤㅤㅤ" textFill="#8e8e8e">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleSettingButton" styleClass="transparent" stylesheets="@styles/style.css" text="Setting" textFill="#8e8e8e">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="transparent" stylesheets="@styles/style.css" text="Logout" textFill="#bc8484">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutY="360.0" prefHeight="238.0" prefWidth="200.0" stylesheets="@styles/style.css" AnchorPane.bottomAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="shadow" stylesheets="@styles/style.css">
+               <children>
+                  <Label text="Report - you can report" textFill="#8e8e8e">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <children>
+                  <TextArea fx:id="reasonsUserTextArea" prefHeight="25.0" prefWidth="180.0" promptText="reason..." />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleReportUserButton" styleClass="color_theme_1" stylesheets="@styles/style.css" text="Report User" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <children>
+                  <TextArea fx:id="reasonsTextArea" prefHeight="25.0" prefWidth="180.0" promptText="reason...">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextArea>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleImpoliticButton" styleClass="color_theme_1" stylesheets="@styles/style.css" text="Report Post" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <Pane layoutX="250.0" layoutY="20.0" prefHeight="230.0" prefWidth="300.0" stylesheets="@styles/style.css" AnchorPane.topAnchor="30.0">
+         <children>
+            <ListView fx:id="reportListView" layoutX="10.0" layoutY="15.0" prefHeight="200.0" prefWidth="280.0" styleClass="transparent" stylesheets="@styles/style.css" />
+         </children>
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="color_box" />
+            <String fx:value="cube_box" />
+         </styleClass>
+      </Pane>
+      <Pane layoutX="586.0" layoutY="14.0" prefHeight="230.0" prefWidth="200.0" stylesheets="@styles/style.css" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="color_box" />
+            <String fx:value="cube_box" />
+         </styleClass>
+         <children>
+            <VBox layoutY="15.0" prefHeight="200.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Report - you can report" textFill="#8e8e8e">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
+                        <Label text="Sort By">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
                         </Label>
                      </children>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="reasonsUserTextArea" prefHeight="25.0" prefWidth="180.0" promptText="reason..." />
+                        <ChoiceBox fx:id="statusChoiceBox" prefHeight="25.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css" />
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
                      <VBox.margin>
-                        <Insets left="20.0" />
+                        <Insets right="10.0" />
                      </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="161.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleReportUserButton" styleClass="color_theme_1" stylesheets="@styles/style.css" text="Report User" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
+                        <ChoiceBox fx:id="typeChoiceBox" prefHeight="25.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css" />
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
                      <VBox.margin>
-                        <Insets left="20.0" />
+                        <Insets right="10.0" />
                      </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="reasonsTextArea" prefHeight="25.0" prefWidth="180.0" promptText="reason...">
+                        <ChoiceBox fx:id="sortByChoiceBox" prefHeight="25.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles/style.css" />
+                     </children>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="maxTextField" prefHeight="25.0" prefWidth="40.0" promptText="Max" />
+                        <TextField fx:id="minTextField" prefHeight="25.0" prefWidth="40.0" promptText="Min">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="10.0" right="10.0" />
                            </HBox.margin>
-                        </TextArea>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleImpoliticButton" styleClass="color_theme_1" stylesheets="@styles/style.css" text="Report Post" textFill="WHITE">
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#handleSearchVoteButton" styleClass="color_theme_1" stylesheets="@styles/style.css" text="Search" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@styles/style.css">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
          </children>
+      </Pane>
+      <Pane layoutX="266.0" layoutY="286.0" prefHeight="300.0" prefWidth="520.0" stylesheets="@styles/style.css" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+         <children>
+            <TextArea fx:id="topicTextArea" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="300.0" stylesheets="@styles/style.css">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextArea>
+            <TextArea fx:id="detailTextArea" layoutX="14.0" layoutY="86.0" prefHeight="200.0" prefWidth="300.0" stylesheets="@styles/style.css" />
+            <VBox layoutX="340.0" layoutY="86.0" prefHeight="200.0" prefWidth="150.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="agencyLabel" text="agencyLabel" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="typeLabel" prefHeight="18.0" prefWidth="163.0" text="typeLabel" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="dateLabel" prefHeight="18.0" prefWidth="168.0" text="dateLabel" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="statusLabel" text="statusLabel" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label />
+                        <Label fx:id="voteLabel" text="voteLabel" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <Button layoutX="455.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleVoteButton" stylesheets="@styles/style.css" text="Vote" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="cube_box" />
+                  <String fx:value="color_theme_1" />
+               </styleClass>
+            </Button>
+         </children>
+         <styleClass>
+            <String fx:value="color_box" />
+            <String fx:value="cube_box" />
+            <String fx:value="shadow" />
+         </styleClass>
       </Pane>
    </children>
 </AnchorPane>
