@@ -45,6 +45,7 @@ public class ReportComplainController {
     public void initialize() {
         Mode.setMode(pane);
         reportFIleDataSource = new ReportFIleDataSource("assets", "report_post.csv");
+        reportFIleDataSource = new ReportFIleDataSource("assets","report.csv");
         reportPostLists = reportFIleDataSource.readReportPost();
         detailTextArea.setEditable(false);
         reasonsTextArea.setEditable(false);
@@ -111,13 +112,18 @@ public class ReportComplainController {
     void handleDeleteButton(ActionEvent actionEvent) throws IOException {
         ReportList rl = new ReportList();
         ReportList reportList = reportFIleDataSource.readFileDelete();
+        ReportList reportList1 = reportFIleDataSource.readData();
         for (Report reportscomplaint : reportList.getaAllReport()) {
+            for(Report report : reportList1.getaAllReport()){
             if (!reportscomplaint.equals(reportList.findReportComplaint(selectedReportTopic))) {
-                rl.addReport(reportscomplaint);
+                    rl.addReport(reportscomplaint);
+                }       else if(!reportscomplaint.equals(reportList1.findReportComplaint(selectedReportTopic))){
+                            rl.addReport(reportscomplaint);
+                }
             }
         }
         reportFIleDataSource.writeFileDelete(rl);
-            com.github.saacsos.FXRouter.goTo("report_complain");
+        com.github.saacsos.FXRouter.goTo("report_complain");
     }
 }
 //    @FXML

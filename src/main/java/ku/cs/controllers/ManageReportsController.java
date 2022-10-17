@@ -37,8 +37,6 @@ public class ManageReportsController {
     private ReportList reportList;
 
     private Report selectedReport;
-
-    private Alert alert;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private Account account;
@@ -110,7 +108,7 @@ public class ManageReportsController {
             }
         });
     }
-    public void showSelectedReport(Report report){
+    public void showSelectedReport(Report report) {
         topicLabel.setText(report.getTopic());
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
@@ -118,6 +116,13 @@ public class ManageReportsController {
         if (report.getSolution().isEmpty()) {
             submitButton.setVisible(true);
             completeButton.setVisible(true);
+        } else if (selectedReport.getStatus().equals("กำลังดำเนินการ")) {
+            solutionTextField.setEditable(false);
+
+        } else if (selectedReport.getStatus().equals("เสร็จสิ้น")) {
+            submitButton.setVisible(false);
+            completeButton.setVisible(false);
+            solutionTextField.setEditable(false);
         } else {
             submitButton.setVisible(false);
         }
@@ -168,17 +173,7 @@ public class ManageReportsController {
 
     @FXML
     void handleCompleteButton(ActionEvent actionEvent) {
-        String complete = "เสร็จสิ้น";
-        selectedReport.setStatus(complete);
-        reportListView.refresh();
-        showSelectedReport(selectedReport);
-        dataSource.writeData(reportList);
-        if (selectedReport.getStatus().equals("เสร็จสิ้น")){
-            completeButton.setVisible(false);
-            solutionTextField.setEditable(false);
-        }else{
-            completeButton.setVisible(true);
-        }
+        checkProcessComplete();
     }
 
     private void setSubmitButton(){
@@ -194,17 +189,60 @@ public class ManageReportsController {
         }
     }
 
+    private void checkProcessComplete(){
+        if (!selectedReport.getStatus().equals("กำลังดำเนินการ")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ยังไม่ได้ดำเนินการเรื่องร้องเรียน");
+            alert.setContentText("โปรดดำเนินการเรื่องร้องเรียนก่อน");
+            alert.show();
+            selectedReport.getStatus().equals("ยังไม่ดำเนินการ");
+            completeButton.setVisible(true);
+            solutionTextField.setEditable(true);
+        }else {
+            String complete = "เสร็จสิ้น";
+            selectedReport.setStatus(complete);
+            reportListView.refresh();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("เรื่องร้องเรียน");
+            alert.setContentText("จัดการเรื่องร้องเรียนเสร็จสิ้น");
+            alert.show();
+            solutionTextField.setEditable(false);
+            completeButton.setVisible(false);
+            showSelectedReport(selectedReport);
+        }
+    }
+
+    private void checkSolutionSubmit(){
+        if(solutionTextField.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ข้อมูลไม่ครบถ้วน");
+            alert.setContentText("โปรดกรอกข้อมูลในช่อง Solution");
+            alert.show();
+            selectedReport.getStatus().equals("ยังไม่ดำเนินการ");
+            solutionTextField.setEditable(true);
+            submitButton.setVisible(true);
+
+        } else {
+            String process = "กำลังดำเนินการ";
+            selectedReport.setStatus(process);
+            selectedReport.setSolution(solutionTextField.getText());
+            selectedReport.setStaffReport(staff.getName());
+            dataSource.writeData(reportList);
+            solutionTextField.clear();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Solution");
+            alert.setContentText("กำลังดำเนินการเรื่องร้องเรียน");
+            alert.show();
+            solutionTextField.setEditable(false);
+            showSelectedReport(selectedReport);
+        }
+    }
+
     @FXML
     void handleSubmitButton(ActionEvent actionEvent) {
-        String process = "กำลังดำเนินการ";
-        selectedReport.setStatus(process);
-        selectedReport.setSolution(solutionTextField.getText());
-        selectedReport.setStaffReport(staff.getName());
-        dataSource.writeData(reportList);
-        solutionTextField.clear();
         setSubmitButton();
-        showSelectedReport(selectedReport);
         checkStatus();
+        checkSolutionSubmit();
 
     }
     @FXML

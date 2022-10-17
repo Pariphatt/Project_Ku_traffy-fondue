@@ -130,7 +130,6 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
                 buffer.append(temp);
                 buffer.newLine();
 
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -278,10 +277,8 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(",");
 
-
-                 Report report = new Report(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim());
-                   reportList.addReport(report);
-
+                    Report report = new Report(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim());
+                    reportList.addReport(report);
 
             }
         } catch (FileNotFoundException e) {
