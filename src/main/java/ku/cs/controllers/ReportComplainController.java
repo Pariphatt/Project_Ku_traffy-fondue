@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -120,6 +121,10 @@ public class ReportComplainController {
 //        complainListView.getItems().clear();
 //        complainListView.getItems().addAll(selectedReportTopic);
 //        complainListView.refresh();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("เรื่องร้องเรียนที่ถูกรายงาน");
+        alert.setContentText("ลบเรื่องร้องเรียนสำเร็จ");
+        alert.show();
         com.github.saacsos.FXRouter.goTo("report_complain");
     }
 }
