@@ -40,12 +40,12 @@ public class ReportComplainController {
 
     private ReportFIleDataSource reportFIleDataSource;
 
+    private ReportFIleDataSource allReportData;
 
     @FXML
     public void initialize() {
         Mode.setMode(pane);
         reportFIleDataSource = new ReportFIleDataSource("assets", "report_post.csv");
-        reportFIleDataSource = new ReportFIleDataSource("assets","report.csv");
         reportPostLists = reportFIleDataSource.readReportPost();
         detailTextArea.setEditable(false);
         reasonsTextArea.setEditable(false);
@@ -62,8 +62,6 @@ public class ReportComplainController {
         for (String reportTemp : arrayList) {
             complainListView.getItems().add(reportTemp);
         }
-//            complainListView.getItems().addAll(allTopic);
-
     }
 
     private void handleSelectedListView() {
@@ -76,7 +74,6 @@ public class ReportComplainController {
             }
         });
     }
-
     public void showSelectedReport(String title) {
         topicLabel.setText(title);
         tempReport = null;
@@ -89,15 +86,8 @@ public class ReportComplainController {
             typeLabel.setText(tempReport.getType());
             detailTextArea.setText(tempReport.getDetail());
             reasonsTextArea.setText(tempReport.getReasonsPost());
-
         }
     }
-
-    private void refresh() {
-
-    }
-
-
     @FXML
     void handleBackButton(ActionEvent actionEvent) {
         try {
@@ -107,42 +97,31 @@ public class ReportComplainController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
-
     @FXML
     void handleDeleteButton(ActionEvent actionEvent) throws IOException {
+        allReportData = new ReportFIleDataSource("assets","reports.csv");
         ReportList rl = new ReportList();
+        ReportList rlc = new ReportList();
         ReportList reportList = reportFIleDataSource.readFileDelete();
-        ReportList reportList1 = reportFIleDataSource.readData();
-        for (Report reportscomplaint : reportList.getaAllReport()) {
-            for(Report report : reportList1.getaAllReport()){
-            if (!reportscomplaint.equals(reportList.findReportComplaint(selectedReportTopic))) {
-                    rl.addReport(reportscomplaint);
-                }       else if(!reportscomplaint.equals(reportList1.findReportComplaint(selectedReportTopic))){
-                            rl.addReport(reportscomplaint);
-                }
+        ReportList rlComplaints = allReportData.readData();
+
+        for (Report report : rlComplaints.getaAllReport()){
+            if (!report.equals(rlComplaints.findReportComplaint(selectedReportTopic))){
+                rlc.addReport(report);
+            }
+        }
+        for(Report reportscomplaint : reportList.getaAllReport()){
+            if(!reportscomplaint.equals(reportList.findReportComplaint(selectedReportTopic))){
+                rl.addReport(reportscomplaint);
             }
         }
         reportFIleDataSource.writeFileDelete(rl);
+        allReportData.writeData(rlc);
+//        complainListView.getItems().clear();
+//        complainListView.getItems().addAll(selectedReportTopic);
+//        complainListView.refresh();
         com.github.saacsos.FXRouter.goTo("report_complain");
     }
 }
-//    @FXML
-//    public void handleDeleteButton(ActionEvent actionEvent) {
-//        if (tempReport != null){
-//            ReportFIleDataSource reportFIleDataSource = new ReportFIleDataSource("assets","report_post.csv");
-//            int count = 0;
-//            for (String temp : arrayList){
-////                if (){
-////                    arrayList.remove(count);
-////                }
-//            count++;
-//            }
-//          complainListView.getItems().clear();
-//            showListView();
-////            ArrayList<String[]> removePost1 = reportFIleDataSource.getRemovePost();
-////            reportFIleDataSource.writeFileDynamic(removePost1);
-////            complainListView.getItems().clear();
-////           showListView();
-//        }
-//    }
+
 
