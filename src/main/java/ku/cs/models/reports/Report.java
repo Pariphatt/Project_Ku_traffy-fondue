@@ -20,6 +20,8 @@ public class Report {
     private String reportTime;
     private String reasonsPost;
 
+
+
     public Report(String topic, String detail,String userReport,String type,String agency,String reportTime){
         this.topic = topic;
         this.detail = detail;
