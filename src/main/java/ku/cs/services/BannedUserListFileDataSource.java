@@ -6,6 +6,7 @@ import ku.cs.models.issue.UserIssue;
 import ku.cs.models.issue.UserListIssue;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class BannedUserListFileDataSource implements DataSource<BannedList>{
     private String directoryName;
@@ -46,7 +47,7 @@ public class BannedUserListFileDataSource implements DataSource<BannedList>{
         FileReader reader = null;
         BufferedReader buffer = null;
         try{
-            reader = new FileReader(file);
+            reader = new FileReader(file, StandardCharsets.UTF_8);
             buffer = new BufferedReader(reader);
             String line = "";
 
@@ -80,7 +81,7 @@ public class BannedUserListFileDataSource implements DataSource<BannedList>{
         FileWriter writer = null;
         BufferedWriter buffer = null;
         try {
-            writer = new FileWriter(file);
+            writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
 
             for (Banned bannedUser: bannedList.getBannedUsers()){

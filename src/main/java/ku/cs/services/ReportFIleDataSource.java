@@ -4,6 +4,7 @@ import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +49,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         FileReader reader = null;
         BufferedReader buffer = null;
         try{
-            reader = new FileReader(file);
+            reader = new FileReader(file, StandardCharsets.UTF_8);
             buffer = new BufferedReader(reader);
 
             String line = "";
@@ -86,7 +87,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         FileReader reader = null;
         BufferedReader buffer = null;
         try{
-            reader = new FileReader(file);
+            reader = new FileReader(file, StandardCharsets.UTF_8);
             buffer = new BufferedReader(reader);
 
             String line = "";
@@ -125,7 +126,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         FileWriter writer = null;
         BufferedWriter buffer = null;
         try{
-            writer = new FileWriter(file,true);
+            writer = new FileWriter(file, StandardCharsets.UTF_8,true);
             buffer = new BufferedWriter(writer);
                 buffer.append(temp);
                 buffer.newLine();
@@ -143,84 +144,6 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         }
     }
 
-    public ArrayList<String[]> getRemovePost() {
-        return removePost;
-    }
-
-    public void removeReportPost(Report report){
-        removePost = new ArrayList<>();
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
-
-        FileReader reader = null;
-        BufferedReader buffer = null;
-        try{
-            reader = new FileReader(file);
-            buffer = new BufferedReader(reader);
-
-            String line = "";
-            while((line = buffer.readLine()) != null) {
-                String[] data = line.split(",");
-                removePost.add(data);
-
-            }
-            int i = 0;
-            if (removePost.size() != 0){
-                for(String[] temp : removePost){
-
-                    if (temp[0].equals(report.getTopic())){
-                        removePost.remove(i);
-                    }
-                    i++;
-                }
-            }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
-            try {
-
-                buffer.close();
-                reader.close();
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-
-    }
-    public void writeFileDynamic(ArrayList<String[]> removePost){
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
-        FileWriter writer = null;
-        BufferedWriter buffer1 = null;
-        try{
-            writer = new FileWriter(file);
-            buffer1 = new BufferedWriter(writer);
-
-            for(String[] temp : removePost){
-                String temp1 = temp[0]+","+temp[1]+","+temp[2]+","+temp[3];
-                buffer1.append(temp1);
-                buffer1.newLine();
-
-            }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
-            try {
-                writer.flush();
-                buffer1.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
     @Override
     public void writeData(ReportList reportList){
@@ -230,7 +153,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         FileWriter writer = null;
         BufferedWriter buffer = null;
         try{
-            writer = new FileWriter(file);
+            writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
 
             for (Report report : reportList.getaAllReport()){
@@ -271,7 +194,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         FileReader reader = null;
         BufferedReader buffer = null;
         try{
-            reader = new FileReader(file);
+            reader = new FileReader(file, StandardCharsets.UTF_8);
             buffer = new BufferedReader(reader);
 
             String line = "";
@@ -304,7 +227,7 @@ public class ReportFIleDataSource implements DataSource<ReportList> {
         FileWriter writer = null;
         BufferedWriter buffer1 = null;
         try{
-            writer = new FileWriter(file);
+            writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer1 = new BufferedWriter(writer);
             String line = "";
 

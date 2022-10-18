@@ -31,6 +31,7 @@ public class ManageReportsController {
     @FXML private TextArea detailTextArea;
     @FXML private TextField solutionTextField;
     @FXML private TextArea solutionTextArea;
+    @FXML private Label staffLabel;
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
@@ -52,6 +53,7 @@ public class ManageReportsController {
         clearSelectedReport();
         handleSelectedListView();
         Mode.setMode(pane);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
     }
     private void showListView(){
         ReportList reportListFiltered = reportList.filter(new Filterer<Report>() {
@@ -68,6 +70,7 @@ public class ManageReportsController {
         detailTextArea.setText("");
         topicLabel.setText("");
         solutionTextArea.setText("");
+        staffLabel.setText("");
     }
     private void handleSelectedListView(){
         reportListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Report>() {
@@ -84,6 +87,7 @@ public class ManageReportsController {
         detailTextArea.setText(report.getDetail());
         statusLabel.setText(report.getStatus());
         solutionTextArea.setText(report.getSolution());
+        staffLabel.setText(report.getStaffReport());
         if(report.getStatus().equals("ยังไม่ดำเนินการ")){
             submitButton.setVisible(true);
             completeButton.setVisible(true);
@@ -144,7 +148,12 @@ public class ManageReportsController {
     }
 
     private void checkProcessComplete(){
-        if (!selectedReport.getStatus().equals("กำลังดำเนินการ")){
+        if (selectedReport == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("โปรดเลือกเรื่องร้องเรียนก่อน");
+            alert.show();
+        }
+        else if (!selectedReport.getStatus().equals("กำลังดำเนินการ")){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ยังไม่ได้ดำเนินการเรื่องร้องเรียน");
             alert.setContentText("โปรดดำเนินการเรื่องร้องเรียนก่อน");

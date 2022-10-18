@@ -32,7 +32,7 @@ public class Report {
         this.vote = 0;
         this.solution = "";
         this.agency = agency;
-        this.staffReport = null;
+        this.staffReport = "";
         this.reportTime = reportTime;
         this.specificTopic = specificTopic;
     }
@@ -67,6 +67,7 @@ public class Report {
         this.vote = vote;
         this.status = "ยังไม่ดำเนินการ";
         this.solution = " ";
+
     }
     public Report(String topic, String type,String detail,String reasonsPost){
         this.topic = topic;

@@ -5,6 +5,7 @@ import ku.cs.models.issue.UserListIssue;
 import ku.cs.models.reports.Report;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class UserListIssueDataSource implements DataSource<UserListIssue>{
     private String directoryName;
@@ -35,35 +36,6 @@ public class UserListIssueDataSource implements DataSource<UserListIssue>{
             }
         }
     }
-    public void reportPost(Report report,String reasons){
-        String topic = report.getTopic();
-        String type = report.getType();
-        String detail = report.getDetail();
-        String temp = topic+","+type+","+detail+","+reasons;
-        String filePath = directoryName + File.separator + fileName;
-        File file = new File(filePath);
-
-        FileWriter writer = null;
-        BufferedWriter buffer = null;
-        try{
-            writer = new FileWriter(file,true);
-            buffer = new BufferedWriter(writer);
-            buffer.append(temp);
-            buffer.newLine();
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
-            try {
-                buffer.close();
-                writer.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
     @Override
     public UserListIssue readData() {
         UserListIssue userListIssue = new UserListIssue();
@@ -73,7 +45,7 @@ public class UserListIssueDataSource implements DataSource<UserListIssue>{
         FileReader reader = null;
         BufferedReader buffer = null;
         try{
-            reader = new FileReader(file);
+            reader = new FileReader(file, StandardCharsets.UTF_8);
             buffer = new BufferedReader(reader);
             String line = "";
 
@@ -107,7 +79,7 @@ public class UserListIssueDataSource implements DataSource<UserListIssue>{
         FileWriter writer = null;
         BufferedWriter buffer = null;
         try {
-            writer = new FileWriter(file);
+            writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
 
             for (UserIssue userIssue: userListIssue.getAllUserIssue()){

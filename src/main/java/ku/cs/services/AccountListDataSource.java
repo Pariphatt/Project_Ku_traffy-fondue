@@ -6,6 +6,7 @@ import ku.cs.models.account.StaffAccount;
 import ku.cs.models.account.UserAccount;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,7 +49,7 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
         FileReader reader = null;
         BufferedReader buffer = null;
         try {
-            reader = new FileReader(file);
+            reader = new FileReader(file, StandardCharsets.UTF_8);
             buffer = new BufferedReader(reader);
 
             String line = "";
@@ -99,7 +100,7 @@ public class AccountListDataSource<T> implements DataSource<AccountList> {
 
 
         try {
-            writer = new FileWriter(file);
+            writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
             for (Account account : accountList.getAllUsers()) {
                 if ("staff".equals(account.getRole())) {
