@@ -4,10 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import ku.cs.models.Mode;
 import ku.cs.models.reports.Report;
@@ -34,6 +31,8 @@ public class ReportComplainController {
     private TextArea detailTextArea;
     @FXML
     private TextArea reasonsTextArea;
+    @FXML
+    private Button deleteButton;
     private List<Report> reportPostLists;
     private String selectedReportTopic;
     private Report tempReport = null;
@@ -59,7 +58,6 @@ public class ReportComplainController {
     }
 
     public void showListView() {
-
         for (String reportTemp : arrayList) {
             complainListView.getItems().add(reportTemp);
         }
@@ -118,6 +116,7 @@ public class ReportComplainController {
         }
         reportFIleDataSource.writeFileDelete(rl);
         allReportData.writeData(rlc);
+        deleteButton.setVisible(false);
 //        complainListView.getItems().clear();
 //        complainListView.getItems().addAll(selectedReportTopic);
 //        complainListView.refresh();

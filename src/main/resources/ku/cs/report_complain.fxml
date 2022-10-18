@@ -24,7 +24,7 @@
       <Label fx:id="typeLabel" layoutX="429.0" layoutY="76.0" text="typeLabel" />
       <TextArea fx:id="reasonsTextArea" layoutX="373.0" layoutY="374.0" prefHeight="98.0" prefWidth="233.0" />
       <Label layoutX="370.0" layoutY="345.0" text="เหตุผล" />
-      <Button layoutX="376.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="ลบเรื่องร้องเรียน" />
+      <Button fx:id="deleteButton" layoutX="376.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="ลบเรื่องร้องเรียน" />
       <ListView fx:id="complainListView" layoutX="62.0" layoutY="94.0" prefHeight="454.0" prefWidth="216.0" />
    </children>
 </AnchorPane>
