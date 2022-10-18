@@ -273,7 +273,19 @@ public class WelcomePageController {
 
     @FXML
     private void handleSearchVoteButton() {
-        handleListView();
+        if(maxTextField.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ข้อมูลไม่ครบถ้วน");
+            alert.setContentText("โปรดกรอกข้อมูลให้ครบถ้วน");
+            alert.show();
+        }else if(minTextField.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ข้อมูลไม่ครบถ้วน");
+            alert.setContentText("โปรดกรอกข้อมูลให้ครบถ้วน");
+            alert.show();
+        } else {
+            handleListView();
+        }
     }
 
     private void handleSelectedListView(){
