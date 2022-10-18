@@ -33,6 +33,8 @@ public class ManageReportsController {
     @FXML private TextArea solutionTextArea;
     @FXML private Label staffLabel;
 
+    @FXML private Label specificTopicLabel;
+
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
 
@@ -71,6 +73,7 @@ public class ManageReportsController {
         topicLabel.setText("");
         solutionTextArea.setText("");
         staffLabel.setText("");
+        specificTopicLabel.setText("");
     }
     private void handleSelectedListView(){
         reportListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Report>() {
@@ -88,6 +91,7 @@ public class ManageReportsController {
         statusLabel.setText(report.getStatus());
         solutionTextArea.setText(report.getSolution());
         staffLabel.setText(report.getStaffReport());
+        specificTopicLabel.setText(report.getSpecificTopic());
         if(report.getStatus().equals("ยังไม่ดำเนินการ")){
             submitButton.setVisible(true);
             completeButton.setVisible(true);

@@ -42,12 +42,12 @@
     -fx-background-color: rgba(0,0,0,0);
 }
 .upload_button{
-    -fx-background-color: #33CC66;
+    -fx-background-color: #F4D174;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
 }
 .upload_button:hover{
-    -fx-background-color: #33FF66;
+    -fx-background-color: #F4D174;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
 }
@@ -86,7 +86,7 @@
     -fx-border-radius: 50;
 }
 .about_button{
-    -fx-background-color: #ffdab9	;
+    -fx-background-color: #eee8aa	;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
 }
@@ -137,7 +137,29 @@
 .button-mode:hover {
     -fx-border-color: black;
     -fx-background-color: black;
-    -fx-text-fill: linear-gradient(to right,white,white);
+    -fx-text-fill: linear-gradient(to right, white, white);
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}
+
+.button-purple:hover {
+    -fx-border-color: #C848B9;
+    -fx-background-color: #C848B9;
+    -fx-text-fill: white;
+    -fx-background-radius: 25px;
+    -fx-color-label-visible: white;
+    -fx-border-radius: 25px;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.button-green {
+    -fx-border-color: #5cb85c;
+    -fx-background-color: transparent;
+    -fx-text-fill: #5cb85c;
     -fx-background-radius: 25px;
     -fx-color-label-visible: white;
     -fx-border-radius: 25px;
