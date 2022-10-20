@@ -47,6 +47,10 @@ public class ReportList {
         }
         return false;
     }
+
+    public boolean validReport(String specificTopic) {
+        return  ( (specificTopic.matches("^[0-9]$")));
+    }
 }
 
 
