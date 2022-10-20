@@ -167,11 +167,11 @@
 ตัวอย่างข้อมูลผู้ใช้ระบบ
 * (Admin)  Username : admin,         Password: 12345ku
 * (Staff)  Username : staffone,      Password: staffone1,  หน่วยงาน กองยานพาหนะ
-* (Staff)  Username : stafffour,     Password: staffone4,  หน่วยงาน อาคารและสถานที่ 
-* (Staff)  Username : staffseven,    Password: staffone7,  หน่วยงาน สำนักบริการคอมพิวเตอร์ 
-* (Staff)  Username : stafften,      Password: staffone10, หน่วยงาน กองกิจการนิสิต Password: staffone10
-* (Staff)  Username : staffthirteen, Password: staffone13, หน่วยงาน สำนักงานทรัพย์สิน  
-* (Staff)  Username : staff sixteen, Password: staffone16, หน่วยงาน สำนักงานอธิการบดี
+* (Staff)  Username : stafffour,     Password: stafffour4,  หน่วยงาน อาคารและสถานที่ 
+* (Staff)  Username : staffseven,    Password: staffseven7,  หน่วยงาน สำนักบริการคอมพิวเตอร์ 
+* (Staff)  Username : stafften,      Password: stafften10, หน่วยงาน กองกิจการนิสิต Password: staffone10
+* (Staff)  Username : staffthirteen, Password: staffthirteen13, หน่วยงาน สำนักงานทรัพย์สิน  
+* (Staff)  Username : staffsixteen,  Password: staffsixteen16, หน่วยงาน สำนักงานอธิการบดี
 * (User)   Username : pariphat,      Password:nat123
 
 ## สรุปสิ่งที่พัฒนาแต่ละครั้งที่นำเสนอความก้าวหน้าของระบบ
