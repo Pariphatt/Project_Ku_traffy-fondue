@@ -63,7 +63,6 @@ public class RequestUnbanController {
         reasonTextField.clear();
         com.github.saacsos.FXRouter.goTo("home");
 
-//        userListIssueDataSource.writeData(userListIssue);
     }
     @FXML
     void handleBackButton(javafx.event.ActionEvent actionEvent) {

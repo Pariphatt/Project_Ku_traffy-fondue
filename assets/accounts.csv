@@ -1,20 +1,5 @@
-admin,admin,Pariphat,1234,profile-user.png,null,2022-10-20 17:45:26
-admin,admin1,Phonburis,1234,profile-user.png,null,2022-10-10 23:32:28
-admin,admin2,Phollaphat,1234,profile-user.png,null,2022-10-10 23:31:51
-admin,admin3,Nopnaphat,1234,profile-user.png,null,2022-10-10 23:43:10
-User,nat,pariphat46,1234,profile-user.png,false,2022-10-11 22:01:41
-User,pedpap,neuw,b,2022-10-04_1664855847477.png,false,2022-10-16 23:45:09
-User,arty,arty,12,2022-10-12_1665584630425.JPG,true,2022-10-20 17:00:10
-User,qqqqq,www,q,profile-user.png,false,2022-10-12 13:43:55
-staff,saacos,saac,1234,null,สำนักบริการคอมพิวเตอร์,2022-10-20 17:08:51
-staff,arty_vec,staff_arty_vec,1,profile-user.png,กองยานพาหนะ,2022-10-11 23:46:07
-staff,arty_build,arty_staff_build,1,profile-user.png,อาคารและสถานที่,never
-staff,arty_nisit,arty_staff_nisit,1,profile-user.png,กองกิจการนิสิต,never
-User,asdas,asasd,1,profile-user.png,false,never
-User,natpariphat,nat,pariphat46,2022-10-11_1665482343079.jpg,false,2022-10-11 17:13:14
-staff,kongkong,kong,kongkong,2022-10-11_1665492121615.jpg,สำนักงานอธิการบดี,2022-10-20 16:33:40
-staff,ruaymak,ruay,ruay1234,2022-10-11_1665502598867.jpg,สำนักงานทรัพย์สิน,2022-10-11 22:48:57
-staff,natnatnatnat,natnat,natnatnatnat,profile-user.png,กองกิจการนิสิต,2022-10-12 14:52:05
-User,case,Thanwaralee,case12,null,false,2022-10-12 19:14:21
-User,chut,chut,ter123,profile-user.png,false,2022-10-20 17:21:42
-User,good,key,aaaaaa,2022-10-20_1666256653240.jpg,false,2022-10-20 16:03:53
+admin,admin,Pariphat,1234,admin1.png,null,2022-10-20 20:28:18
+admin,admin1,Phonburis,1234,admin2.png,null,2022-10-10 23:32:28
+admin,admin2,Phollaphat,1234,admin3.png,null,2022-10-10 23:31:51
+admin,admin3,Nopnaphat,1234,admin4.png,null,2022-10-10 23:43:10
+User,pariphat,pariphatnat,nat123,2022-10-20_1666271405144.JPG,false,never

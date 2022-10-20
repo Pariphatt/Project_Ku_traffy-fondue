@@ -13,28 +13,7 @@ public class UserIssue {
         this.reason = reason;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
 
-    public UserIssue(String name, String reason, String status) {
-//        if (status.equals("Ban")){
-//            this.name = name;
-//            this.loginAttempt = 0;
-//            this.ban = false;
-//            this.reason = reason;
-//        } else if (status.equals("Unban")) {
-//            this.name = name;
-//            this.loginAttempt = 0;
-//            this.ban = true;
-//            this.reason = reason;
-//        }
-
-    }
-
-    public void setLoginAttempt() {
-        this.loginAttempt += 1;
-    }
 
     public String getName() {
         return name;

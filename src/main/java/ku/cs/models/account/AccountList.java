@@ -67,16 +67,8 @@ public class AccountList {
         return false;
     }
 
-    public void removeUser(String username) {
-        Account user = findUser(username);
-        accountList.remove(user);
-    }
-    public void sortDateAccount(){
-        Comparator<Account> comparator = (c1,c2)->{
-            return c1.getLastLogin().compareTo(c2.getLastLogin());
-        };
-        Collections.sort(accountList,comparator);
-    }
+
+
 
 }
 

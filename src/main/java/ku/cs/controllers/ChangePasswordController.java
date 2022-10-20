@@ -48,10 +48,8 @@ public class ChangePasswordController {
     private String pathImage;
     private AccountListDataSource userListDataSource;
     private Account accounts;
-    private Account account1;
     private File file;
     public static boolean isLightMode = true;
-    @FXML private Button mode;
     @FXML
     public void initialize() {
         accounts = new Account();

@@ -32,7 +32,7 @@ public class Report {
         this.vote = 0;
         this.solution = "";
         this.agency = agency;
-        this.staffReport = null;
+        this.staffReport = "";
         this.reportTime = reportTime;
         this.specificTopic = specificTopic;
     }
@@ -154,7 +154,6 @@ public class Report {
         else if (report.getType().equals("อื่นๆ")&& staff.getAgency().equals("สำนักงานอธิการบดี")) {
             return true;
         }
-//                return report.getType().equals("IT หรือ ปัญหาด้านคอมพิวเตอร์");
         return false;
         }
 

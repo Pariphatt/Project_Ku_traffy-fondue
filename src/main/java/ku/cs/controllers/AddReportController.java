@@ -36,17 +36,13 @@ import java.util.ArrayList;
 
 public class AddReportController {
     @FXML private Label userLabel;
-    private Report report;
     @FXML private TextField topicTextField;
     @FXML private TextArea detailTextArea;
     @FXML private TextArea specificTopicTextArea;
     @FXML private Label specificTopicLabel;
     private Alert alert;
     @FXML ChoiceBox typeChoiceBox;
-    private String Path;
-    private ImageView imageView;
-    private String pathImage;
-    private BufferedImage pic = null;
+
     private ReportList reportList;
     private DataSource<ReportList> dataSource;
 
@@ -55,7 +51,6 @@ public class AddReportController {
     private AccountListDataSource userListDataSource;
     private AccountList userList;
     private    String agency;
-    private String userName;
     @FXML private AnchorPane pane;
 
     @FXML

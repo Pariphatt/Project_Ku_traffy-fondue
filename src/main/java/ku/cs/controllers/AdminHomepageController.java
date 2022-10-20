@@ -29,53 +29,35 @@ import java.util.Comparator;
 
 public class AdminHomepageController {
 
-    private DataSource<AccountList> dataSource;
     private DataSource<AccountList> userListDataSource;
     private Account account;
     private AccountList userList;
-    private AccountList accountsList;
     private UserListIssueDataSource userListIssueDataSource;
     private UserListIssue userListIssue;
 
 
     @FXML private Label adminNameLabel;
     @FXML private Label nameLabel;
-    @FXML private Label UsernameLabel;
-    @FXML private Label agencyLabel;
-    @FXML private Label timeLabel;
     @FXML private ListView listViewUser;
     @FXML private ImageView imageView;
     @FXML private AnchorPane pane1;
 
     @FXML
     public void initialize() {
-//        dataSource = new AccountListDataSource( "assets","log.csv");
-//        accountsList = dataSource.readData();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
         userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
         userListIssue = userListIssueDataSource.readData();
-//        UserIssue userban = userListIssue.searchUser("pedpap");
-//        System.out.println(userban.getName());
         account = userList.findUser((String) FXRouter.getData());
         adminNameLabel.setText(account.getUsername());
         Mode.setMode(pane1);
-        //accountsList.sortDateAccount();
         showListView();
         clearSelectedAccount();
         handleSelectedListView();
     }
     private void showListView(){
-        //เรียง จากเวลา
-//        Collection.sort(sortaccountsList.getAllUsers() , new Comparator<Account>()){
-//            @Override
-//            public int compare(account){
-//                return -(account.getLastLogin().compareTo(account.getLastLogin()));
-//            }
-//        };
         ArrayList<Account> users = userList.getAllUsers();
         users.sort(new Comparator<Account>() {
-
             @Override
             public int compare(Account o1, Account o2) {
                 if (o1.getLastLogin().equals("never")){
@@ -94,7 +76,6 @@ public class AdminHomepageController {
 
     private void clearSelectedAccount(){
         nameLabel.setText("");
-//        UsernameLabel.setText("");
     }
 
     private void handleSelectedListView(){
@@ -110,9 +91,6 @@ public class AdminHomepageController {
     public void showSelectedAccount(Account account){
         nameLabel.setText(account.getName());
         imageView.setImage(new Image(new File("imagesAvatar/" + account.getPicPath()).toURI().toString()));
-//        UsernameLabel.setText(account.getUsername());
-//        timeLabel.setText(account.getLastLogin());
-
     }
 
 
@@ -131,8 +109,6 @@ public class AdminHomepageController {
             com.github.saacsos.FXRouter.goTo("report_user",account.getUsername());
         } catch (IOException e) {
             e.printStackTrace();
-//            System.err.println("ไปที่หน้า report_user ไม่ได้");
-//            System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
 

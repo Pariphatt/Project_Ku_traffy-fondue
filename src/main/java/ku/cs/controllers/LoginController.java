@@ -24,12 +24,8 @@ import java.io.IOException;
 public class LoginController  {
     @FXML private TextField username;
    @FXML private PasswordField password;
-    @FXML private ImageView iconFileImage;
     @FXML private Label loginMessageLabel;
     private Alert alert;
-    //login button
-    //กดไปหน้าหลักได้ก่อนยังไม่ได้ทำเงื่อนไข
-
     private DataSource<AccountList> dataSource;
     private AccountList accountList;
     @FXML private AnchorPane pane;
@@ -46,7 +42,6 @@ public class LoginController  {
         accountList = dataSource.readData();
         Mode.setMode(pane);
         new FadeIn(pane).play();
-
 
     }
     public void handleLoginButton(ActionEvent actionEvent){
@@ -119,13 +114,10 @@ public class LoginController  {
     }
 
 
-
-
     public void handleBackButton(ActionEvent actionEvent){
         try {
             com.github.saacsos.FXRouter.goTo("home");
         }catch (IOException e) {
-            //System.err.println("ยังไม่สร้างhomepage");
         }
     }
 }

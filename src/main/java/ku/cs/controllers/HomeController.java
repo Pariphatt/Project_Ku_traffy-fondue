@@ -19,9 +19,6 @@ import ku.cs.services.DataSource;
 import java.io.IOException;
 
 public class HomeController {
-    private DataSource<AccountList> userListDataSource;
-    private AccountList userList;
-    private Account account;
 
     public static boolean isLightMode = true;
     @FXML private Button mode;

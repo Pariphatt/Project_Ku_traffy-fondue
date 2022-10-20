@@ -29,7 +29,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterController {
-    private String Path;
     @FXML
     private TextField nameTextField;
     @FXML
@@ -39,14 +38,11 @@ public class RegisterController {
 
     private String pathImage;
 
-    private BufferedImage pic = null;
     @FXML
     private PasswordField passwordField;
     @FXML
     private PasswordField confirmPasswordField;
     private Account accounts;
-    @FXML
-    private Button Register;
     private Alert alert;
     private AccountListDataSource userListDataSource;
     private AccountList accountList;
@@ -59,7 +55,6 @@ public class RegisterController {
         accounts = new Account();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = userListDataSource.readData();
-//        accounts = accountList.findUser((String) FXRouter.getData());
         for (Account account : accountList.getAllUsers()){
             System.out.println(account.getRole());
         }
@@ -75,11 +70,10 @@ public class RegisterController {
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
         Node source = (Node) event.getSource();
-        File file = chooser.showOpenDialog(source.getScene().getWindow());
+        file = chooser.showOpenDialog(source.getScene().getWindow());
         if (file != null){
             imageView.setImage(new Image(file.getAbsolutePath()));
         }
-
         return pathImage;
     }
 
@@ -141,13 +135,12 @@ public class RegisterController {
                     }
                     if (pathImage == null) {
                         UserAccount user = new UserAccount("User", name, usernameText, password, "profile-user.png", "never");
-                        System.out.println(user.getUsername());
                         accountList.addUser(user);
                     } else {
                         File dest = new File("assets/imagesAvatar/" + pathImage);
                         accountList.addUser(new UserAccount("User", name, usernameText, password, pathImage, "never"));
+                        System.out.println(pathImage);
                     }
-                    System.out.println(accountList.getAllUsers().get(0));
                     userListDataSource.writeData(accountList);
                     System.out.println(accountList.getAllUsers());
                     alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -162,12 +155,7 @@ public class RegisterController {
                 }
 
             }
-
-
 }
-
-
-
 
 
 

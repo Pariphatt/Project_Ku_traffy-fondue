@@ -13,9 +13,7 @@ public class Account {
     private String role;
 
 
-    public void setLoginAttempts() {
-        this.loginAttempts += 1;
-    }
+
 
     public Account(String name, String username, String password) {
         this.name = name;
@@ -39,9 +37,6 @@ public class Account {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public void loginFailed() {
         increaseLoginAttempts();
@@ -62,13 +57,6 @@ public class Account {
         loginAttempts = 0;
     }
 
-    public boolean checkLimitLoginAttempts(int limit) {
-        return loginAttempts >= limit;
-    }
-
-    public boolean checkLimitLoginAttempts() {
-        return checkLimitLoginAttempts(3);
-    }
 
     public void setLastLogin(String lastLogin) {
         this.lastLogin = lastLogin;
@@ -103,17 +91,11 @@ public class Account {
         return lastLogin;
     }
 
-    public int getLoginAttempts() {
-        return loginAttempts;
-    }
 
     public boolean isPassword(String password) {
         return this.password.equals(password);
     }
 
-    public boolean isUsername(String username) {
-        return this.username.equals(username);
-    }
     public boolean validPassword(String password) {
         return ((password.matches("^[a-zA-Z0-9]{6,20}$")));
     }
@@ -129,7 +111,6 @@ public class Account {
                 "name: " + name + '\'' +
                 ", username: " + username + '\'' +
                 ", วันที่เข้าใช้งานล่าสุด: "+lastLogin+'\'' +
-                        ", picPath: "+ picPath + '\'' +
                 ", role: " + role + '\'';
     }
 

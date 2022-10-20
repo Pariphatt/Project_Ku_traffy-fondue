@@ -54,7 +54,7 @@
                </font>
             </TextField>
             <Line endX="100.0" layoutX="123.0" layoutY="195.0" startX="-100.0" />
-            <Label layoutX="34.0" layoutY="196.0" text="ใส่ได้แค่ A-Z หรือ a-z ยาว 3-20 ตัวอักษร" />
+            <Label layoutX="34.0" layoutY="196.0" text="ใส่ได้แค่ A-Z หรือ a-z ยาว 4-20 ตัวอักษร" />
             <Label layoutX="22.0" layoutY="233.0" text="Password">
                <font>
                   <Font size="24.0" />
@@ -66,7 +66,7 @@
                </font>
             </PasswordField>
             <Line endX="100.0" layoutX="123.0" layoutY="308.0" startX="-100.0" />
-            <Label layoutX="34.0" layoutY="309.0" text="ใส่ได้แค่ A-Z หรือ a-z หรือ 0-9 ยาว 6-20 ตัวอักษร" />
+            <Label layoutX="34.0" layoutY="309.0" text="ใส่ได้แค่ A-Z หรือ a-z หรือ 0-9 ยาว 7-20 ตัวอักษร" />
             <Label fx:id="ConfirmPassword" layoutX="22.0" layoutY="341.0" text="Confirm Password">
                <font>
                   <Font size="24.0" />

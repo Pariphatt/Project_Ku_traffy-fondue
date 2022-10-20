@@ -124,9 +124,7 @@ public class ReportComplainController {
         reportFIleDataSource.writeFileDelete(rl);
         allReportData.writeData(rlc);
         deleteButton.setVisible(false);
-//        complainListView.getItems().clear();
-//        complainListView.getItems().addAll(selectedReportTopic);
-//        complainListView.refresh();
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("เรื่องร้องเรียนที่ถูกรายงาน");
         alert.setContentText("ลบเรื่องร้องเรียนสำเร็จ");

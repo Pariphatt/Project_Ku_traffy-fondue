@@ -26,7 +26,6 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
 public class RegisterStaffController {
-    private String Path;
     private AccountList accountList;
     private DataSource<AccountList> accountListDataSource;
     @FXML
@@ -37,14 +36,11 @@ public class RegisterStaffController {
     private ImageView imageView;
     private String pathImage;
 
-    private BufferedImage pic = null;
     @FXML
     private PasswordField passwordField;
     @FXML
     private PasswordField confirmPasswordField;
 
-    @FXML
-    private Button Register;
     @FXML
     private ChoiceBox<String> agencyChoiceBox;
     private Account accounts;
@@ -134,7 +130,6 @@ public class RegisterStaffController {
             }
             if (pathImage == null) {
                 StaffAccount user = new StaffAccount("staff", name, usernameText, password, "profile-user.png",agencyChoiceBox.getValue(),"never");
-                System.out.println(user.getUsername());
                 accountList.addUser(user);
             } else {
                 File dest = new File("assets/imagesAvatar/" + pathImage);

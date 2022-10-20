@@ -30,9 +30,9 @@ public class ReportUserController {
     @FXML private Label loginAttemptsLabel;
     @FXML private Label banLabel;
     @FXML private Label reasonLabel;
-    @FXML private Label requestUnbanLabel;
+
     @FXML private ListView userIssueListView;
-//    @FXML ImageView imageView;
+
     private Account accounts;
     private UserAccount selectedAccount;
     private UserListIssue userListIssue;
@@ -48,12 +48,9 @@ public class ReportUserController {
     public void initialize() {
         Mode.setMode(pane);
         new FadeIn(pane).play();
-//        userListIssueDataSource = new UserListIssueDataSource();
-//        userListIssue = (UserListIssue) userListIssueDataSource.readData();
         userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
         userListIssue = userListIssueDataSource.readData();
-//        UserIssue userban = userListIssue.searchUser("pedpap");
-//        System.out.println(userban.getName());
+
         accounts = new Account();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = userListDataSource.readData();

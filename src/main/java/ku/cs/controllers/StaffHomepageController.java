@@ -23,24 +23,12 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 public class StaffHomepageController {
-    @FXML private TextField searchReportTextField;
-    @FXML private ListView reportListView;
-    @FXML private ChoiceBox agencyChoiceBox;
-    @FXML private Label topicLabel;
-    @FXML private Label statusLabel;
-    @FXML private TextArea detailTextArea;
-    @FXML private Label categoryLabel;
-    @FXML private Label agencyLabel;
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
-    private ReportList reportListFiltered;
     private StaffAccount staff;
-    private StaffAccount a;
-    private Account account;
     private AccountListDataSource userListDataSource;
     private AccountList userList;
-    private Report report;
     @FXML private AnchorPane pane;
 
 
@@ -50,71 +38,14 @@ public class StaffHomepageController {
         reportList = dataSource.readData();
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         userList = userListDataSource.readData();
-//        showListView(reportList);
-//        detailTextArea.setDisable(true);
+
         staff = (StaffAccount) userList.findUser((String) FXRouter.getData());
         Mode.setMode(pane);
-////        System.out.println(report.getUserName());
-//        System.out.println(staff.getUsername());
-//        //showChoiceBox();
-//        clearSelectedReport();
-//        handleSelectedListView();
-//        agencyChoiceBox.getItems().addAll(agency);
     }
 
-//    private void showChoiceBox(){
-//        Collection<String>
-//        agencyChoiceBox.getItems().addAll()
-//    }
 
     private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักการกีฬา", "สำนักงานทรัพย์สิน"};
 
-//    private void showListView(ReportList reportList){
-//        reportListView.getItems().addAll(reportList.getaAllReport());
-//        reportListView.refresh();
-//
-//    }
-//    private void clearSelectedReport(){
-//        statusLabel.setText("");
-//        detailTextArea.setText("");
-//        topicLabel.setText("");
-//        agencyLabel.setText("");
-//        categoryLabel.setText("");
-//    }
-//    private void handleSelectedListView(){
-//        reportListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Report>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Report> observable, Report oldValue, Report newValue) {
-//                System.out.println("Selected item: " + newValue);
-//                showSelectedReport(newValue);
-//            }
-//        });
-//    }
-//    public void showSelectedReport(Report report){
-//        topicLabel.setText(report.getTopic());
-//        detailTextArea.setText(report.getDetail());
-//        statusLabel.setText(report.getStatus());
-//        agencyLabel.setText(report.getAgency());
-//        categoryLabel.setText(report.getType());
-//
-//    }
-//
-//     @FXML
-//     public void handleSearchReportButton(javafx.event.ActionEvent actionEvent){
-//        String input = searchReportTextField.getText();
-//
-//        reportListFiltered = reportList.filter(new Filterer<Report>() {
-//            @Override
-//            public boolean filter(Report report) {
-//                return report.getTopic().contains(input);
-//            }
-//        });
-//        if (input == ""){
-//            reportListFiltered = dataSource.readData();
-//        }
-//        reportListView.getItems().clear();
-//        showListView(reportListFiltered);
-//    }
 
     @FXML
     void handleLogoutButton(javafx.event.ActionEvent actionEvent) {
@@ -140,7 +71,6 @@ public class StaffHomepageController {
         try {
             com.github.saacsos.FXRouter.goTo("manage_reports",staff);
         } catch (IOException e) {
-//            throw new RuntimeException();
             e.printStackTrace();
             System.err.println("ไปที่หน้า manage_reports ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");

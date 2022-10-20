@@ -57,20 +57,16 @@ public class WelcomePageController {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private Report selectedReport;
-    private UserAccount selectedAccount;
-    private DataSource<AccountList> accountListDataSource;
     private Alert alert;
     private AccountList accountList;
     private UserListIssueDataSource userListIssueDataSource;
     private UserListIssue userListIssue;
 
-    private Vote selectedVote;
     private VoteList voteList;
     private DataSource<VoteList> voteListDataSource;
 
     private ReportList filterReportList;
 
-    private ArrayList<Report> sortReportList;
     @FXML private TextField maxTextField;
     @FXML private TextField minTextField;
     @FXML private AnchorPane pane;
