@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import ku.cs.models.Ban.Banned;
 import ku.cs.models.Ban.BannedList;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.UserAccount;
@@ -32,7 +34,7 @@ public class BannedUserController {
     private BannedUserListFileDataSource bannedUserListFileDataSource;
     private BannedList bannedList;
     private Banned selectedUser;
-
+    @FXML private AnchorPane pane;
 
     public void initialize(){
         bannedUserListFileDataSource = new BannedUserListFileDataSource();
@@ -44,6 +46,7 @@ public class BannedUserController {
         showListView();
         clearSelectedUser();
         handleSelectedUser();
+        Mode.setMode(pane);
     }
 
     private void showListView(){

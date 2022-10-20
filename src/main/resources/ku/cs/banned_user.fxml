@@ -1,34 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.BannedUserController">
+<AnchorPane fx:id="pane" prefHeight="600" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.BannedUserController">
    <children>
-      <ListView fx:id="bannedUserListView" layoutX="50.0" layoutY="36.0" prefHeight="526.0" prefWidth="268.0" />
-      <Button layoutX="352.0" layoutY="228.0" mnemonicParsing="false" text="Unban" onAction="#handleUnbanButton"/>
-      <Label layoutX="348.0" layoutY="67.0" text="Name :">
+      <ListView fx:id="bannedUserListView" layoutX="50.0" layoutY="36.0" prefHeight="526.0" prefWidth="268.0" stylesheets="@styles/style.css" />
+      <Pane layoutX="400.0" layoutY="43.0" prefHeight="300.0" prefWidth="300.0" stylesheets="@styles/style.css">
+         <children>
+            <Label layoutX="12.0" layoutY="20.0" text="Name :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel" layoutX="79.0" layoutY="25.0" text="nameLabel" />
+            <Label layoutX="15.0" layoutY="69.0" text="LoginAttempt :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="loginAttemptLabel" layoutX="150.0" layoutY="74.0" text="loginAttemptLabel" />
+            <Label layoutX="14.0" layoutY="111.0" text="Appeal :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="appealLabel" layoutX="97.0" layoutY="116.0" text="appealLabel" />
+            <Button layoutX="125.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleUnbanButton" style="-fx-background-color: #EC7063;" stylesheets="@styles/style.css" text="Unban" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="cube_select_vocal" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+         <styleClass>
+            <String fx:value="color_box" />
+            <String fx:value="cube_box" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Pane>
+      <Button layoutX="710.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #8e8e8e;" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
+         <styleClass>
+            <String fx:value="cube_select_vocal" />
+            <String fx:value="shadow" />
+         </styleClass>
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
-      </Label>
-      <Label fx:id="nameLabel" layoutX="433.0" layoutY="72.0" text="nameLabel" />
-      <Label layoutX="348.0" layoutY="126.0" text="LoginAttempt :">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="348.0" layoutY="175.0" text="Appeal :">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="loginAttemptLabel" layoutX="491.0" layoutY="131.0" text="loginAttemptLabel" />
-      <Label fx:id="appealLabel" layoutX="445.0" layoutY="180.0" text="appealLabel" />
-      <Button layoutX="725.0" layoutY="24.0" mnemonicParsing="false" text="Back" onAction="#handleBackButton"/>
+      </Button>
    </children>
 </AnchorPane>

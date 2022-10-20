@@ -12,47 +12,39 @@
 
 <AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportComplainController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#afe9b9" height="485.0" layoutX="337.0" layoutY="97.0" stroke="#97e99c" strokeType="INSIDE" width="438.0" />
-      <Text fill="#eb0c0c" layoutX="33.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เรื่องร้องเรียนที่ถูกผู้ใช้รายงาน" underline="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dafbdf" height="460.0" layoutX="324.0" layoutY="64.0" stroke="#97e99c" strokeType="INSIDE" width="438.0" />
+      <Text fill="#eb0c0c" layoutX="33.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เรื่องร้องเรียนที่ถูกผู้ใช้รายงาน" underline="true">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button layoutX="687.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="34.0" prefWidth="87.0" stylesheets="@styles/style.css" text="Back" textFill="#f6f5f5">
-         <styleClass>
-            <String fx:value="login_button" />
-            <String fx:value="shadow" />
-         </styleClass>
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Button>
-      <Label layoutX="378.0" layoutY="148.0" text="Type :">
+      <Label layoutX="377.0" layoutY="119.0" text="Type :">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Label layoutX="375.0" layoutY="116.0" text="Topic :">
+      <Label layoutX="375.0" layoutY="96.0" text="Topic :">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Label fx:id="topicLabel" layoutX="438.0" layoutY="122.0" text="topicLabel">
+      <Label fx:id="topicLabel" layoutX="438.0" layoutY="99.0" text="topicLabel">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="368.0" layoutY="189.0" text="Detail :">
+      <Label layoutX="373.0" layoutY="155.0" text="Detail :">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <TextArea fx:id="detailTextArea" layoutX="438.0" layoutY="195.0" prefHeight="200.0" prefWidth="180.0" />
-      <Label fx:id="typeLabel" layoutX="440.0" layoutY="154.0" text="typeLabel">
+      <TextArea fx:id="detailTextArea" layoutX="438.0" layoutY="155.0" prefHeight="158.0" prefWidth="180.0" />
+      <Label fx:id="typeLabel" layoutX="438.0" layoutY="122.0" text="typeLabel">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextArea fx:id="reasonsTextArea" layoutX="438.0" layoutY="409.0" prefHeight="98.0" prefWidth="267.0" />
-      <Label layoutX="352.0" layoutY="402.0" text="Reason :">
+      <TextArea fx:id="reasonsTextArea" layoutX="438.0" layoutY="330.0" prefHeight="98.0" prefWidth="267.0" />
+      <Label layoutX="353.0" layoutY="330.0" text="Reason :">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Button fx:id="deleteButton" layoutX="438.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="151.0" stylesheets="@styles/style.css" text="Delete Complaint" textFill="#f6f5f5">
+      <Button fx:id="deleteButton" layoutX="470.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="151.0" stylesheets="@styles/style.css" text="Delete Complaint" textFill="#f6f5f5">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -60,6 +52,15 @@
             <String fx:value="shadow" />
             <String fx:value="login_button" />
          </styleClass></Button>
-      <ListView fx:id="complainListView" layoutX="33.0" layoutY="96.0" prefHeight="485.0" prefWidth="291.0" />
+      <ListView fx:id="complainListView" layoutX="33.0" layoutY="64.0" prefHeight="460.0" prefWidth="291.0" AnchorPane.bottomAnchor="76.0" />
+      <Button layoutX="710.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #8e8e8e;" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
+         <styleClass>
+            <String fx:value="cube_select_vocal" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

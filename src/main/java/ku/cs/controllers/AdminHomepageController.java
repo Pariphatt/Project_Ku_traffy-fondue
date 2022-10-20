@@ -37,7 +37,6 @@ public class AdminHomepageController {
     private UserListIssueDataSource userListIssueDataSource;
     private UserListIssue userListIssue;
 
-    @FXML StackPane pane;
 
     @FXML private Label adminNameLabel;
     @FXML private Label nameLabel;

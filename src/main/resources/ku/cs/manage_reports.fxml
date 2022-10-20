@@ -8,23 +8,16 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ManageReportsController">
     <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#def6d1" height="385.0" layoutX="356.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="435.0" />
         <ListView fx:id="reportListView" layoutX="31.0" layoutY="118.0" prefHeight="428.0" prefWidth="278.0" />
-        <Button layoutX="689.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleLogoutButton" prefHeight="36.0" prefWidth="89.0" styleClass="transparent" stylesheets="@styles/style.css" text="Logout" textFill="#d95a5a">
+        <Button layoutX="702.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleLogoutButton" prefHeight="36.0" prefWidth="89.0" styleClass="transparent" stylesheets="@styles/style.css" text="Logout" textFill="#d95a5a">
          <font>
             <Font name="System Bold" size="16.0" />
-         </font></Button>
-        <Button layoutX="31.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="28.0" prefWidth="57.0" stylesheets="@styles/style.css" text="Back" textFill="#f2eded">
-         <styleClass>
-            <String fx:value="login_button" />
-            <String fx:value="upload_button" />
-            <String fx:value="shadow" />
-         </styleClass>
-         <font>
-            <Font name="System Bold" size="12.0" />
          </font></Button>
         <Separator layoutX="343.0" layoutY="27.0" orientation="VERTICAL" prefHeight="552.0" prefWidth="0.0" />
         <Label layoutX="31.0" layoutY="63.0" text="ReportLists" textFill="#41a176">
@@ -32,28 +25,28 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="360.0" layoutY="58.0" text="Topic :" textFill="#41a176">
+        <Label layoutX="370.0" layoutY="57.0" text="Topic :" textFill="#41a176">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TextArea fx:id="detailTextArea" layoutX="365.0" layoutY="172.0" prefHeight="83.0" prefWidth="422.0" styleClass="shadow" stylesheets="@styles/style.css" />
-        <Label layoutX="365.0" layoutY="130.0" text="Detail:" textFill="#41a176">
+        <TextArea fx:id="detailTextArea" layoutX="375.0" layoutY="171.0" prefHeight="83.0" prefWidth="397.0" styleClass="shadow" stylesheets="@styles/style.css" />
+        <Label layoutX="375.0" layoutY="129.0" text="Detail:" textFill="#41a176">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="365.0" layoutY="392.0" text="Status:" textFill="#41a176">
+        <Label layoutX="375.0" layoutY="391.0" text="Status:" textFill="#41a176">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label fx:id="topicLabel" layoutX="430.0" layoutY="62.0" text="topicLabel">
+        <Label fx:id="topicLabel" layoutX="440.0" layoutY="61.0" text="topicLabel">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label fx:id="statusLabel" layoutX="430.0" layoutY="396.0" text="statusLabel">
+        <Label fx:id="statusLabel" layoutX="440.0" layoutY="395.0" text="statusLabel">
             <font>
                 <Font size="14.0" />
             </font>
@@ -68,7 +61,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Label layoutX="365.0" layoutY="438.0" text="Solution :" textFill="#41a176">
+      <Label layoutX="375.0" layoutY="438.0" text="Solution :" textFill="#41a176">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -81,8 +74,8 @@
             <String fx:value="login_button" />
             <String fx:value="shadow" />
          </styleClass></Button>
-      <TextField fx:id="solutionTextField" alignment="TOP_LEFT" layoutX="462.0" layoutY="438.0" prefHeight="98.0" prefWidth="297.0" />
-      <Button fx:id="submitButton" layoutX="702.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="27.0" prefWidth="64.0" stylesheets="@styles/style.css" text="Submit" textFill="#f2eeee">
+      <TextField fx:id="solutionTextField" alignment="TOP_LEFT" layoutX="475.0" layoutY="438.0" prefHeight="98.0" prefWidth="297.0" />
+      <Button fx:id="submitButton" layoutX="715.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="27.0" prefWidth="64.0" stylesheets="@styles/style.css" text="Submit" textFill="#f2eeee">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -90,8 +83,8 @@
             <String fx:value="login_button" />
             <String fx:value="shadow" />
          </styleClass></Button>
-      <TextArea fx:id="solutionTextArea" layoutX="365.0" layoutY="302.0" prefHeight="83.0" prefWidth="422.0" styleClass="shadow" stylesheets="@styles/style.css" />
-      <Label layoutX="365.0" layoutY="264.0" text="Solution :" textFill="#41a176">
+      <TextArea fx:id="solutionTextArea" layoutX="375.0" layoutY="301.0" prefHeight="83.0" prefWidth="397.0" styleClass="shadow" stylesheets="@styles/style.css" />
+      <Label layoutX="375.0" layoutY="263.0" text="Solution :" textFill="#41a176">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -105,20 +98,20 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Label layoutX="531.0" layoutY="59.0" text=" Staff :" textFill="#41a176">
+      <Label layoutX="541.0" layoutY="58.0" text=" Staff :" textFill="#41a176">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label fx:id="staffLabel" layoutX="591.0" layoutY="63.0" text="staffLabel">
+      <Label fx:id="staffLabel" layoutX="601.0" layoutY="62.0" text="staffLabel">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="360.0" layoutY="94.0" text="SpacificDetail :" textFill="#41a176">
+      <Label layoutX="370.0" layoutY="93.0" text="SpacificDetail :" textFill="#41a176">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="specificTopicLabel" layoutX="494.0" layoutY="98.0" text="specificTopicLabel">
+      <Label fx:id="specificTopicLabel" layoutX="504.0" layoutY="97.0" text="specificTopicLabel">
          <font>
             <Font size="14.0" />
          </font>
@@ -128,5 +121,14 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #8e8e8e;" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
+         <styleClass>
+            <String fx:value="cube_select_vocal" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
