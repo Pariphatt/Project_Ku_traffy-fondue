@@ -11,31 +11,31 @@
 
 <AnchorPane fx:id="pane1" prefHeight="600.0" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AdminHomepageController">
    <children>
-      <Label layoutX="20.0" layoutY="50.0" styleClass="text-System_User_List" stylesheets="@styles/style.css" text="System User List">
+      <Label layoutX="20.0" layoutY="50.0" styleClass="text-System_User_List" stylesheets="@styles/style.css" text="System User List" textFill="#8e8e8e">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="14.0" text="Admin" />
-      <Label fx:id="adminNameLabel" layoutX="63.0" layoutY="14.0" text="adminNameLabel" />
-      <Button layoutX="332.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleGoToReportUserButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportUsers" />
+      <Label layoutX="20.0" layoutY="14.0" text="Admin" textFill="#8e8e8e" />
+      <Label fx:id="adminNameLabel" layoutX="63.0" layoutY="14.0" text="adminNameLabel" textFill="#8e8e8e" />
+      <Button layoutX="194.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleGoToReportUserButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportUsers" />
       <Button layoutX="695.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleLogoutButton" stylesheets="@styles/style.css" text="Logout">
          <styleClass>
             <String fx:value="logout_button" />
             <String fx:value="shadow" />
          </styleClass></Button>
-      <Button layoutX="531.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleGoToChangePasswordButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Change Password" />
-      <Label layoutX="320.0" layoutY="512.0" text="รายชื่อผู้ใช้ที่ถูกรายงาน :" />
-      <Label layoutX="541.0" layoutY="512.0" text="เปลี่ยนรหัสผ่านใหม่ :" />
+      <Button layoutX="429.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleGoToChangePasswordButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Change Password" />
+      <Label layoutX="179.0" layoutY="521.0" text="รายชื่อผู้ใช้ที่ถูกรายงาน :" textFill="#8e8e8e" />
+      <Label layoutX="439.0" layoutY="521.0" text="เปลี่ยนรหัสผ่านใหม่ :" textFill="#8e8e8e" />
       <StackPane fx:id="reportListView" layoutX="23.0" layoutY="130.0" prefHeight="360.0" prefWidth="754.0">
          <children>
             <ListView fx:id="listViewUser" prefHeight="340.0" prefWidth="754.0" styleClass="list-cell" stylesheets="@styles/style.css" />
          </children></StackPane>
-      <Button layoutX="437.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleAddStaffButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Create Staff" />
-      <Label layoutX="437.0" layoutY="512.0" text="เพิ่มบัญชีเจ้าหน้าที่ :" />
-      <Label fx:id="nameLabel" layoutX="557.0" layoutY="32.0" text="NameLabel" />
+      <Button layoutX="320.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleAddStaffButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Create Staff" />
+      <Label layoutX="315.0" layoutY="521.0" text="เพิ่มบัญชีเจ้าหน้าที่ :" textFill="#8e8e8e" />
+      <Label fx:id="nameLabel" layoutX="557.0" layoutY="32.0" text="NameLabel" textFill="#8e8e8e" />
       <ImageView fx:id="imageView" fitHeight="101.0" fitWidth="150.0" layoutX="620.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="169.0" layoutY="512.0" text="รวมเรื่องร้องเรียนที่ถูกรายงาน:" />
-      <Button layoutX="183.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleGoToReportComplainButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportComplain" />
+      <Label layoutX="24.0" layoutY="521.0" text="รวมเรื่องร้องเรียนที่ถูกรายงาน:" textFill="#8e8e8e" />
+      <Button layoutX="38.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleGoToReportComplainButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportComplain" />
    </children>
 </AnchorPane>

@@ -16,7 +16,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="31.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleBackButton" styleClass="hide_button" stylesheets="@styles/style.css">
+      <Button layoutX="31.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleBackButton" styleClass="transparent" stylesheets="@styles/style.css">
          <graphic>
             <ImageView fitHeight="100.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                <image>

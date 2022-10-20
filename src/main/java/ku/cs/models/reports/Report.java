@@ -32,7 +32,7 @@ public class Report {
         this.vote = 0;
         this.solution = "";
         this.agency = agency;
-        this.staffReport = "";
+        this.staffReport = null;
         this.reportTime = reportTime;
         this.specificTopic = specificTopic;
     }
@@ -114,7 +114,7 @@ public class Report {
 
     @Override
     public String toString() {
-        return topic + "("+vote+")"  +"    "+reportTime;
+        return topic+  "("+vote+")"  +"    "+reportTime+ "  "+status;
     }
 
     public void setVote(int vote) {

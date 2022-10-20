@@ -74,9 +74,6 @@ public class WelcomePageController {
     @FXML private TextField maxTextField;
     @FXML private TextField minTextField;
     @FXML private AnchorPane pane;
-    @FXML private Pane pane1;
-    @FXML private Pane pane2;
-    @FXML private Pane pane3;
 
     public void initialize(){
         File imagePic = new File("imagesAvatar/profile-user.png");
@@ -113,7 +110,9 @@ public class WelcomePageController {
         new FadeIn(pane).play();
     }
     private void sortListView(){
+        reportList.getaAllReport();
         ArrayList<Report> reports = reportList.getaAllReport();
+
         reports.sort(new Comparator<Report>() {
             @Override
             public int compare(Report o1, Report o2) {

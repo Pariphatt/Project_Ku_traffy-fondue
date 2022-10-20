@@ -1,13 +1,16 @@
 package ku.cs.controllers;
 
+import animatefx.animation.FadeIn;
 import com.github.saacsos.FXRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import ku.cs.models.Ban.Banned;
 import ku.cs.models.Ban.BannedList;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.UserAccount;
@@ -42,7 +45,7 @@ public class ReportUserController {
     private UserListIssueDataSource userListIssueDataSource;
     private BannedUserListFileDataSource bannedUserListFileDataSource;
     private BannedList bannedList;
-
+    @FXML private AnchorPane pane;
     @FXML
     public void initialize() {
 //        userListIssueDataSource = new UserListIssueDataSource();
@@ -62,7 +65,8 @@ public class ReportUserController {
         showListView();
         clearSelectedUser();
         handleSelectedListView();
-
+        Mode.setMode(pane);
+        new FadeIn(pane).play();
     }
 
     @FXML

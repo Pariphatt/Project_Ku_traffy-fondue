@@ -1,10 +1,13 @@
 package ku.cs.controllers;
 
+import animatefx.animation.BounceIn;
+import animatefx.animation.FadeIn;
 import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -47,7 +50,8 @@ public class ChangePasswordController {
     private Account accounts;
     private Account account1;
     private File file;
-
+    public static boolean isLightMode = true;
+    @FXML private Button mode;
     @FXML
     public void initialize() {
         accounts = new Account();
@@ -59,10 +63,10 @@ public class ChangePasswordController {
         userName.setEditable(false);
         imageView.setImage(new Image(new File("imagesAvatar/" + accounts.getPicPath()).toURI().toString()));
         Mode.setMode(pane);
-
+        new FadeIn(pane).play();
     }
-    public String handleAddPhoto(ActionEvent event) {
 
+    public String handleAddPhoto(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
