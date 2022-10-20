@@ -169,7 +169,7 @@
 * (Staff)  Username : staffone,      Password: staffone1,  หน่วยงาน กองยานพาหนะ
 * (Staff)  Username : stafffour,     Password: stafffour4,  หน่วยงาน อาคารและสถานที่ 
 * (Staff)  Username : staffseven,    Password: staffseven7,  หน่วยงาน สำนักบริการคอมพิวเตอร์ 
-* (Staff)  Username : stafften,      Password: stafften10, หน่วยงาน กองกิจการนิสิต Password: staffone10
+* (Staff)  Username : stafften,      Password: stafften10, หน่วยงาน กองกิจการนิสิต 
 * (Staff)  Username : staffthirteen, Password: staffthirteen13, หน่วยงาน สำนักงานทรัพย์สิน  
 * (Staff)  Username : staffsixteen,  Password: staffsixteen16, หน่วยงาน สำนักงานอธิการบดี
 * (User)   Username : pariphat,      Password:nat123
