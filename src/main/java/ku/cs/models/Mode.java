@@ -2,12 +2,11 @@ package ku.cs.models;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import ku.cs.controllers.HomeController;
-import ku.cs.controllers.LoginController;
+import ku.cs.controllers.HomePageController;
 
 public class Mode {
     public static void setMode(AnchorPane parent) {
-        if (HomeController.isLightMode) {
+        if (HomePageController.isLightMode) {
             setLightMode(parent);
         } else {
             setDarkMode(parent);

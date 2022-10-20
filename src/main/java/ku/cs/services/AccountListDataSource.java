@@ -1,15 +1,12 @@
 package ku.cs.services;
 
-import ku.cs.models.account.AccountList;
-import ku.cs.models.account.Account;
-import ku.cs.models.account.StaffAccount;
-import ku.cs.models.account.UserAccount;
+import ku.cs.models.accounts.AccountList;
+import ku.cs.models.accounts.Account;
+import ku.cs.models.accounts.StaffAccount;
+import ku.cs.models.accounts.UserAccount;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class AccountListDataSource<T> implements DataSource<AccountList> {
     private String directoryName;

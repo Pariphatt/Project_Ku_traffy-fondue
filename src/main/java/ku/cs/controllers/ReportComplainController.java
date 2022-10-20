@@ -45,7 +45,7 @@ public class ReportComplainController {
     @FXML
     public void initialize() {
         Mode.setMode(pane);
-        reportFIleDataSource = new ReportFIleDataSource("assets", "report_post.csv");
+        reportFIleDataSource = new ReportFIleDataSource("assets", "reportIssues.csv");
         reportPostLists = reportFIleDataSource.readReportPost();
         detailTextArea.setEditable(false);
         reasonsTextArea.setEditable(false);
@@ -97,7 +97,7 @@ public class ReportComplainController {
     @FXML
     void handleBackButton(ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("admin");
+            com.github.saacsos.FXRouter.goTo("admin_page");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า admin ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด route");
@@ -129,7 +129,7 @@ public class ReportComplainController {
         alert.setTitle("เรื่องร้องเรียนที่ถูกรายงาน");
         alert.setContentText("ลบเรื่องร้องเรียนสำเร็จ");
         alert.show();
-        com.github.saacsos.FXRouter.goTo("report_complain");
+        com.github.saacsos.FXRouter.goTo("report_complaint_page");
     }
 }
 

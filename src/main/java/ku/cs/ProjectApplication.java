@@ -18,28 +18,27 @@ public class ProjectApplication extends Application {
         stage.getIcons().add(new Image("https://play-lh.googleusercontent.com/Xv4Ze-dmrbnMgyP_2HxCrGaV5VJfe5vAk3Sekza42K1EON2J5sEVwXI8-0cB6Rmtgw"));
         com.github.saacsos.FXRouter.bind(this, stage, "ระบบร้องเรียนมหาวิทยาลัยเกษตรศาสตร์", 800, 600);
         configRoute();
-        com.github.saacsos.FXRouter.goTo("home");
+        com.github.saacsos.FXRouter.goTo("home_page");
     }
     private static void configRoute() {
         String packageStr = "ku/cs/";
-        FXRouter.when("home", packageStr+"home.fxml");
-        FXRouter.when("login", packageStr+"login.fxml");
-        FXRouter.when("Register", packageStr+"Register.fxml");
-        FXRouter.when("credit", packageStr + "credit.fxml");
-        FXRouter.when("guidebook", packageStr + "guidebook.fxml");
+        FXRouter.when("home_page", packageStr+"home_page.fxml");
+        FXRouter.when("login_page", packageStr+"login_page.fxml");
+        FXRouter.when("register_page", packageStr+"register_page.fxml");
+        FXRouter.when("credit_page", packageStr + "credit_page.fxml");
+        FXRouter.when("guide_book_page", packageStr + "guide_book_page.fxml");
         FXRouter.when("welcome_page", packageStr+"welcome_page.fxml");
-        FXRouter.when("addReport_page", packageStr+"addReport_page.fxml");
-        FXRouter.when("allComplaint_page", packageStr+"allComplaint_page.fxml");
-        FXRouter.when("welcome_staff", packageStr+"welcome_staff.fxml");
-        FXRouter.when("admin", packageStr+"admin.fxml");
-        FXRouter.when("change_password", packageStr+"change_password.fxml");
-        FXRouter.when("report_user", packageStr+"report_user.fxml");
-        FXRouter.when("staff_homepage", packageStr+"staff_homepage.fxml");
-        FXRouter.when("RegisterStaff", packageStr+"RegisterStaff.fxml");
-        FXRouter.when("manage_reports", packageStr+"manage_reports.fxml");
-        FXRouter.when("report_complain", packageStr+"report_complain.fxml");
-        FXRouter.when("request_unBan", packageStr+"request_unBan.fxml");
-        FXRouter.when("banned_user", packageStr+"banned_user.fxml");
+        FXRouter.when("add_report_page", packageStr+"add_report_page.fxml");
+        FXRouter.when("my_report_page", packageStr+"my_report_page.fxml");
+        FXRouter.when("admin_page", packageStr+"admin_page.fxml");
+        FXRouter.when("change_password_page", packageStr+"change_password_page.fxml");
+        FXRouter.when("report_user_page", packageStr+"report_user_page.fxml");
+        FXRouter.when("staff_page", packageStr+"staff_page.fxml");
+        FXRouter.when("register_staff_page", packageStr+"register_staff_page.fxml");
+        FXRouter.when("manage_reports_page", packageStr+"manage_reports_page.fxml");
+        FXRouter.when("report_complaint_page", packageStr+"report_complaint_page.fxml");
+        FXRouter.when("request_unban_page", packageStr+"request_unban_page.fxml");
+        FXRouter.when("banned_user_page", packageStr+"banned_user_page.fxml");
     }
     public static void main(String[] args) {
         launch();

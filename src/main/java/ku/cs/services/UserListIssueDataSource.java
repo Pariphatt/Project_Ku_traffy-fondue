@@ -1,13 +1,12 @@
 package ku.cs.services;
 
-import ku.cs.models.issue.UserIssue;
-import ku.cs.models.issue.UserListIssue;
-import ku.cs.models.reports.Report;
+import ku.cs.models.issues.UserIssue;
+import ku.cs.models.issues.UserIssueList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class UserListIssueDataSource implements DataSource<UserListIssue>{
+public class UserListIssueDataSource implements DataSource<UserIssueList>{
     private String directoryName;
     private String fileName;
 
@@ -37,8 +36,8 @@ public class UserListIssueDataSource implements DataSource<UserListIssue>{
         }
     }
     @Override
-    public UserListIssue readData() {
-        UserListIssue userListIssue = new UserListIssue();
+    public UserIssueList readData() {
+        UserIssueList userIssueList = new UserIssueList();
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
@@ -55,7 +54,7 @@ public class UserListIssueDataSource implements DataSource<UserListIssue>{
                 if (data.length == 4){
                     userIssue = new UserIssue(data[0].trim(),Integer.parseInt(data[1]),Boolean.parseBoolean(data[2]),data[3].trim());
                 }
-                userListIssue.addUserIssue(userIssue);
+                userIssueList.addUserIssue(userIssue);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -69,10 +68,10 @@ public class UserListIssueDataSource implements DataSource<UserListIssue>{
                 throw new RuntimeException(e);
             }
         }
-        return userListIssue;
+        return userIssueList;
     }
     @Override
-    public void writeData(UserListIssue userListIssue) {
+    public void writeData(UserIssueList userIssueList) {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
@@ -82,7 +81,7 @@ public class UserListIssueDataSource implements DataSource<UserListIssue>{
             writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
 
-            for (UserIssue userIssue: userListIssue.getAllUserIssue()){
+            for (UserIssue userIssue: userIssueList.getAllUserIssue()){
                 String line = userIssue.getName().trim()+","
                         +userIssue.getLoginAttempt()+","
                         +userIssue.isBan()+","

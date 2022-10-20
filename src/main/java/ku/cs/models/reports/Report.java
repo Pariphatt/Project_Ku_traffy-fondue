@@ -1,11 +1,6 @@
 package ku.cs.models.reports;
 
-import ku.cs.models.account.StaffAccount;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
+import ku.cs.models.accounts.StaffAccount;
 
 public class Report {
     private String topic;

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="color_theme_0" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomePageController">
+   <children>
+      <Button layoutX="612.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleRegisterButton" stylesheets="@styles/style.css" text="Sign up" textFill="#8e8e8e">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <styleClass>
+            <String fx:value="cube_select_vocal" />
+            <String fx:value="color_theme_0" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
+      <Pane fx:id="pane1" layoutX="40.0" layoutY="50.0" prefHeight="500.0" prefWidth="500.0" stylesheets="@styles/style.css">
+         <styleClass>
+            <String fx:value="cube_box" />
+            <String fx:value="color_box" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <Button fx:id="mode" layoutX="363.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleDarkModeButton" prefHeight="43.0" prefWidth="123.0" styleClass="button-mode" stylesheets="@styles/darkMode.css" text="Dark Mode" />
+            <ImageView fitHeight="134.0" fitWidth="130.0" layoutX="356.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/kulogo.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="118.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleguidebookButton" stylesheets="@styles/style.css" text="How to use this app?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="cube_select_vocal" />
+               </styleClass>
+            </Button>
+            <Button layoutX="14.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleCreditButton" stylesheets="@styles/style.css" text="Credit">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="transparent" />
+                  <String fx:value="cube_select_vocal" />
+               </styleClass>
+            </Button>
+            <Label layoutX="118.0" layoutY="177.0" text="FAQ">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="396.0" layoutY="71.0" text="Report">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="396.0" layoutY="98.0" text="System">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="396.0" layoutY="125.0" text="App">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button fx:id="loginBTN" layoutX="613.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleSignInButton" stylesheets="@styles/style.css" text="Sign in" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <styleClass>
+            <String fx:value="color_theme_1" />
+            <String fx:value="cube_select_main" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>

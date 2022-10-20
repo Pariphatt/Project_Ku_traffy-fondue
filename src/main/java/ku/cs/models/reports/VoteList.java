@@ -1,8 +1,5 @@
 package ku.cs.models.reports;
 
-import ku.cs.models.account.Account;
-import ku.cs.services.Filterer;
-
 import java.util.ArrayList;
 
 public class VoteList {

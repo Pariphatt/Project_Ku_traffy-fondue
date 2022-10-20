@@ -11,13 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import ku.cs.models.Mode;
-import ku.cs.models.account.Account;
-import ku.cs.models.account.AccountList;
-import ku.cs.models.account.UserAccount;
-import ku.cs.models.issue.UserIssue;
-import ku.cs.models.issue.UserListIssue;
+import ku.cs.models.accounts.Account;
+import ku.cs.models.accounts.AccountList;
+import ku.cs.models.issues.UserIssue;
+import ku.cs.models.issues.UserIssueList;
 import ku.cs.models.reports.Report;
 import ku.cs.models.reports.ReportList;
 import ku.cs.models.reports.Vote;
@@ -60,7 +58,7 @@ public class WelcomePageController {
     private Alert alert;
     private AccountList accountList;
     private UserListIssueDataSource userListIssueDataSource;
-    private UserListIssue userListIssue;
+    private UserIssueList userIssueList;
 
     private VoteList voteList;
     private DataSource<VoteList> voteListDataSource;
@@ -84,7 +82,7 @@ public class WelcomePageController {
         reportList = dataSource.readData();
 
         userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
-        userListIssue = userListIssueDataSource.readData();
+        userIssueList = userListIssueDataSource.readData();
         accountList = userListDataSource.readData();
 
         showListView();
@@ -331,7 +329,7 @@ public class WelcomePageController {
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("addReport_page", account.getUsername());
+            com.github.saacsos.FXRouter.goTo("add_report_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -340,7 +338,7 @@ public class WelcomePageController {
     @FXML
     public void handleMyReportButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("allComplaint_page", account.getUsername());
+            com.github.saacsos.FXRouter.goTo("my_report_page", account.getUsername());
         } catch (IOException e) {
             throw new RuntimeException();
             //System.err.println(e);
@@ -350,7 +348,7 @@ public class WelcomePageController {
     @FXML
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("login");
+            com.github.saacsos.FXRouter.goTo("login_page");
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -358,7 +356,7 @@ public class WelcomePageController {
     @FXML
     public void handleSettingButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("change_password", account.getUsername());
+            com.github.saacsos.FXRouter.goTo("change_password_page", account.getUsername());
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -377,7 +375,7 @@ public class WelcomePageController {
                 alert.show();
             }
             else {
-                ReportFIleDataSource reportPost = new ReportFIleDataSource("assets","report_post.csv");
+                ReportFIleDataSource reportPost = new ReportFIleDataSource("assets","reportIssues.csv");
                 reportPost.reportPost(selectedReport,reasons);
                reasonsTextArea.clear();
                alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -400,14 +398,13 @@ public class WelcomePageController {
             alert.show();
         } else {
             UserListIssueDataSource reportUser = new UserListIssueDataSource();
-            userListIssue.addUserIssue(new UserIssue(selectedReport.getUserReport(), 0,false,reasons));
-            reportUser.writeData(userListIssue);
+            userIssueList.addUserIssue(new UserIssue(selectedReport.getUserReport(), 0,false,reasons));
+            reportUser.writeData(userIssueList);
             reasonsUserTextArea.clear();
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("ส่งการรายงานสำเร็จ");
             alert.show();
             reasonsUserTextArea.clear();
-            System.out.println("090909090");
         }
     }
 

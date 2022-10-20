@@ -1,9 +1,7 @@
 package ku.cs.services;
 
-import ku.cs.models.Ban.Banned;
-import ku.cs.models.Ban.BannedList;
-import ku.cs.models.issue.UserIssue;
-import ku.cs.models.issue.UserListIssue;
+import ku.cs.models.bans.Banned;
+import ku.cs.models.bans.BannedList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -19,7 +17,7 @@ public class BannedUserListFileDataSource implements DataSource<BannedList>{
     }
     public BannedUserListFileDataSource(){
         directoryName = "assets";
-        fileName = "bannedUser.csv";
+        fileName = "bannedUsers.csv";
     }
 
     private void checkFileIsExisted() {
