@@ -1,13 +1,16 @@
 package ku.cs.controllers;
 
+import animatefx.animation.FadeIn;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import ku.cs.models.Ban.Banned;
 import ku.cs.models.Ban.BannedList;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.account.UserAccount;
@@ -26,6 +29,7 @@ public class BannedUserController {
 
     @FXML
     private Label loginAttemptLabel;
+    @FXML private AnchorPane pane;
     private UserAccount selectedAccount;
     private AccountListDataSource accountListDataSource;
     private AccountList accountList;
@@ -34,7 +38,10 @@ public class BannedUserController {
     private Banned selectedUser;
 
 
+
     public void initialize(){
+        Mode.setMode(pane);
+        new FadeIn(pane).play();
         bannedUserListFileDataSource = new BannedUserListFileDataSource();
         bannedList = bannedUserListFileDataSource.readData();
 

@@ -33,8 +33,6 @@ public class ReportUserController {
     @FXML private Label requestUnbanLabel;
     @FXML private ListView userIssueListView;
 //    @FXML ImageView imageView;
-
-
     private Account accounts;
     private UserAccount selectedAccount;
     private UserListIssue userListIssue;
@@ -48,6 +46,8 @@ public class ReportUserController {
     @FXML private AnchorPane pane;
     @FXML
     public void initialize() {
+        Mode.setMode(pane);
+        new FadeIn(pane).play();
 //        userListIssueDataSource = new UserListIssueDataSource();
 //        userListIssue = (UserListIssue) userListIssueDataSource.readData();
         userListIssueDataSource = new UserListIssueDataSource("assets","userIssues.csv");
@@ -65,8 +65,7 @@ public class ReportUserController {
         showListView();
         clearSelectedUser();
         handleSelectedListView();
-        Mode.setMode(pane);
-        new FadeIn(pane).play();
+
     }
 
     @FXML

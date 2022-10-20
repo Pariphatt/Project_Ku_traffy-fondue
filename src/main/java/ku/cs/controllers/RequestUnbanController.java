@@ -1,10 +1,13 @@
 package ku.cs.controllers;
 
+import animatefx.animation.FadeIn;
 import com.github.saacsos.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import ku.cs.models.Ban.Banned;
 import ku.cs.models.Ban.BannedList;
+import ku.cs.models.Mode;
 import ku.cs.models.account.Account;
 import ku.cs.models.account.AccountList;
 import ku.cs.models.issue.UserIssue;

@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportComplainController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#afe9b9" height="485.0" layoutX="337.0" layoutY="97.0" stroke="#97e99c" strokeType="INSIDE" width="438.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dafbdf" height="485.0" layoutX="337.0" layoutY="97.0" stroke="#97e99c" strokeType="INSIDE" width="438.0" />
       <Text fill="#eb0c0c" layoutX="33.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="เรื่องร้องเรียนที่ถูกผู้ใช้รายงาน" underline="true">
          <font>
             <Font size="15.0" />

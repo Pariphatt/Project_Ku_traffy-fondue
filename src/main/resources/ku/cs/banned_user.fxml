@@ -6,11 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.BannedUserController">
+<AnchorPane fx:id="pane" prefHeight="600" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.BannedUserController">
    <children>
       <ListView fx:id="bannedUserListView" layoutX="50.0" layoutY="36.0" prefHeight="526.0" prefWidth="268.0" />
-      <Button layoutX="352.0" layoutY="228.0" mnemonicParsing="false" text="Unban" onAction="#handleUnbanButton"/>
+      <Button layoutX="352.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleUnbanButton" text="Unban" />
       <Label layoutX="348.0" layoutY="67.0" text="Name :">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -29,6 +28,6 @@
       </Label>
       <Label fx:id="loginAttemptLabel" layoutX="491.0" layoutY="131.0" text="loginAttemptLabel" />
       <Label fx:id="appealLabel" layoutX="445.0" layoutY="180.0" text="appealLabel" />
-      <Button layoutX="725.0" layoutY="24.0" mnemonicParsing="false" text="Back" onAction="#handleBackButton"/>
+      <Button layoutX="725.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
    </children>
 </AnchorPane>

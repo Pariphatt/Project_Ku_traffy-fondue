@@ -51,8 +51,10 @@ public class ReportComplainController {
         reasonsTextArea.setEditable(false);
         handleSelectedListView();
         arrayList = new ArrayList<>();
+        clearSelectedComplaint();
         for (Report reportTemp : reportPostLists) {
             arrayList.add(reportTemp.getTopic());
+
         }
         showListView();
     }
@@ -72,6 +74,11 @@ public class ReportComplainController {
                 selectedReportTopic = newValue;
             }
         });
+    }
+
+    private void clearSelectedComplaint(){
+        topicLabel.setText("");
+        typeLabel.setText("");
     }
     public void showSelectedReport(String title) {
         topicLabel.setText(title);
