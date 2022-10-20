@@ -61,11 +61,10 @@
                </font>
             </Label>
             <Label layoutX="30.0" layoutY="488.0" text="6410451181" />
-            <Button layoutX="523.0" layoutY="521.0" mnemonicParsing="false" onAction="#handleBackButton" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
+            <Button layoutX="490.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #8e8e8e;" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
                <styleClass>
-                  <String fx:value="cube_box" />
-                  <String fx:value="cube_select_main" />
-                  <String fx:value="color_theme_1" />
+                  <String fx:value="cube_select_vocal" />
+                  <String fx:value="shadow" />
                </styleClass>
                <font>
                   <Font name="System Bold" size="12.0" />

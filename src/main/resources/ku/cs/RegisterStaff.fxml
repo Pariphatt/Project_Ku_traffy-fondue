@@ -31,17 +31,6 @@
             <String fx:value="shadow" />
          </styleClass>
       </Button>
-      <Button layoutX="742.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleBackButton" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
-         <styleClass>
-            <String fx:value="cube_box" />
-            <String fx:value="cube_select_main" />
-            <String fx:value="color_theme_1" />
-            <String fx:value="shadow" />
-         </styleClass>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
       <Pane layoutX="72.0" layoutY="50.0" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: white;" stylesheets="@styles/style.css">
          <children>
             <Label layoutX="23.0" layoutY="22.0" text="Name">
@@ -112,5 +101,14 @@
             <String fx:value="shadow" />
          </styleClass>
       </Pane>
+      <Button layoutX="710.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #8e8e8e;" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
+         <styleClass>
+            <String fx:value="cube_select_vocal" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -200,7 +200,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Sort By">
+                        <Label text="Category">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

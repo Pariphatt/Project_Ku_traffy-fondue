@@ -36,7 +36,7 @@ public class BannedUserController {
     private BannedUserListFileDataSource bannedUserListFileDataSource;
     private BannedList bannedList;
     private Banned selectedUser;
-
+    @FXML private AnchorPane pane;
 
 
     public void initialize(){
@@ -51,6 +51,7 @@ public class BannedUserController {
         showListView();
         clearSelectedUser();
         handleSelectedUser();
+        Mode.setMode(pane);
     }
 
     private void showListView(){

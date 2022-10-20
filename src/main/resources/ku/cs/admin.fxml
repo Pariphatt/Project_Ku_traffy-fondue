@@ -18,7 +18,7 @@
       </Label>
       <Label layoutX="20.0" layoutY="14.0" text="Admin" textFill="#8e8e8e" />
       <Label fx:id="adminNameLabel" layoutX="63.0" layoutY="14.0" text="adminNameLabel" textFill="#8e8e8e" />
-      <Button layoutX="194.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleGoToReportUserButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportUsers" />
+      <Button layoutX="194.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleGoToReportUserButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Report Users" />
       <Button layoutX="695.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleLogoutButton" stylesheets="@styles/style.css" text="Logout">
          <styleClass>
             <String fx:value="logout_button" />
@@ -36,6 +36,6 @@
       <Label fx:id="nameLabel" layoutX="557.0" layoutY="32.0" text="NameLabel" textFill="#8e8e8e" />
       <ImageView fx:id="imageView" fitHeight="101.0" fitWidth="150.0" layoutX="620.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="24.0" layoutY="521.0" text="รวมเรื่องร้องเรียนที่ถูกรายงาน:" textFill="#8e8e8e" />
-      <Button layoutX="38.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleGoToReportComplainButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="ReportComplain" />
+      <Button layoutX="38.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleGoToReportComplainButton" styleClass="button-change_password" stylesheets="@styles/style.css" text="Report Complaint" />
    </children>
 </AnchorPane>

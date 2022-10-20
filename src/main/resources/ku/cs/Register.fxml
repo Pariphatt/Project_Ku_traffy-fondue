@@ -15,12 +15,12 @@
 <AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="800.0" styleClass="color_box" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.RegisterController">
    <children>
       <Button layoutX="29.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleBackButton" style="-fx-background-color: transparenttransparent;" />
-      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="494.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="494.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="494.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="150.0">
          <image>
             <Image url="@images/profile-user.png" />
          </image>
       </ImageView>
-      <Button layoutX="483.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleAddPhoto" prefHeight="33.0" prefWidth="171.0" stylesheets="@styles/style.css" text="Upload Picture">
+      <Button layoutX="483.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleAddPhoto" prefHeight="33.0" prefWidth="171.0" stylesheets="@styles/style.css" text="Upload Picture" AnchorPane.bottomAnchor="211.8" AnchorPane.leftAnchor="483.0" AnchorPane.rightAnchor="145.8" AnchorPane.topAnchor="345.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -30,18 +30,7 @@
             <String fx:value="shadow" />
          </styleClass>
       </Button>
-      <Button layoutX="742.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleBackButton" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
-         <styleClass>
-            <String fx:value="cube_box" />
-            <String fx:value="cube_select_main" />
-            <String fx:value="color_theme_1" />
-            <String fx:value="shadow" />
-         </styleClass>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Pane layoutX="72.0" layoutY="50.0" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: white;" stylesheets="@styles/style.css">
+      <Pane layoutX="72.0" layoutY="50.0" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: white;" stylesheets="@styles/style.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="428.0" AnchorPane.topAnchor="50.0">
          <children>
             <Label layoutX="23.0" layoutY="22.0" text="Name">
                <font>
@@ -105,5 +94,14 @@
             <String fx:value="shadow" />
          </styleClass>
       </Pane>
+      <Button layoutX="710.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #8e8e8e;" stylesheets="@styles/style.css" text="Back" textFill="WHITE">
+         <styleClass>
+            <String fx:value="cube_select_vocal" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

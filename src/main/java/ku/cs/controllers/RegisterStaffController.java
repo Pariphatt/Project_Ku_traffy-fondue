@@ -62,7 +62,6 @@ public class RegisterStaffController {
         AccountListDataSource accountListDataSource1 = new AccountListDataSource("assets", "accounts.csv");
         accountList = accountListDataSource1.readData();
         Mode.setMode(pane);
-
     }
 
     private String[] agency = {"กองยานพาหนะ", "อาคารและสถานที่" , "สำนักบริการคอมพิวเตอร์", "กองกิจการนิสิต", "สำนักงานทรัพย์สิน", "สำนักงานอธิการบดี"};

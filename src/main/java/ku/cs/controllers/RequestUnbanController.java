@@ -33,7 +33,7 @@ public class RequestUnbanController {
     private Account accounts;
     private AccountListDataSource userListDataSource;
     private AccountList accountList;
-
+    @FXML private AnchorPane pane;
 
     public void initialize(){
         bannedUserListFileDataSource = new BannedUserListFileDataSource();
@@ -44,6 +44,7 @@ public class RequestUnbanController {
         userListDataSource = new AccountListDataSource("assets", "accounts.csv");
         accountList = userListDataSource.readData();
         accounts = accountList.findUser((String) FXRouter.getData());
+        Mode.setMode(pane);
     }
 
     @FXML
